@@ -2,6 +2,7 @@ package org.CaptureTheFlag;
 
 import org.CaptureTheFlag.Console.GameConsole;
 import org.Estruturas.Exceptions.EmptyCollectionException;
+import org.Estruturas.Exceptions.InvalidElementException;
 
 /**
  * The main class for the Capture The Flag game. It initializes and starts the game console.
@@ -21,7 +22,7 @@ public class Main {
      * @param args command-line arguments (not used)
      * @throws EmptyCollectionException if an attempt is made to access an element from an empty collection
      */
-    public static void main(String[] args) throws EmptyCollectionException {
+    public static void main(String[] args) throws EmptyCollectionException, InvalidElementException {
         GameConsole console = new GameConsole();
         console.start();
     }

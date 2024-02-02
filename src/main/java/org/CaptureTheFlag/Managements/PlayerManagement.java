@@ -16,8 +16,23 @@ import org.CaptureTheFlag.Console.PlayerConsole;
  * @author 8180325 - Miguel Fonseca
  */
 public class PlayerManagement {
-
     PlayerConsole playerConsole = new PlayerConsole();
+    Player player1 = new Player(1, "Player 1");
+    Player player2 = new Player(2, "Player 2");
+
+    /**
+     * Gets the first player object.
+     *
+     * @return The first player object.
+     */
+    public Player getPlayer1() {
+        return player1;
+    }
+
+    public Player getPlayer2() {
+        return player2;
+    }
+
 
     /**
      * Constructor for the {@code PlayerManagement} class.

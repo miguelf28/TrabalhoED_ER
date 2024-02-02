@@ -1,15 +1,12 @@
 package org.CaptureTheFlag.Managements;
 
-import org.CaptureTheFlag.Console.GameConsole;
-import org.CaptureTheFlag.Models.Map.ImportExportMap;
+import org.CaptureTheFlag.Console.GameMenus;
 import org.CaptureTheFlag.Models.Map.Map;
 import org.CaptureTheFlag.Models.Bots.Bot;
 import org.CaptureTheFlag.Models.Location.Location;
-import org.CaptureTheFlag.Models.Player.Player;
 import org.Estruturas.ArrayUnorderedList.ArrayUnorderedList;
 import org.Estruturas.Exceptions.EmptyCollectionException;
-
-import static org.CaptureTheFlag.Console.GameConsole.promptNumBots;
+import org.Estruturas.Exceptions.InvalidElementException;
 
 /**
  * The {@code GameSettings} class manages the configuration settings for a Capture The Flag game.
@@ -25,28 +22,6 @@ import static org.CaptureTheFlag.Console.GameConsole.promptNumBots;
  * @author 8180325 - Miguel Fonseca
  */
 public class GameSettings {
-    /**
-     * The first player object.
-     */
-    static Player player1 = new Player(1, "Player 1");
-    /**
-     * The second player object.
-     */
-    static Player player2 = new Player(2, "Player 2");
-
-    /**
-     * Gets the first player object.
-     *
-     * @return The first player object.
-     */
-    public Player getPlayer1() {
-        return player1;
-    }
-
-    public Player getPlayer2() {
-        return player2;
-    }
-
     /**
      * Configures and initiates the game settings. This method guides players through the process of setting up the game,
      * including importing or generating a map, specifying the number of bots, and initializing the game by setting up flag positions
@@ -67,10 +42,11 @@ public class GameSettings {
      * TODO Validar se o adicionar dos bots está correto ou se é melhor fazer numa outra forma
      *
      */
-    public static void settings() throws EmptyCollectionException {
+    public static void settings() throws EmptyCollectionException, InvalidElementException {
         PlayerManagement playerManagement = new PlayerManagement();
         Map<Location> map = new Map<>();
         ImportExportMap importExport = new ImportExportMap();
+        MapManagement mapManagement = new MapManagement();
         //GameManager gameManager = new GameManager();
 
         int numLocations = 0;
@@ -78,48 +54,48 @@ public class GameSettings {
         int numBotsPlayer2;
 
         //Import Map Menu
-        if (GameConsole.promptImportMap()) {
-            importExport.importMapAndGenerateMap("map.json");
-            map.printAdjacencyMatrix();
+        if (GameMenus.promptImportMap()) {
+            importExport.importMapAndGenerateMap(map, mapManagement, "map.json");
+            mapManagement.printAdjacencyMatrix();
         } else {
-            numLocations = GameConsole.promptNumLocations(); //Num Locations Menu
-            int pathType = GameConsole.promptPathType(); //Path Type Menu
-            int density = GameConsole.promptEdgeDensity(); //Density Menu
+            numLocations = GameMenus.promptNumLocations(); //Num Locations Menu
+            int pathType = GameMenus.promptPathType(); //Path Type Menu
+            int density = GameMenus.promptEdgeDensity(); //Density Menu
 
             // Generate Map
-            map.generateMap(numLocations, pathType == 1, density);
-            map.printAdjacencyMatrix();
+            mapManagement.generateMap(numLocations, pathType == 1, density);
+            mapManagement.printAdjacencyMatrix();
 
             //Export Map Menu
-            if (GameConsole.promptExportMap()) {
-                importExport.exportMapToJson(map, pathType == 1, density, "map.json");
+            if (GameMenus.promptExportMap()) {
+                importExport.exportMapToJson(map, mapManagement, pathType == 1, "map.json");
                 System.out.println("Mapa exportado com sucesso para 'map.json'.");
             }
         }
 
         //Bot number for each player menu
-        numBotsPlayer1 = promptNumBots("Player 1");
-        numBotsPlayer2 = promptNumBots("Player 2");
+        numBotsPlayer1 = GameMenus.promptNumBots("Player 1");
+        numBotsPlayer2 = GameMenus.promptNumBots("Player 2");
 
         ArrayUnorderedList<Bot> botsPlayer1 = new ArrayUnorderedList<>();
         ArrayUnorderedList<Bot> botsPlayer2 = new ArrayUnorderedList<>();
 
         for (int i = 0; i < numBotsPlayer1; i++) {
             Bot botForPlayer1 = new Bot(i + 1);
-            botForPlayer1.setOwner(player1);
+            botForPlayer1.setOwner(playerManagement.getPlayer1());
             botsPlayer1.addToRear(botForPlayer1);
         }
 
         for (int i = 0; i < numBotsPlayer2; i++) {
             Bot botForPlayer2 = new Bot(i + 1);
-            botForPlayer2.setOwner(player2);
+            botForPlayer2.setOwner(playerManagement.getPlayer2());
             botsPlayer2.addToRear(botForPlayer2);
         }
 
-        player1.setBots(botsPlayer1);
-        player2.setBots(botsPlayer2);
+        playerManagement.getPlayer1().setBots(botsPlayer1);
+        playerManagement.getPlayer2().setBots(botsPlayer2);
 
-        playerManagement.setFlagPosition(map, player1, player2);
+        playerManagement.setFlagPosition(map, playerManagement.getPlayer1(), playerManagement.getPlayer2());
 
         //gameManager.startGame(map, player1, player2);
     }

@@ -1,7 +1,12 @@
-package org.CaptureTheFlag.Models.Map;
+package org.CaptureTheFlag.Managements;
 
 import org.CaptureTheFlag.Models.Location.Location;
+import org.CaptureTheFlag.Models.Map.Map;
 import org.CaptureTheFlag.Models.Path.Path;
+import org.json.simple.JSONArray;
+import org.json.simple.JSONObject;
+import org.json.simple.parser.JSONParser;
+import org.json.simple.parser.ParseException;
 
 import java.io.FileReader;
 import java.io.FileWriter;
@@ -14,7 +19,7 @@ public class ImportExportMap {
      *
      * @param nameFile The name of the JSON file containing the map information.
      */
-    public void importMapAndGenerateMap(String nameFile) {
+    public void importMapAndGenerateMap(Map<Location> map, MapManagement mapManagement, String nameFile) {
 
 //        JSONParser parser = new JSONParser();
 //
@@ -29,7 +34,7 @@ public class ImportExportMap {
 //                int id = Math.toIntExact((Long) locationJson.get("id"));
 //                String name = (String) locationJson.get("name");
 //                Location location = new Location(id, name);
-//                addVertex((T) location);
+//                map.addVertex(location);
 //            }
 //
 //            JSONArray pathsArray = (JSONArray) mapObject.get("paths");
@@ -39,26 +44,24 @@ public class ImportExportMap {
 //                String originName = (String) pathJson.get("origin");
 //                String destinationName = (String) pathJson.get("destination");
 //
-//                Location origin = getLocationByName(originName);
-//                Location destination = getLocationByName(destinationName);
+//                Location origin = map.getLocationByName(originName);
+//                Location destination = map.getLocationByName(destinationName);
 //
 //                if (origin != null && destination != null) {
-//                    addEdge(getIndexOfLocation(origin), getIndexOfLocation(destination), distance);
+//                    map.addEdge(map.getIndexOfLocation(origin), map.getIndexOfLocation(destination), distance);
 //                    Path path = new Path(origin, destination, distance);
-//                    paths.add(path);
+//                    mapManagement.getPaths().add(path);
 //
 //                    if (bidirectionalPaths) {
-//                        addEdge(getIndexOfLocation(destination), getIndexOfLocation(origin), distance);
+//                        map.addEdge(map.getIndexOfLocation(destination), map.getIndexOfLocation(origin), distance);
 //                        Path inverse = new Path(destination, origin, distance);
-//                        pathsInverse.add(inverse);
+//                        mapManagement.getPathsInverse().add(inverse);
 //                    }
 //                }
 //            }
 //        } catch (IOException | ParseException | IndexOutOfBoundsException e) {
 //            e.printStackTrace();
 //        }
-
-
     }
 
     /**
@@ -66,10 +69,9 @@ public class ImportExportMap {
      *
      * @param map           The map to export.
      * @param directionPath Whether to export bidirectional paths.
-     * @param density       The density of the paths.
      * @param outputPath    The path to the output JSON file.
      */
-    public static void exportMapToJson(Map<Location> map, boolean directionPath, int density, String outputPath) {
+    public static void exportMapToJson(Map<Location> map, MapManagement mapManagement, boolean directionPath, String outputPath) {
 //        JSONArray locationsArray = new JSONArray();
 //        JSONArray pathsArray = new JSONArray();
 //
@@ -81,7 +83,7 @@ public class ImportExportMap {
 //        }
 //
 //        if (directionPath) {
-//            for (Path path : map.getPaths()) {
+//            for (Path path : mapManagement.getPaths()) {
 //                JSONObject pathObject = new JSONObject();
 //                pathObject.put("origin", path.getOrigin().getName());
 //                pathObject.put("destination", path.getDestination().getName());
@@ -89,7 +91,7 @@ public class ImportExportMap {
 //                pathsArray.add(pathObject);
 //            }
 //
-//            for (Path path : map.getPathsInverse()) {
+//            for (Path path : mapManagement.getPathsInverse()) {
 //                JSONObject pathObject = new JSONObject();
 //                pathObject.put("origin", path.getOrigin().getName());
 //                pathObject.put("destination", path.getDestination().getName());
@@ -97,7 +99,7 @@ public class ImportExportMap {
 //                pathsArray.add(pathObject);
 //            }
 //        } else {
-//            for (Path path : map.getPaths()) {
+//            for (Path path : mapManagement.getPaths()) {
 //                JSONObject pathObject = new JSONObject();
 //                pathObject.put("origin", path.getOrigin().getName());
 //                pathObject.put("destination", path.getDestination().getName());
@@ -116,6 +118,5 @@ public class ImportExportMap {
 //        } catch (IOException e) {
 //            e.printStackTrace();
 //        }
-//    }
     }
 }

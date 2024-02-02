@@ -28,19 +28,14 @@ import java.util.Set;
  * @author 8190357 - Marcelo Barbosa
  * @author 8180325 - Miguel Fonseca
  */
-public class Map<T> extends Network<T> {
-    private ArrayList<Path> paths = new ArrayList<>();
-    private ArrayList<Path> pathsInverse = new ArrayList<>();
-    private final Set<LocationNames> usedNames;
-    Random random = new Random();
-
+public class Map<T extends Location> extends Network<T> {
 
     /**
      * Constructs an empty map.
      */
     public Map() {
         super();
-        this.usedNames = new HashSet<>();
+        vertices = (T[]) new Location[this.DEFAULT_CAPACITY];
     }
 
     /**
@@ -50,7 +45,7 @@ public class Map<T> extends Network<T> {
      */
     public ArrayUnorderedList<Location> getLocations() {
         ArrayUnorderedList<Location> temp = new ArrayUnorderedList<>();
-        for (T vertices : vertices) {
+        for (Location vertices : vertices) {
             if (vertices != null) {
                 temp.addToRear((Location) vertices);
             }
@@ -64,8 +59,8 @@ public class Map<T> extends Network<T> {
      * @param name The name of the location to retrieve.
      * @return The location with the specified name, or null if not found.
      */
-    private Location getLocationByName(String name) {
-        for (T vertex : vertices) {
+    public Location getLocationByName(String name) {
+        for (Location vertex : vertices) {
             Location location = (Location) vertex;
             if (location.getName().equals(name)) {
                 return location;
@@ -75,21 +70,12 @@ public class Map<T> extends Network<T> {
     }
 
     /**
-     * Retrieves the network associated with the map.
-     *
-     * @return The network associated with the map.
-     */
-    public Network<T> getNetwork() {
-        return this;
-    }
-
-    /**
      * Retrieves the index of a location in the map.
      *
      * @param location The location to find the index of.
      * @return The index of the location, or -1 if not found.
      */
-    private int getIndexOfLocation(Location location) {
+    public int getIndexOfLocation(Location location) {
         for (int i = 0; i < vertices.length; i++) {
             if (vertices[i].equals(location)) {
                 return i;
@@ -99,107 +85,22 @@ public class Map<T> extends Network<T> {
     }
 
     /**
-     * Retrieves the paths in the map.
+     * Retrieves the vertices in the map.
      *
-     * @return An array list of paths in the map.
+     * @return An array list of vertices in the map.
      */
-    public ArrayList<Path> getPaths() {
-        return paths;
+    public Location[] getVertices() {
+        Location[] locations = (Location[]) new Location[numVertices];
+        System.arraycopy(vertices, 0, locations, 0, numVertices);
+        return locations;
     }
 
-    /**
-     * Retrieves the inverse paths in the map.
-     *
-     * @return An array list of inverse paths in the map.
-     */
-    public ArrayList<Path> getPathsInverse() {
-        return pathsInverse;
+    public int getNumVertices(){
+        return this.numVertices;
     }
 
-
-    /**
-     * Chooses names for the locations based on the number of names needed.
-     *
-     * @param intNames The number of names to choose.
-     * @return The chosen name.
-     */
-    private LocationNames chooseNames(int intNames) {
-        LocationNames[] namesLocations = LocationNames.values();
-        Set<LocationNames> availableNames = new HashSet<>(Set.of(namesLocations));
-        availableNames.removeAll(usedNames);
-
-        if (availableNames.isEmpty()) {
-            return null;
-        }
-        LocationNames chosenName = availableNames.iterator().next();
-        usedNames.add(chosenName);
-        return chosenName;
+    public double[][] getCost(){
+        return this.cost;
     }
 
-    /**
-     * Generates a random map with the specified number of locations, bidirectional paths, and density.
-     * This is one of the most important classes of this game, as it generates everything on the map
-     *
-     * @param numLocations       The number of locations to generate in the map.
-     * @param bidirectionalPaths Flag indicating whether the paths should be bidirectional.
-     * @param density            The density of the paths in the map.
-     */
-    public void generateMap(int numLocations, boolean bidirectionalPaths, int density) {
-        for (int i = 0; i < numLocations; i++) {
-            Location location = new Location(i + 1, chooseNames(i + 1).toString());
-            addVertex((T) location);
-        }
-
-        for (int i = 0; i < numLocations; i++) {
-            for (int j = i + 1; j < numLocations; j++) {
-                if (random.nextInt(100) < density) {
-                    try {
-                        int distance = (int) (random.nextDouble() * 14 + 1);
-                        addEdge(i, j, distance);
-                        Path path = new Path((Location) vertices[i], (Location) vertices[j], distance);
-                        paths.add(path);
-
-                        if (bidirectionalPaths) {
-                            addEdge(j, i, distance);
-                            Path inverse = new Path((Location) vertices[j], (Location) vertices[i], distance);
-                            pathsInverse.add(inverse);
-                        }
-
-                    } catch (IndexOutOfBoundsException e) {
-                        System.out.println("Erro ao adicionar aresta: " + e.getMessage());
-                    }
-                }
-            }
-        }
-    }
-
-    /**
-     * Prints the adjacency matrix representation of the map.
-     */
-    public void printAdjacencyMatrix() {
-        System.out.println("Matriz de Adjacência:");
-        System.out.print("        ");
-        for (int i = 0; i < numVertices; i++) {
-            System.out.printf("%-9s", ((Location) vertices[i]).getName());
-        }
-        System.out.println();
-
-        boolean hasBidirectionalPaths = !pathsInverse.isEmpty();
-
-        for (int i = 0; i < numVertices; i++) {
-            System.out.printf("%-9s", ((Location) vertices[i]).getName());
-            for (int j = 0; j < numVertices; j++) {
-                if (hasBidirectionalPaths || i < j) {
-                    if (this.cost[i][j] == Double.MAX_VALUE) {
-                        System.out.printf("%-9s", "-");
-                    } else {
-                        System.out.printf("%-9d", (int) this.cost[i][j]);
-                    }
-                } else {
-                    System.out.print("         ");
-                }
-            }
-            System.out.println();
-        }
-    }
 }

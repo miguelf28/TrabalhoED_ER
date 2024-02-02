@@ -51,7 +51,7 @@ public class Network<T> extends Graph<T> implements NetworkADT<T> {
      * @param index2 the index of the second vertex
      * @param weight the weight of the edge
      */
-    protected void addEdge(int index1, int index2, double weight) {
+    public void addEdge(int index1, int index2, double weight) {
         if (super.indexIsValid(index1) && super.indexIsValid(index2)) {
             super.addEdge(index1, index2);
             this.cost[index1][index2] = weight;
