@@ -35,7 +35,7 @@ public class BFSAlgorithm implements IMovementAlgorithm {
      */
     @Override
     public Location move(Map<Location> map, Bot bot, Player opponent) {
-        Set<Location> visitedLocations = bot.getVisitedLocations();
+        //Set<Location> visitedLocations = bot.getVisitedLocations();
         Location currentLocation = bot.getActualPosition();
         Location opponentLocation = opponent.getFlagPosition();
 
@@ -52,6 +52,7 @@ public class BFSAlgorithm implements IMovementAlgorithm {
         iterator.next();
 
         System.out.print("\nCaminho Percorrido: ");
+        /*
         while (iterator.hasNext()) {
             Location nextLocation = iterator.next();
             System.out.print(nextLocation);
@@ -80,6 +81,8 @@ public class BFSAlgorithm implements IMovementAlgorithm {
                 return currentLocation;
             }
         }
+
+         */
         System.out.println("Não foi possível encontrar um caminho para o destino.");
         return currentLocation;
     }

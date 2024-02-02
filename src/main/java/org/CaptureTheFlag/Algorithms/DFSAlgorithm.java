@@ -1,8 +1,8 @@
 package org.CaptureTheFlag.Algorithms;
 
 import org.CaptureTheFlag.Algorithms.Interface.IMovementAlgorithm;
-import org.CaptureTheFlag.Management.GameManager;
-import org.CaptureTheFlag.Map.Map;
+//import org.CaptureTheFlag.Managements.GameManager;
+import org.CaptureTheFlag.Models.Map.Map;
 import org.CaptureTheFlag.Models.Bots.Bot;
 import org.CaptureTheFlag.Models.Location.Location;
 import org.CaptureTheFlag.Models.Player.Player;
@@ -36,7 +36,7 @@ public class DFSAlgorithm implements IMovementAlgorithm {
      */
     @Override
     public Location move(Map<Location> map, Bot bot, Player opponent) throws EmptyCollectionException {
-        Set<Location> visitedLocations = bot.getVisitedLocations();
+       // Set<Location> visitedLocations = bot.getVisitedLocations();
         Location currentLocation = bot.getActualPosition();
         Location opponentLocation = opponent.getFlagPosition();
 
@@ -54,6 +54,7 @@ public class DFSAlgorithm implements IMovementAlgorithm {
         iterator.next();
 
         System.out.print("\nCaminho Percorrido: ");
+        /*
         while (iterator.hasNext()) {
             Location nextLocation = iterator.next();
             System.out.print(nextLocation);
@@ -82,6 +83,8 @@ public class DFSAlgorithm implements IMovementAlgorithm {
                 return currentLocation;
             }
         }
+
+         */
         System.out.println("Não foi possível encontrar um caminho para o destino.");
         return currentLocation;
     }

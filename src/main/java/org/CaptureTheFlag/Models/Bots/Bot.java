@@ -184,7 +184,4 @@ public class Bot {
                 " / Movement Algorithm = " + getAlgorithmType() +
                 " / Actual Bot Position = " + actualPosition ;
     }
-
-
-
 }

@@ -9,7 +9,7 @@ import org.CaptureTheFlag.Models.Player.Player;
 import org.Estruturas.ArrayUnorderedList.ArrayUnorderedList;
 import org.Estruturas.Exceptions.EmptyCollectionException;
 
-import java.util.Scanner;
+import static org.CaptureTheFlag.Console.GameConsole.promptNumBots;
 
 /**
  * The {@code GameSettings} class manages the configuration settings for a Capture The Flag game.
@@ -63,6 +63,9 @@ public class GameSettings {
      * </p>
      *
      * @throws EmptyCollectionException if the collection is empty.
+     *
+     * TODO Validar se o adicionar dos bots está correto ou se é melhor fazer numa outra forma
+     *
      */
     public static void settings() throws EmptyCollectionException {
         PlayerManagement playerManagement = new PlayerManagement();
@@ -71,36 +74,43 @@ public class GameSettings {
         //GameManager gameManager = new GameManager();
 
         int numLocations = 0;
-        int numBots;
+        int numBotsPlayer1;
+        int numBotsPlayer2;
 
+        //Import Map Menu
         if (GameConsole.promptImportMap()) {
             importExport.importMapAndGenerateMap("map.json");
             map.printAdjacencyMatrix();
         } else {
-            numLocations = GameConsole.promptNumLocations();
-            int pathType = GameConsole.promptPathType();
-            int density = GameConsole.promptEdgeDensity();
+            numLocations = GameConsole.promptNumLocations(); //Num Locations Menu
+            int pathType = GameConsole.promptPathType(); //Path Type Menu
+            int density = GameConsole.promptEdgeDensity(); //Density Menu
 
-            // Gerar Mapa
+            // Generate Map
             map.generateMap(numLocations, pathType == 1, density);
             map.printAdjacencyMatrix();
 
+            //Export Map Menu
             if (GameConsole.promptExportMap()) {
                 importExport.exportMapToJson(map, pathType == 1, density, "map.json");
                 System.out.println("Mapa exportado com sucesso para 'map.json'.");
             }
         }
 
-        numBots = GameConsole.promptNumBots();
+        //Bot number for each player menu
+        numBotsPlayer1 = promptNumBots("Player 1");
+        numBotsPlayer2 = promptNumBots("Player 2");
 
         ArrayUnorderedList<Bot> botsPlayer1 = new ArrayUnorderedList<>();
         ArrayUnorderedList<Bot> botsPlayer2 = new ArrayUnorderedList<>();
 
-        for (int i = 0; i < numBots; i++) {
+        for (int i = 0; i < numBotsPlayer1; i++) {
             Bot botForPlayer1 = new Bot(i + 1);
             botForPlayer1.setOwner(player1);
             botsPlayer1.addToRear(botForPlayer1);
+        }
 
+        for (int i = 0; i < numBotsPlayer2; i++) {
             Bot botForPlayer2 = new Bot(i + 1);
             botForPlayer2.setOwner(player2);
             botsPlayer2.addToRear(botForPlayer2);

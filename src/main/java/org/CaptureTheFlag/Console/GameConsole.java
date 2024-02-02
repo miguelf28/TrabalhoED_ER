@@ -118,22 +118,24 @@ public class GameConsole {
         } while (pathType != 0 && pathType != 1);
         return pathType;
     }
-    public static int promptNumBots() {
+
+    public static int promptNumBots(String playerName) {
         int numBots;
         do {
-            System.out.print("\nQuantos bots vão jogar por cada jogador (1 a 5): ");
+            System.out.print("\n" + playerName + ", quantos bots vão jogar (1 a 5): ");
             while (!scanner.hasNextInt()) {
                 System.out.println("Por favor, insira um número válido.");
-                System.out.print("\nQuantos bots vão jogar por cada jogador (1 a 5): ");
+                System.out.print("\n" + playerName + ", quantos bots vão jogar (1 a 5): ");
                 scanner.next();
             }
             numBots = scanner.nextInt();
             if (numBots < 1 || numBots > 5) {
-                System.out.println("Número de bots inválido. Escolha entre 3 e 5 bots.");
+                System.out.println("Número de bots inválido. Escolha entre 1 e 5 bots.");
             }
         } while (numBots < 1 || numBots > 5);
         return numBots;
     }
+
 
     /**
      * Prompts the user for the edge density.
