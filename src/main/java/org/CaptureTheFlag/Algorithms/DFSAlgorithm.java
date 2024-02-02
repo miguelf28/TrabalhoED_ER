@@ -1,6 +1,6 @@
 package org.CaptureTheFlag.Algorithms;
 
-import org.CaptureTheFlag.Interfaces.IMovementAlgorithm;
+import org.CaptureTheFlag.Algorithms.Interface.IMovementAlgorithm;
 import org.CaptureTheFlag.Management.GameManager;
 import org.CaptureTheFlag.Map.Map;
 import org.CaptureTheFlag.Models.Bots.Bot;
@@ -19,7 +19,7 @@ import java.util.Set;
  * @author 8190357 - Marcelo Barbosa
  * @author 8180325 - Miguel Fonseca
  */
-public class DFSAlgorithmI implements IMovementAlgorithm {
+public class DFSAlgorithm implements IMovementAlgorithm {
 
     @Override
     public String getName() {

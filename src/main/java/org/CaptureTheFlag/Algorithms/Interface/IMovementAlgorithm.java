@@ -1,6 +1,6 @@
-package org.CaptureTheFlag.Interfaces;
+package org.CaptureTheFlag.Algorithms.Interface;
 
-import org.CaptureTheFlag.Map.Map;
+import org.CaptureTheFlag.Models.Map.Map;
 import org.CaptureTheFlag.Models.Bots.Bot;
 import org.CaptureTheFlag.Models.Location.Location;
 import org.CaptureTheFlag.Models.Player.Player;

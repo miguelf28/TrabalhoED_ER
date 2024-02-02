@@ -1,8 +1,8 @@
 package org.CaptureTheFlag.Algorithms;
 
-import org.CaptureTheFlag.Interfaces.IMovementAlgorithm;
-import org.CaptureTheFlag.Management.GameManager;
-import org.CaptureTheFlag.Map.Map;
+import org.CaptureTheFlag.Algorithms.Interface.IMovementAlgorithm;
+//import org.CaptureTheFlag.Managements.GameManager;
+import org.CaptureTheFlag.Models.Map.Map;
 import org.CaptureTheFlag.Models.Bots.Bot;
 import org.CaptureTheFlag.Models.Location.Location;
 import org.CaptureTheFlag.Models.Player.Player;
@@ -18,7 +18,7 @@ import java.util.Set;
  * @author 8190357 - Marcelo Barbosa
  * @author 8180325 - Miguel Fonseca
  */
-public class BFSAlgorithmI implements IMovementAlgorithm {
+public class BFSAlgorithm implements IMovementAlgorithm {
 
     @Override
     public String getName() {
