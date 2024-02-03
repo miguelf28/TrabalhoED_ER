@@ -3,9 +3,7 @@ package org.CaptureTheFlag.Managements;
 import org.CaptureTheFlag.Models.Location.Location;
 import org.CaptureTheFlag.Models.Location.LocationNames;
 import org.CaptureTheFlag.Models.Map.Map;
-import org.CaptureTheFlag.Models.Path.Path;
 import org.Estruturas.ArrayList.ArrayList;
-import org.Estruturas.ArrayUnorderedList.ArrayUnorderedList;
 import org.Estruturas.Exceptions.EmptyCollectionException;
 import org.Estruturas.Exceptions.InvalidElementException;
 
@@ -45,7 +43,7 @@ public class MapManagement {
      * @param bidirectionalPaths Flag indicating whether the paths should be bidirectional.
      * @param density            The density of the paths in the map.
      */
-    public void generateMap(int numLocations, boolean bidirectionalPaths, int density) throws InvalidElementException, EmptyCollectionException {
+    public void generateMap(Map<Location> map, int numLocations, boolean bidirectionalPaths, int density) throws InvalidElementException, EmptyCollectionException {
         // Lista de nomes de locais disponíveis
         ArrayList<LocationNames> availableNames = chooseNames(numLocations);
 
@@ -62,8 +60,10 @@ public class MapManagement {
                     try {
                         int distance = (int) (random.nextDouble() * 14 + 1);
                         map.addEdge(i, j, distance);
+                        //System.out.println("Aresta adicionada: (" + i + ", " + j + ") com distância: " + distance);
                         if (bidirectionalPaths) {
                             map.addEdge(j, i, distance);
+                            //System.out.println("Aresta bidirecional adicionada: (" + j + ", " + i + ") com distância: " + distance);
                         }
                     } catch (IndexOutOfBoundsException e) {
                         System.out.println("Erro ao adicionar aresta: " + e.getMessage());
@@ -71,12 +71,16 @@ public class MapManagement {
                 }
             }
         }
+
+        // Exibe o número de vértices e densidade das arestas geradas
+        System.out.println("Número de vértices no mapa: " + map.getNumVertices());
+        System.out.println("Densidade das arestas: " + density);
     }
 
     /**
      * Prints the adjacency matrix representation of the map.
      */
-    public void printAdjacencyMatrix() {
+    public void printAdjacencyMatrix(Map<Location> map) {
         System.out.println("Adjacency Matrix:");
 
         int numVertices = map.getNumVertices();

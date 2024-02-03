@@ -1,22 +1,9 @@
 package org.CaptureTheFlag.Models.Map;
 
 import org.CaptureTheFlag.Models.Location.Location;
-import org.CaptureTheFlag.Models.Location.LocationNames;
 import org.CaptureTheFlag.Models.Path.Path;
 import org.Estruturas.ArrayUnorderedList.ArrayUnorderedList;
 import org.Estruturas.Network.Network;
-import org.json.simple.JSONArray;
-import org.json.simple.JSONObject;
-import org.json.simple.parser.JSONParser;
-import org.json.simple.parser.ParseException;
-
-import java.io.FileReader;
-import java.io.IOException;
-import java.util.ArrayList;
-import java.util.Random;
-import java.util.Scanner;
-import java.util.HashSet;
-import java.util.Set;
 
 /**
  * Represents a map in the Capture The Flag game.
@@ -101,6 +88,26 @@ public class Map<T extends Location> extends Network<T> {
 
     public double[][] getCost(){
         return this.cost;
+    }
+
+    /**
+     * Retorna os caminhos (edges) no mapa.
+     *
+     * @return Um array não ordenado de caminhos.
+     */
+    public ArrayUnorderedList<Path> getEdges() {
+        ArrayUnorderedList<Path> edgesList = new ArrayUnorderedList<>();
+
+        // Percorra a matriz de adjacência para encontrar os caminhos
+        for (int i = 0; i < numVertices; i++) {
+            for (int j = 0; j < numVertices; j++) {
+                if (cost[i][j] != Double.MAX_VALUE) {
+                    edgesList.addToRear(new Path(vertices[i], vertices[j], (int) cost[i][j]));
+                }
+            }
+        }
+
+        return edgesList;
     }
 
 }

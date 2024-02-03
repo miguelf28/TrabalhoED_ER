@@ -1,0 +1,334 @@
+{
+  "paths": [
+    {
+      "distance": 1,
+      "start": 1,
+      "end": 4
+    },
+    {
+      "distance": 11,
+      "start": 1,
+      "end": 5
+    },
+    {
+      "distance": 10,
+      "start": 1,
+      "end": 6
+    },
+    {
+      "distance": 2,
+      "start": 1,
+      "end": 10
+    },
+    {
+      "distance": 7,
+      "start": 1,
+      "end": 11
+    },
+    {
+      "distance": 6,
+      "start": 1,
+      "end": 12
+    },
+    {
+      "distance": 12,
+      "start": 2,
+      "end": 4
+    },
+    {
+      "distance": 1,
+      "start": 2,
+      "end": 6
+    },
+    {
+      "distance": 7,
+      "start": 2,
+      "end": 7
+    },
+    {
+      "distance": 12,
+      "start": 2,
+      "end": 8
+    },
+    {
+      "distance": 4,
+      "start": 2,
+      "end": 11
+    },
+    {
+      "distance": 8,
+      "start": 3,
+      "end": 5
+    },
+    {
+      "distance": 12,
+      "start": 3,
+      "end": 7
+    },
+    {
+      "distance": 14,
+      "start": 3,
+      "end": 9
+    },
+    {
+      "distance": 2,
+      "start": 3,
+      "end": 10
+    },
+    {
+      "distance": 3,
+      "start": 3,
+      "end": 11
+    },
+    {
+      "distance": 4,
+      "start": 3,
+      "end": 12
+    },
+    {
+      "distance": 1,
+      "start": 4,
+      "end": 1
+    },
+    {
+      "distance": 12,
+      "start": 4,
+      "end": 2
+    },
+    {
+      "distance": 3,
+      "start": 4,
+      "end": 5
+    },
+    {
+      "distance": 4,
+      "start": 4,
+      "end": 6
+    },
+    {
+      "distance": 11,
+      "start": 4,
+      "end": 12
+    },
+    {
+      "distance": 11,
+      "start": 5,
+      "end": 1
+    },
+    {
+      "distance": 8,
+      "start": 5,
+      "end": 3
+    },
+    {
+      "distance": 3,
+      "start": 5,
+      "end": 4
+    },
+    {
+      "distance": 11,
+      "start": 5,
+      "end": 6
+    },
+    {
+      "distance": 9,
+      "start": 5,
+      "end": 8
+    },
+    {
+      "distance": 10,
+      "start": 6,
+      "end": 1
+    },
+    {
+      "distance": 1,
+      "start": 6,
+      "end": 2
+    },
+    {
+      "distance": 4,
+      "start": 6,
+      "end": 4
+    },
+    {
+      "distance": 11,
+      "start": 6,
+      "end": 5
+    },
+    {
+      "distance": 13,
+      "start": 6,
+      "end": 7
+    },
+    {
+      "distance": 2,
+      "start": 6,
+      "end": 8
+    },
+    {
+      "distance": 8,
+      "start": 6,
+      "end": 12
+    },
+    {
+      "distance": 7,
+      "start": 7,
+      "end": 2
+    },
+    {
+      "distance": 12,
+      "start": 7,
+      "end": 3
+    },
+    {
+      "distance": 13,
+      "start": 7,
+      "end": 6
+    },
+    {
+      "distance": 5,
+      "start": 7,
+      "end": 11
+    },
+    {
+      "distance": 12,
+      "start": 8,
+      "end": 2
+    },
+    {
+      "distance": 9,
+      "start": 8,
+      "end": 5
+    },
+    {
+      "distance": 2,
+      "start": 8,
+      "end": 6
+    },
+    {
+      "distance": 14,
+      "start": 9,
+      "end": 3
+    },
+    {
+      "distance": 4,
+      "start": 9,
+      "end": 10
+    },
+    {
+      "distance": 2,
+      "start": 10,
+      "end": 1
+    },
+    {
+      "distance": 2,
+      "start": 10,
+      "end": 3
+    },
+    {
+      "distance": 4,
+      "start": 10,
+      "end": 9
+    },
+    {
+      "distance": 14,
+      "start": 10,
+      "end": 11
+    },
+    {
+      "distance": 7,
+      "start": 11,
+      "end": 1
+    },
+    {
+      "distance": 4,
+      "start": 11,
+      "end": 2
+    },
+    {
+      "distance": 3,
+      "start": 11,
+      "end": 3
+    },
+    {
+      "distance": 5,
+      "start": 11,
+      "end": 7
+    },
+    {
+      "distance": 14,
+      "start": 11,
+      "end": 10
+    },
+    {
+      "distance": 6,
+      "start": 12,
+      "end": 1
+    },
+    {
+      "distance": 4,
+      "start": 12,
+      "end": 3
+    },
+    {
+      "distance": 11,
+      "start": 12,
+      "end": 4
+    },
+    {
+      "distance": 8,
+      "start": 12,
+      "end": 6
+    }
+  ],
+  "vertices": [
+    {
+      "name": "VALE",
+      "id": 1
+    },
+    {
+      "name": "PICO",
+      "id": 2
+    },
+    {
+      "name": "CIDADE",
+      "id": 3
+    },
+    {
+      "name": "LAGO",
+      "id": 4
+    },
+    {
+      "name": "ILHA",
+      "id": 5
+    },
+    {
+      "name": "FORTE",
+      "id": 6
+    },
+    {
+      "name": "RIO",
+      "id": 7
+    },
+    {
+      "name": "TORRE",
+      "id": 8
+    },
+    {
+      "name": "BOSQUE",
+      "id": 9
+    },
+    {
+      "name": "GRUTA",
+      "id": 10
+    },
+    {
+      "name": "CAVERNA",
+      "id": 11
+    },
+    {
+      "name": "PLANICIE",
+      "id": 12
+    }
+  ]
+}

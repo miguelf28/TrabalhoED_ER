@@ -1,0 +1,173 @@
+Index: .idea/gradle.xml
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+><?xml version=\"1.0\" encoding=\"UTF-8\"?>\r\n<project version=\"4\">\r\n  <component name=\"GradleSettings\">\r\n    <option name=\"linkedExternalProjectsSettings\">\r\n      <GradleProjectSettings>\r\n        <option name=\"externalProjectPath\" value=\"$PROJECT_DIR$\" />\r\n        <option name=\"gradleHome\" value=\"\" />\r\n        <option name=\"modules\">\r\n          <set>\r\n            <option value=\"$PROJECT_DIR$\" />\r\n          </set>\r\n        </option>\r\n      </GradleProjectSettings>\r\n    </option>\r\n  </component>\r\n</project>
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/.idea/gradle.xml b/.idea/gradle.xml
+--- a/.idea/gradle.xml	(revision da729fd39d270f2a2d773052a82f62573fb62bdb)
++++ b/.idea/gradle.xml	(date 1706820891405)
+@@ -1,5 +1,6 @@
+ <?xml version="1.0" encoding="UTF-8"?>
+ <project version="4">
++  <component name="GradleMigrationSettings" migrationVersion="1" />
+   <component name="GradleSettings">
+     <option name="linkedExternalProjectsSettings">
+       <GradleProjectSettings>
+Index: .idea/workspace.xml
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+><?xml version=\"1.0\" encoding=\"UTF-8\"?>\r\n<project version=\"4\">\r\n  <component name=\"AutoImportSettings\">\r\n    <option name=\"autoReloadType\" value=\"SELECTIVE\" />\r\n  </component>\r\n  <component name=\"ChangeListManager\">\r\n    <list default=\"true\" id=\"2f94aad1-6861-4f54-acb1-3c181fb54499\" name=\"Changes\" comment=\"Struct Commit\">\r\n      <change beforePath=\"$PROJECT_DIR$/.idea/workspace.xml\" beforeDir=\"false\" afterPath=\"$PROJECT_DIR$/.idea/workspace.xml\" afterDir=\"false\" />\r\n      <change beforePath=\"$PROJECT_DIR$/src/main/java/Estruturas/ArrayBinarySearchTree/ArrayBinarySearchTree.java\" beforeDir=\"false\" afterPath=\"$PROJECT_DIR$/src/main/java/org/Estruturas/ArrayBinarySearchTree/ArrayBinarySearchTree.java\" afterDir=\"false\" />\r\n      <change beforePath=\"$PROJECT_DIR$/src/main/java/Estruturas/ArrayBinarySearchTree/BinarySearchTreeADT.java\" beforeDir=\"false\" afterPath=\"$PROJECT_DIR$/src/main/java/org/Estruturas/ArrayBinarySearchTree/BinarySearchTreeADT.java\" afterDir=\"false\" />\r\n      <change beforePath=\"$PROJECT_DIR$/src/main/java/Estruturas/ArrayBinaryTree/ArrayBinaryTree.java\" beforeDir=\"false\" afterPath=\"$PROJECT_DIR$/src/main/java/org/Estruturas/ArrayBinaryTree/ArrayBinaryTree.java\" afterDir=\"false\" />\r\n      <change beforePath=\"$PROJECT_DIR$/src/main/java/Estruturas/ArrayHeap/ArrayHeap.java\" beforeDir=\"false\" afterPath=\"$PROJECT_DIR$/src/main/java/org/Estruturas/ArrayHeap/ArrayHeap.java\" afterDir=\"false\" />\r\n      <change beforePath=\"$PROJECT_DIR$/src/main/java/Estruturas/ArrayList/ArrayList.java\" beforeDir=\"false\" afterPath=\"$PROJECT_DIR$/src/main/java/org/Estruturas/ArrayList/ArrayList.java\" afterDir=\"false\" />\r\n      <change beforePath=\"$PROJECT_DIR$/src/main/java/Estruturas/ArrayList/ListADT.java\" beforeDir=\"false\" afterPath=\"$PROJECT_DIR$/src/main/java/org/Estruturas/ArrayList/ListADT.java\" afterDir=\"false\" />\r\n      <change beforePath=\"$PROJECT_DIR$/src/main/java/Estruturas/ArrayOrderedList/ArrayOrderedList.java\" beforeDir=\"false\" afterPath=\"$PROJECT_DIR$/src/main/java/org/Estruturas/ArrayOrderedList/ArrayOrderedList.java\" afterDir=\"false\" />\r\n      <change beforePath=\"$PROJECT_DIR$/src/main/java/Estruturas/ArrayOrderedList/OrderedListADT.java\" beforeDir=\"false\" afterPath=\"$PROJECT_DIR$/src/main/java/org/Estruturas/ArrayOrderedList/OrderedListADT.java\" afterDir=\"false\" />\r\n      <change beforePath=\"$PROJECT_DIR$/src/main/java/Estruturas/ArrayPriorityQueue/ArrayPriorityQueue.java\" beforeDir=\"false\" afterPath=\"$PROJECT_DIR$/src/main/java/org/Estruturas/ArrayPriorityQueue/ArrayPriorityQueue.java\" afterDir=\"false\" />\r\n      <change beforePath=\"$PROJECT_DIR$/src/main/java/Estruturas/ArrayStack/ArrayStack.java\" beforeDir=\"false\" afterPath=\"$PROJECT_DIR$/src/main/java/org/Estruturas/ArrayStack/ArrayStack.java\" afterDir=\"false\" />\r\n      <change beforePath=\"$PROJECT_DIR$/src/main/java/Estruturas/ArrayUnorderedList/ArrayUnorderedList.java\" beforeDir=\"false\" afterPath=\"$PROJECT_DIR$/src/main/java/org/Estruturas/ArrayUnorderedList/ArrayUnorderedList.java\" afterDir=\"false\" />\r\n      <change beforePath=\"$PROJECT_DIR$/src/main/java/Estruturas/ArrayUnorderedList/UnorderedListADT.java\" beforeDir=\"false\" afterPath=\"$PROJECT_DIR$/src/main/java/org/Estruturas/ArrayUnorderedList/UnorderedListADT.java\" afterDir=\"false\" />\r\n      <change beforePath=\"$PROJECT_DIR$/src/main/java/Estruturas/CircularArrayQueue/CircularArrayQueue.java\" beforeDir=\"false\" afterPath=\"$PROJECT_DIR$/src/main/java/org/Estruturas/CircularArrayQueue/CircularArrayQueue.java\" afterDir=\"false\" />\r\n      <change beforePath=\"$PROJECT_DIR$/src/main/java/Estruturas/DoubleLinkedList/DoubleLinkedList.java\" beforeDir=\"false\" afterPath=\"$PROJECT_DIR$/src/main/java/org/Estruturas/DoubleLinkedList/DoubleLinkedList.java\" afterDir=\"false\" />\r\n      <change beforePath=\"$PROJECT_DIR$/src/main/java/Estruturas/DoubleLinkedList/ListADT.java\" beforeDir=\"false\" afterPath=\"$PROJECT_DIR$/src/main/java/org/Estruturas/DoubleLinkedList/ListADT.java\" afterDir=\"false\" />\r\n      <change beforePath=\"$PROJECT_DIR$/src/main/java/Estruturas/Exceptions/ElementNotFoundException.java\" beforeDir=\"false\" afterPath=\"$PROJECT_DIR$/src/main/java/org/Estruturas/Exceptions/ElementNotFoundException.java\" afterDir=\"false\" />\r\n      <change beforePath=\"$PROJECT_DIR$/src/main/java/Estruturas/Exceptions/EmptyCollectionException.java\" beforeDir=\"false\" afterPath=\"$PROJECT_DIR$/src/main/java/org/Estruturas/Exceptions/EmptyCollectionException.java\" afterDir=\"false\" />\r\n      <change beforePath=\"$PROJECT_DIR$/src/main/java/Estruturas/Exceptions/InvalidElementException.java\" beforeDir=\"false\" afterPath=\"$PROJECT_DIR$/src/main/java/org/Estruturas/Exceptions/InvalidElementException.java\" afterDir=\"false\" />\r\n      <change beforePath=\"$PROJECT_DIR$/src/main/java/Estruturas/Exceptions/NonComparableElementException.java\" beforeDir=\"false\" afterPath=\"$PROJECT_DIR$/src/main/java/org/Estruturas/Exceptions/NonComparableElementException.java\" afterDir=\"false\" />\r\n      <change beforePath=\"$PROJECT_DIR$/src/main/java/Estruturas/Exceptions/NullPointerException.java\" beforeDir=\"false\" afterPath=\"$PROJECT_DIR$/src/main/java/org/Estruturas/Exceptions/NullPointerException.java\" afterDir=\"false\" />\r\n      <change beforePath=\"$PROJECT_DIR$/src/main/java/Estruturas/Graph/Graph.java\" beforeDir=\"false\" afterPath=\"$PROJECT_DIR$/src/main/java/org/Estruturas/Graph/Graph.java\" afterDir=\"false\" />\r\n      <change beforePath=\"$PROJECT_DIR$/src/main/java/Estruturas/Graph/GraphADT.java\" beforeDir=\"false\" afterPath=\"$PROJECT_DIR$/src/main/java/org/Estruturas/Graph/GraphADT.java\" afterDir=\"false\" />\r\n      <change beforePath=\"$PROJECT_DIR$/src/main/java/Estruturas/LinkedBinaryTree/BinaryTreeADT.java\" beforeDir=\"false\" afterPath=\"$PROJECT_DIR$/src/main/java/org/Estruturas/LinkedBinaryTree/BinaryTreeADT.java\" afterDir=\"false\" />\r\n      <change beforePath=\"$PROJECT_DIR$/src/main/java/Estruturas/LinkedBinaryTree/LinkedBinaryTree.java\" beforeDir=\"false\" afterPath=\"$PROJECT_DIR$/src/main/java/org/Estruturas/LinkedBinaryTree/LinkedBinaryTree.java\" afterDir=\"false\" />\r\n      <change beforePath=\"$PROJECT_DIR$/src/main/java/Estruturas/LinkedHeap/HeapADT.java\" beforeDir=\"false\" afterPath=\"$PROJECT_DIR$/src/main/java/org/Estruturas/LinkedHeap/HeapADT.java\" afterDir=\"false\" />\r\n      <change beforePath=\"$PROJECT_DIR$/src/main/java/Estruturas/LinkedHeap/LinkedHeap.java\" beforeDir=\"false\" afterPath=\"$PROJECT_DIR$/src/main/java/org/Estruturas/LinkedHeap/LinkedHeap.java\" afterDir=\"false\" />\r\n      <change beforePath=\"$PROJECT_DIR$/src/main/java/Estruturas/LinkedList/LinkedList.java\" beforeDir=\"false\" afterPath=\"$PROJECT_DIR$/src/main/java/org/Estruturas/LinkedList/LinkedList.java\" afterDir=\"false\" />\r\n      <change beforePath=\"$PROJECT_DIR$/src/main/java/Estruturas/LinkedQueue/LinkedQueue.java\" beforeDir=\"false\" afterPath=\"$PROJECT_DIR$/src/main/java/org/Estruturas/LinkedQueue/LinkedQueue.java\" afterDir=\"false\" />\r\n      <change beforePath=\"$PROJECT_DIR$/src/main/java/Estruturas/LinkedQueue/QueueADT.java\" beforeDir=\"false\" afterPath=\"$PROJECT_DIR$/src/main/java/org/Estruturas/LinkedQueue/QueueADT.java\" afterDir=\"false\" />\r\n      <change beforePath=\"$PROJECT_DIR$/src/main/java/Estruturas/LinkedStack/LinkedStack.java\" beforeDir=\"false\" afterPath=\"$PROJECT_DIR$/src/main/java/org/Estruturas/LinkedStack/LinkedStack.java\" afterDir=\"false\" />\r\n      <change beforePath=\"$PROJECT_DIR$/src/main/java/Estruturas/LinkedStack/StackADT.java\" beforeDir=\"false\" afterPath=\"$PROJECT_DIR$/src/main/java/org/Estruturas/LinkedStack/StackADT.java\" afterDir=\"false\" />\r\n      <change beforePath=\"$PROJECT_DIR$/src/main/java/Estruturas/Network/Network.java\" beforeDir=\"false\" afterPath=\"$PROJECT_DIR$/src/main/java/org/Estruturas/Network/Network.java\" afterDir=\"false\" />\r\n      <change beforePath=\"$PROJECT_DIR$/src/main/java/Estruturas/Network/NetworkADT.java\" beforeDir=\"false\" afterPath=\"$PROJECT_DIR$/src/main/java/org/Estruturas/Network/NetworkADT.java\" afterDir=\"false\" />\r\n      <change beforePath=\"$PROJECT_DIR$/src/main/java/Estruturas/Nodes/BinaryTreeNode.java\" beforeDir=\"false\" afterPath=\"$PROJECT_DIR$/src/main/java/org/Estruturas/Nodes/BinaryTreeNode.java\" afterDir=\"false\" />\r\n      <change beforePath=\"$PROJECT_DIR$/src/main/java/Estruturas/Nodes/DoubleNode.java\" beforeDir=\"false\" afterPath=\"$PROJECT_DIR$/src/main/java/org/Estruturas/Nodes/DoubleNode.java\" afterDir=\"false\" />\r\n      <change beforePath=\"$PROJECT_DIR$/src/main/java/Estruturas/Nodes/HeapNode.java\" beforeDir=\"false\" afterPath=\"$PROJECT_DIR$/src/main/java/org/Estruturas/Nodes/HeapNode.java\" afterDir=\"false\" />\r\n      <change beforePath=\"$PROJECT_DIR$/src/main/java/Estruturas/Nodes/LinkedBinarySearchTree.java\" beforeDir=\"false\" afterPath=\"$PROJECT_DIR$/src/main/java/org/Estruturas/Nodes/LinkedBinarySearchTree.java\" afterDir=\"false\" />\r\n      <change beforePath=\"$PROJECT_DIR$/src/main/java/Estruturas/Nodes/Node.java\" beforeDir=\"false\" afterPath=\"$PROJECT_DIR$/src/main/java/org/Estruturas/Nodes/Node.java\" afterDir=\"false\" />\r\n      <change beforePath=\"$PROJECT_DIR$/src/main/java/Estruturas/Nodes/PriorityQueueNode.java\" beforeDir=\"false\" afterPath=\"$PROJECT_DIR$/src/main/java/org/Estruturas/Nodes/PriorityQueueNode.java\" afterDir=\"false\" />\r\n      <change beforePath=\"$PROJECT_DIR$/src/main/java/Estruturas/SortsType/SortsType.java\" beforeDir=\"false\" afterPath=\"$PROJECT_DIR$/src/main/java/org/Estruturas/SortsType/SortsType.java\" afterDir=\"false\" />\r\n    </list>\r\n    <option name=\"SHOW_DIALOG\" value=\"false\" />\r\n    <option name=\"HIGHLIGHT_CONFLICTS\" value=\"true\" />\r\n    <option name=\"HIGHLIGHT_NON_ACTIVE_CHANGELIST\" value=\"false\" />\r\n    <option name=\"LAST_RESOLUTION\" value=\"IGNORE\" />\r\n  </component>\r\n  <component name=\"ExternalProjectsData\">\r\n    <projectState path=\"$PROJECT_DIR$\">\r\n      <ProjectState />\r\n    </projectState>\r\n  </component>\r\n  <component name=\"Git.Settings\">\r\n    <option name=\"RECENT_GIT_ROOT_PATH\" value=\"$PROJECT_DIR$\" />\r\n    <option name=\"ROOT_SYNC\" value=\"DONT_SYNC\" />\r\n  </component>\r\n  <component name=\"ProjectColorInfo\"><![CDATA[{\r\n  \"associatedIndex\": 2\r\n}]]></component>\r\n  <component name=\"ProjectId\" id=\"2blXIN9F1xcqRWWsmTkJqm91GMo\" />\r\n  <component name=\"ProjectLevelVcsManager\" settingsEditedManually=\"true\" />\r\n  <component name=\"ProjectViewState\">\r\n    <option name=\"hideEmptyMiddlePackages\" value=\"true\" />\r\n    <option name=\"showLibraryContents\" value=\"true\" />\r\n  </component>\r\n  <component name=\"PropertiesComponent\"><![CDATA[{\r\n  \"keyToString\": {\r\n    \"RunOnceActivity.OpenProjectViewOnStart\": \"true\",\r\n    \"RunOnceActivity.ShowReadmeOnStart\": \"true\",\r\n    \"git-widget-placeholder\": \"master\",\r\n    \"kotlin-language-version-configured\": \"true\",\r\n    \"last_opened_file_path\": \"C:/Users/migue/Desktop/TrabalhoED_ER/src/main/java/Estruturas\"\r\n  }\r\n}]]></component>\r\n  <component name=\"RecentsManager\">\r\n    <key name=\"CopyFile.RECENT_KEYS\">\r\n      <recent name=\"C:\\Users\\migue\\Desktop\\TrabalhoED_ER\\src\\main\\java\\org\\CaptureTheFlag\\Algorithms\" />\r\n      <recent name=\"C:\\Users\\migue\\Desktop\\TrabalhoED_ER\\src\\main\\java\\Estruturas\" />\r\n      <recent name=\"C:\\Users\\migue\\Desktop\\TrabalhoED_ER\\src\\main\\java\" />\r\n    </key>\r\n    <key name=\"MoveClassesOrPackagesDialog.RECENTS_KEY\">\r\n      <recent name=\"\" />\r\n    </key>\r\n    <key name=\"CopyClassDialog.RECENTS_KEY\">\r\n      <recent name=\"org.CaptureTheFlag.Interfaces\" />\r\n    </key>\r\n  </component>\r\n  <component name=\"SpellCheckerSettings\" RuntimeDictionaries=\"0\" Folders=\"0\" CustomDictionaries=\"0\" DefaultDictionary=\"application-level\" UseSingleDictionary=\"true\" transferred=\"true\" />\r\n  <component name=\"TaskManager\">\r\n    <task active=\"true\" id=\"Default\" summary=\"Default task\">\r\n      <changelist id=\"2f94aad1-6861-4f54-acb1-3c181fb54499\" name=\"Changes\" comment=\"\" />\r\n      <created>1706790562067</created>\r\n      <option name=\"number\" value=\"Default\" />\r\n      <option name=\"presentableId\" value=\"Default\" />\r\n      <updated>1706790562067</updated>\r\n    </task>\r\n    <task id=\"LOCAL-00001\" summary=\"Struct Commit\">\r\n      <option name=\"closed\" value=\"true\" />\r\n      <created>1706791131375</created>\r\n      <option name=\"number\" value=\"00001\" />\r\n      <option name=\"presentableId\" value=\"LOCAL-00001\" />\r\n      <option name=\"project\" value=\"LOCAL\" />\r\n      <updated>1706791131375</updated>\r\n    </task>\r\n    <option name=\"localTasksCounter\" value=\"2\" />\r\n    <servers />\r\n  </component>\r\n  <component name=\"VcsManagerConfiguration\">\r\n    <MESSAGE value=\"Struct Commit\" />\r\n    <option name=\"LAST_COMMIT_MESSAGE\" value=\"Struct Commit\" />\r\n  </component>\r\n</project>
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/.idea/workspace.xml b/.idea/workspace.xml
+--- a/.idea/workspace.xml	(revision da729fd39d270f2a2d773052a82f62573fb62bdb)
++++ b/.idea/workspace.xml	(date 1706830488143)
+@@ -5,47 +5,9 @@
+   </component>
+   <component name="ChangeListManager">
+     <list default="true" id="2f94aad1-6861-4f54-acb1-3c181fb54499" name="Changes" comment="Struct Commit">
++      <change beforePath="$PROJECT_DIR$/.idea/gradle.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/gradle.xml" afterDir="false" />
++      <change beforePath="$PROJECT_DIR$/.idea/vcs.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/vcs.xml" afterDir="false" />
+       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+-      <change beforePath="$PROJECT_DIR$/src/main/java/Estruturas/ArrayBinarySearchTree/ArrayBinarySearchTree.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/Estruturas/ArrayBinarySearchTree/ArrayBinarySearchTree.java" afterDir="false" />
+-      <change beforePath="$PROJECT_DIR$/src/main/java/Estruturas/ArrayBinarySearchTree/BinarySearchTreeADT.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/Estruturas/ArrayBinarySearchTree/BinarySearchTreeADT.java" afterDir="false" />
+-      <change beforePath="$PROJECT_DIR$/src/main/java/Estruturas/ArrayBinaryTree/ArrayBinaryTree.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/Estruturas/ArrayBinaryTree/ArrayBinaryTree.java" afterDir="false" />
+-      <change beforePath="$PROJECT_DIR$/src/main/java/Estruturas/ArrayHeap/ArrayHeap.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/Estruturas/ArrayHeap/ArrayHeap.java" afterDir="false" />
+-      <change beforePath="$PROJECT_DIR$/src/main/java/Estruturas/ArrayList/ArrayList.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/Estruturas/ArrayList/ArrayList.java" afterDir="false" />
+-      <change beforePath="$PROJECT_DIR$/src/main/java/Estruturas/ArrayList/ListADT.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/Estruturas/ArrayList/ListADT.java" afterDir="false" />
+-      <change beforePath="$PROJECT_DIR$/src/main/java/Estruturas/ArrayOrderedList/ArrayOrderedList.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/Estruturas/ArrayOrderedList/ArrayOrderedList.java" afterDir="false" />
+-      <change beforePath="$PROJECT_DIR$/src/main/java/Estruturas/ArrayOrderedList/OrderedListADT.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/Estruturas/ArrayOrderedList/OrderedListADT.java" afterDir="false" />
+-      <change beforePath="$PROJECT_DIR$/src/main/java/Estruturas/ArrayPriorityQueue/ArrayPriorityQueue.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/Estruturas/ArrayPriorityQueue/ArrayPriorityQueue.java" afterDir="false" />
+-      <change beforePath="$PROJECT_DIR$/src/main/java/Estruturas/ArrayStack/ArrayStack.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/Estruturas/ArrayStack/ArrayStack.java" afterDir="false" />
+-      <change beforePath="$PROJECT_DIR$/src/main/java/Estruturas/ArrayUnorderedList/ArrayUnorderedList.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/Estruturas/ArrayUnorderedList/ArrayUnorderedList.java" afterDir="false" />
+-      <change beforePath="$PROJECT_DIR$/src/main/java/Estruturas/ArrayUnorderedList/UnorderedListADT.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/Estruturas/ArrayUnorderedList/UnorderedListADT.java" afterDir="false" />
+-      <change beforePath="$PROJECT_DIR$/src/main/java/Estruturas/CircularArrayQueue/CircularArrayQueue.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/Estruturas/CircularArrayQueue/CircularArrayQueue.java" afterDir="false" />
+-      <change beforePath="$PROJECT_DIR$/src/main/java/Estruturas/DoubleLinkedList/DoubleLinkedList.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/Estruturas/DoubleLinkedList/DoubleLinkedList.java" afterDir="false" />
+-      <change beforePath="$PROJECT_DIR$/src/main/java/Estruturas/DoubleLinkedList/ListADT.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/Estruturas/DoubleLinkedList/ListADT.java" afterDir="false" />
+-      <change beforePath="$PROJECT_DIR$/src/main/java/Estruturas/Exceptions/ElementNotFoundException.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/Estruturas/Exceptions/ElementNotFoundException.java" afterDir="false" />
+-      <change beforePath="$PROJECT_DIR$/src/main/java/Estruturas/Exceptions/EmptyCollectionException.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/Estruturas/Exceptions/EmptyCollectionException.java" afterDir="false" />
+-      <change beforePath="$PROJECT_DIR$/src/main/java/Estruturas/Exceptions/InvalidElementException.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/Estruturas/Exceptions/InvalidElementException.java" afterDir="false" />
+-      <change beforePath="$PROJECT_DIR$/src/main/java/Estruturas/Exceptions/NonComparableElementException.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/Estruturas/Exceptions/NonComparableElementException.java" afterDir="false" />
+-      <change beforePath="$PROJECT_DIR$/src/main/java/Estruturas/Exceptions/NullPointerException.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/Estruturas/Exceptions/NullPointerException.java" afterDir="false" />
+-      <change beforePath="$PROJECT_DIR$/src/main/java/Estruturas/Graph/Graph.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/Estruturas/Graph/Graph.java" afterDir="false" />
+-      <change beforePath="$PROJECT_DIR$/src/main/java/Estruturas/Graph/GraphADT.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/Estruturas/Graph/GraphADT.java" afterDir="false" />
+-      <change beforePath="$PROJECT_DIR$/src/main/java/Estruturas/LinkedBinaryTree/BinaryTreeADT.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/Estruturas/LinkedBinaryTree/BinaryTreeADT.java" afterDir="false" />
+-      <change beforePath="$PROJECT_DIR$/src/main/java/Estruturas/LinkedBinaryTree/LinkedBinaryTree.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/Estruturas/LinkedBinaryTree/LinkedBinaryTree.java" afterDir="false" />
+-      <change beforePath="$PROJECT_DIR$/src/main/java/Estruturas/LinkedHeap/HeapADT.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/Estruturas/LinkedHeap/HeapADT.java" afterDir="false" />
+-      <change beforePath="$PROJECT_DIR$/src/main/java/Estruturas/LinkedHeap/LinkedHeap.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/Estruturas/LinkedHeap/LinkedHeap.java" afterDir="false" />
+-      <change beforePath="$PROJECT_DIR$/src/main/java/Estruturas/LinkedList/LinkedList.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/Estruturas/LinkedList/LinkedList.java" afterDir="false" />
+-      <change beforePath="$PROJECT_DIR$/src/main/java/Estruturas/LinkedQueue/LinkedQueue.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/Estruturas/LinkedQueue/LinkedQueue.java" afterDir="false" />
+-      <change beforePath="$PROJECT_DIR$/src/main/java/Estruturas/LinkedQueue/QueueADT.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/Estruturas/LinkedQueue/QueueADT.java" afterDir="false" />
+-      <change beforePath="$PROJECT_DIR$/src/main/java/Estruturas/LinkedStack/LinkedStack.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/Estruturas/LinkedStack/LinkedStack.java" afterDir="false" />
+-      <change beforePath="$PROJECT_DIR$/src/main/java/Estruturas/LinkedStack/StackADT.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/Estruturas/LinkedStack/StackADT.java" afterDir="false" />
+-      <change beforePath="$PROJECT_DIR$/src/main/java/Estruturas/Network/Network.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/Estruturas/Network/Network.java" afterDir="false" />
+-      <change beforePath="$PROJECT_DIR$/src/main/java/Estruturas/Network/NetworkADT.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/Estruturas/Network/NetworkADT.java" afterDir="false" />
+-      <change beforePath="$PROJECT_DIR$/src/main/java/Estruturas/Nodes/BinaryTreeNode.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/Estruturas/Nodes/BinaryTreeNode.java" afterDir="false" />
+-      <change beforePath="$PROJECT_DIR$/src/main/java/Estruturas/Nodes/DoubleNode.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/Estruturas/Nodes/DoubleNode.java" afterDir="false" />
+-      <change beforePath="$PROJECT_DIR$/src/main/java/Estruturas/Nodes/HeapNode.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/Estruturas/Nodes/HeapNode.java" afterDir="false" />
+-      <change beforePath="$PROJECT_DIR$/src/main/java/Estruturas/Nodes/LinkedBinarySearchTree.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/Estruturas/Nodes/LinkedBinarySearchTree.java" afterDir="false" />
+-      <change beforePath="$PROJECT_DIR$/src/main/java/Estruturas/Nodes/Node.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/Estruturas/Nodes/Node.java" afterDir="false" />
+-      <change beforePath="$PROJECT_DIR$/src/main/java/Estruturas/Nodes/PriorityQueueNode.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/Estruturas/Nodes/PriorityQueueNode.java" afterDir="false" />
+-      <change beforePath="$PROJECT_DIR$/src/main/java/Estruturas/SortsType/SortsType.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/Estruturas/SortsType/SortsType.java" afterDir="false" />
+     </list>
+     <option name="SHOW_DIALOG" value="false" />
+     <option name="HIGHLIGHT_CONFLICTS" value="true" />
+@@ -56,14 +18,29 @@
+     <projectState path="$PROJECT_DIR$">
+       <ProjectState />
+     </projectState>
++  </component>
++  <component name="ExternalProjectsManager">
++    <system id="GRADLE">
++      <state>
++        <projects_view>
++          <tree_state>
++            <expand />
++            <select />
++          </tree_state>
++        </projects_view>
++      </state>
++    </system>
+   </component>
+   <component name="Git.Settings">
+     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
+     <option name="ROOT_SYNC" value="DONT_SYNC" />
+   </component>
+-  <component name="ProjectColorInfo"><![CDATA[{
+-  "associatedIndex": 2
+-}]]></component>
++  <component name="MarkdownSettingsMigration">
++    <option name="stateVersion" value="1" />
++  </component>
++  <component name="ProjectColorInfo">{
++  &quot;associatedIndex&quot;: 2
++}</component>
+   <component name="ProjectId" id="2blXIN9F1xcqRWWsmTkJqm91GMo" />
+   <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
+   <component name="ProjectViewState">
+@@ -74,9 +51,10 @@
+   "keyToString": {
+     "RunOnceActivity.OpenProjectViewOnStart": "true",
+     "RunOnceActivity.ShowReadmeOnStart": "true",
+-    "git-widget-placeholder": "master",
++    "git-widget-placeholder": "main",
+     "kotlin-language-version-configured": "true",
+-    "last_opened_file_path": "C:/Users/migue/Desktop/TrabalhoED_ER/src/main/java/Estruturas"
++    "last_opened_file_path": "C:/Users/Utilizador/Desktop/ED/TrabalhoED_ER",
++    "settings.editor.selected.configurable": "preferences.lookFeel"
+   }
+ }]]></component>
+   <component name="RecentsManager">
+@@ -92,6 +70,13 @@
+       <recent name="org.CaptureTheFlag.Interfaces" />
+     </key>
+   </component>
++  <component name="SharedIndexes">
++    <attachedChunks>
++      <set>
++        <option value="jdk-21.0.1-openjdk-21.0.1-4caba194b151-23eed401" />
++      </set>
++    </attachedChunks>
++  </component>
+   <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
+   <component name="TaskManager">
+     <task active="true" id="Default" summary="Default task">
+@@ -111,6 +96,17 @@
+     </task>
+     <option name="localTasksCounter" value="2" />
+     <servers />
++  </component>
++  <component name="Vcs.Log.Tabs.Properties">
++    <option name="TAB_STATES">
++      <map>
++        <entry key="MAIN">
++          <value>
++            <State />
++          </value>
++        </entry>
++      </map>
++    </option>
+   </component>
+   <component name="VcsManagerConfiguration">
+     <MESSAGE value="Struct Commit" />
+Index: .idea/vcs.xml
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+><?xml version=\"1.0\" encoding=\"UTF-8\"?>\r\n<project version=\"4\">\r\n  <component name=\"VcsDirectoryMappings\">\r\n    <mapping directory=\"$PROJECT_DIR$\" vcs=\"Git\" />\r\n    <mapping directory=\"$PROJECT_DIR$/TrabalhoED_ER\" vcs=\"Git\" />\r\n  </component>\r\n</project>
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/.idea/vcs.xml b/.idea/vcs.xml
+--- a/.idea/vcs.xml	(revision da729fd39d270f2a2d773052a82f62573fb62bdb)
++++ b/.idea/vcs.xml	(date 1706820891398)
+@@ -2,6 +2,5 @@
+ <project version="4">
+   <component name="VcsDirectoryMappings">
+     <mapping directory="$PROJECT_DIR$" vcs="Git" />
+-    <mapping directory="$PROJECT_DIR$/TrabalhoED_ER" vcs="Git" />
+   </component>
+ </project>
+\ No newline at end of file

@@ -4,22 +4,21 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="2f94aad1-6861-4f54-acb1-3c181fb54499" name="Changes" comment="Struct Commit">
-      <change afterPath="$PROJECT_DIR$/src/main/java/org/CaptureTheFlag/Console/GameMenus.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/org/CaptureTheFlag/Managements/MapManagement.java" afterDir="false" />
+    <list default="true" id="2f94aad1-6861-4f54-acb1-3c181fb54499" name="Changes" comment="Gerar Mapa e Print Matrix completo">
+      <change afterPath="$PROJECT_DIR$/.idea/codeStyles/codeStyleConfig.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/org/CaptureTheFlag/Console/GameConsole.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/CaptureTheFlag/Console/GameConsole.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/org/CaptureTheFlag/Main.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/CaptureTheFlag/Main.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/org/CaptureTheFlag/Managements/GameSettings.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/CaptureTheFlag/Managements/GameSettings.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/org/CaptureTheFlag/Managements/PlayerManagement.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/CaptureTheFlag/Managements/PlayerManagement.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/org/CaptureTheFlag/Models/Map/ImportExportMap.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/CaptureTheFlag/Managements/ImportExportMap.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/org/CaptureTheFlag/Managements/ImportExportMap.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/CaptureTheFlag/Managements/ImportExportMap.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/org/CaptureTheFlag/Managements/MapManagement.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/CaptureTheFlag/Managements/MapManagement.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/org/CaptureTheFlag/Models/Map/Map.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/CaptureTheFlag/Models/Map/Map.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/org/Estruturas/Network/Network.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/Estruturas/Network/Network.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
     <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="CodeInsightWorkspaceSettings">
+    <option name="optimizeImportsOnTheFly" value="true" />
   </component>
   <component name="ExternalProjectsData">
     <projectState path="$PROJECT_DIR$">
@@ -51,9 +50,11 @@
     "Gradle.TrabalhoED_ER [:Main.main()].executor": "Run",
     "RunOnceActivity.OpenProjectViewOnStart": "true",
     "RunOnceActivity.ShowReadmeOnStart": "true",
+    "SHARE_PROJECT_CONFIGURATION_FILES": "true",
     "git-widget-placeholder": "main",
     "kotlin-language-version-configured": "true",
-    "last_opened_file_path": "C:/Users/migue/Desktop/TrabalhoED_ER/src/main/java/Estruturas"
+    "last_opened_file_path": "C:/Users/migue/Desktop/TrabalhoED_ER/src/main/java/Estruturas",
+    "settings.editor.selected.configurable": "preferences.sourceCode"
   }
 }]]></component>
   <component name="RecentsManager">
@@ -106,11 +107,20 @@
       <option name="project" value="LOCAL" />
       <updated>1706791131375</updated>
     </task>
-    <option name="localTasksCounter" value="2" />
+    <task id="LOCAL-00002" summary="Gerar Mapa e Print Matrix completo">
+      <option name="closed" value="true" />
+      <created>1706914737926</created>
+      <option name="number" value="00002" />
+      <option name="presentableId" value="LOCAL-00002" />
+      <option name="project" value="LOCAL" />
+      <updated>1706914737926</updated>
+    </task>
+    <option name="localTasksCounter" value="3" />
     <servers />
   </component>
   <component name="VcsManagerConfiguration">
     <MESSAGE value="Struct Commit" />
-    <option name="LAST_COMMIT_MESSAGE" value="Struct Commit" />
+    <MESSAGE value="Gerar Mapa e Print Matrix completo" />
+    <option name="LAST_COMMIT_MESSAGE" value="Gerar Mapa e Print Matrix completo" />
   </component>
 </project>

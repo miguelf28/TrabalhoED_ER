@@ -48,6 +48,7 @@ public class GameSettings {
         ImportExportMap importExport = new ImportExportMap();
         MapManagement mapManagement = new MapManagement();
         //GameManager gameManager = new GameManager();
+        String filePath = "map.json";
 
         int numLocations = 0;
         int numBotsPlayer1;
@@ -55,27 +56,26 @@ public class GameSettings {
 
         //Import Map Menu
         if (GameMenus.promptImportMap()) {
-            importExport.importMapAndGenerateMap(map, mapManagement, "map.json");
-            mapManagement.printAdjacencyMatrix();
+            map = importExport.importMapAndGenerateMap(filePath);
+            mapManagement.printAdjacencyMatrix(map);
         } else {
             numLocations = GameMenus.promptNumLocations(); //Num Locations Menu
             int pathType = GameMenus.promptPathType(); //Path Type Menu
             int density = GameMenus.promptEdgeDensity(); //Density Menu
 
             // Generate Map
-            mapManagement.generateMap(numLocations, pathType == 1, density);
-            mapManagement.printAdjacencyMatrix();
+            mapManagement.generateMap(map, numLocations, pathType == 1, density);
+            mapManagement.printAdjacencyMatrix(map);
 
             //Export Map Menu
             if (GameMenus.promptExportMap()) {
-                importExport.exportMapToJson(map, mapManagement, pathType == 1, "map.json");
-                System.out.println("Mapa exportado com sucesso para 'map.json'.");
+                importExport.exportMapToJson(map, filePath);
             }
         }
 
         //Bot number for each player menu
-        numBotsPlayer1 = GameMenus.promptNumBots("Player 1");
-        numBotsPlayer2 = GameMenus.promptNumBots("Player 2");
+        numBotsPlayer1 = GameMenus.promptNumBots(playerManagement.getPlayer1().getPlayerName());
+        numBotsPlayer2 = GameMenus.promptNumBots(playerManagement.getPlayer2().getPlayerName());
 
         ArrayUnorderedList<Bot> botsPlayer1 = new ArrayUnorderedList<>();
         ArrayUnorderedList<Bot> botsPlayer2 = new ArrayUnorderedList<>();

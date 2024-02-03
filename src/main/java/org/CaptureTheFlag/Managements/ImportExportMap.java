@@ -17,106 +17,92 @@ public class ImportExportMap {
     /**
      * Imports a map from a JSON file and generates the map accordingly.
      *
-     * @param nameFile The name of the JSON file containing the map information.
+     * @param filePath The path of the JSON file containing the map data.
+     * @return The imported map.
      */
-    public void importMapAndGenerateMap(Map<Location> map, MapManagement mapManagement, String nameFile) {
+    public Map<Location> importMapAndGenerateMap(String filePath) {
+        Map<Location> map = new Map<>();
 
-//        JSONParser parser = new JSONParser();
-//
-//        try (FileReader reader = new FileReader(nameFile)) {
-//            JSONObject mapObject = (JSONObject) parser.parse(reader);
-//
-//            boolean bidirectionalPaths = (boolean) mapObject.get("Type of path");
-//
-//            JSONArray locationsArray = (JSONArray) mapObject.get("locations");
-//            for (Object locationObj : locationsArray) {
-//                JSONObject locationJson = (JSONObject) locationObj;
-//                int id = Math.toIntExact((Long) locationJson.get("id"));
-//                String name = (String) locationJson.get("name");
-//                Location location = new Location(id, name);
-//                map.addVertex(location);
-//            }
-//
-//            JSONArray pathsArray = (JSONArray) mapObject.get("paths");
-//            for (Object pathObj : pathsArray) {
-//                JSONObject pathJson = (JSONObject) pathObj;
-//                int distance = Math.toIntExact((Long) pathJson.get("distance"));
-//                String originName = (String) pathJson.get("origin");
-//                String destinationName = (String) pathJson.get("destination");
-//
-//                Location origin = map.getLocationByName(originName);
-//                Location destination = map.getLocationByName(destinationName);
-//
-//                if (origin != null && destination != null) {
-//                    map.addEdge(map.getIndexOfLocation(origin), map.getIndexOfLocation(destination), distance);
-//                    Path path = new Path(origin, destination, distance);
-//                    mapManagement.getPaths().add(path);
-//
-//                    if (bidirectionalPaths) {
-//                        map.addEdge(map.getIndexOfLocation(destination), map.getIndexOfLocation(origin), distance);
-//                        Path inverse = new Path(destination, origin, distance);
-//                        mapManagement.getPathsInverse().add(inverse);
-//                    }
-//                }
-//            }
-//        } catch (IOException | ParseException | IndexOutOfBoundsException e) {
-//            e.printStackTrace();
-//        }
+        try {
+            JSONParser parser = new JSONParser();
+            JSONObject jsonData = (JSONObject) parser.parse(new FileReader(filePath));
+
+            JSONArray locations = (JSONArray) jsonData.get("vertices");
+            JSONArray paths = (JSONArray) jsonData.get("paths");
+
+            // Adicionar locais ao mapa
+            if (locations != null) {
+                for (Object loc : locations) {
+                    JSONObject locationData = (JSONObject) loc;
+                    int id = ((Long) locationData.get("id")).intValue();
+                    String name = (String) locationData.get("name");
+                    map.addVertex(new Location(id, name));
+                }
+            } else {
+                System.out.println("O JSON não contém dados de localizações (locations).");
+            }
+
+            // Adicionar caminhos ao mapa
+            if (paths != null) {
+                for (Object path : paths) {
+                    JSONObject pathData = (JSONObject) path;
+                    int start = ((Long) pathData.get("start")).intValue();
+                    int end = ((Long) pathData.get("end")).intValue();
+                    long distanceLong = (Long) pathData.get("distance");
+                    int distance = (int) distanceLong;
+                    map.addEdge(start, end, distance);
+                }
+            } else {
+                System.out.println("O JSON não contém dados de caminhos (paths).");
+            }
+
+            System.out.println("Mapa importado com sucesso.");
+
+        } catch (IOException | ParseException e) {
+            System.out.println("Erro ao importar o mapa: " + e.getMessage());
+        }
+
+        return map;
     }
 
     /**
      * Exports the map data to a JSON file.
      *
-     * @param map           The map to export.
-     * @param directionPath Whether to export bidirectional paths.
-     * @param outputPath    The path to the output JSON file.
+     * @param map      The map to be exported.
+     * @param filePath The path of the JSON file to export the map data.
      */
-    public static void exportMapToJson(Map<Location> map, MapManagement mapManagement, boolean directionPath, String outputPath) {
-//        JSONArray locationsArray = new JSONArray();
-//        JSONArray pathsArray = new JSONArray();
-//
-//        for (Location location : map.getLocations()) {
-//            JSONObject locationObject = new JSONObject();
-//            locationObject.put("id", location.getId());
-//            locationObject.put("name", location.getName());
-//            locationsArray.add(locationObject);
-//        }
-//
-//        if (directionPath) {
-//            for (Path path : mapManagement.getPaths()) {
-//                JSONObject pathObject = new JSONObject();
-//                pathObject.put("origin", path.getOrigin().getName());
-//                pathObject.put("destination", path.getDestination().getName());
-//                pathObject.put("distance", path.getDistance());
-//                pathsArray.add(pathObject);
-//            }
-//
-//            for (Path path : mapManagement.getPathsInverse()) {
-//                JSONObject pathObject = new JSONObject();
-//                pathObject.put("origin", path.getOrigin().getName());
-//                pathObject.put("destination", path.getDestination().getName());
-//                pathObject.put("distance", path.getDistance());
-//                pathsArray.add(pathObject);
-//            }
-//        } else {
-//            for (Path path : mapManagement.getPaths()) {
-//                JSONObject pathObject = new JSONObject();
-//                pathObject.put("origin", path.getOrigin().getName());
-//                pathObject.put("destination", path.getDestination().getName());
-//                pathObject.put("distance", path.getDistance());
-//                pathsArray.add(pathObject);
-//            }
-//        }
-//
-//        JSONObject mapObject = new JSONObject();
-//        mapObject.put("locations", locationsArray);
-//        mapObject.put("paths", pathsArray);
-//        mapObject.put("Type of path", directionPath);
-//
-//        try (FileWriter fileWriter = new FileWriter(outputPath)) {
-//            fileWriter.write(mapObject.toJSONString());
-//        } catch (IOException e) {
-//            e.printStackTrace();
-//        }
+    public static void exportMapToJson(Map<Location> map, String filePath) {
+        JSONObject jsonMap = new JSONObject();
+        JSONArray verticesArray = new JSONArray();
+        JSONArray pathsArray = new JSONArray();
+
+        // Adicionar vértices ao array JSON
+        for (Location vertex : map.getVertices()) {
+            JSONObject vertexObject = new JSONObject();
+            vertexObject.put("id", vertex.getId());
+            vertexObject.put("name", vertex.getName());
+            verticesArray.add(vertexObject);
+        }
+
+        // Adicionar caminhos ao array JSON
+        for (Path path : map.getEdges()) {
+            JSONObject pathObject = new JSONObject();
+            pathObject.put("start", path.getOrigin().getId());
+            pathObject.put("end", path.getDestination().getId());
+            pathObject.put("distance", path.getDistance());
+            pathsArray.add(pathObject);
+        }
+
+        // Adicionar arrays de vértices e caminhos ao objeto JSON do mapa
+        jsonMap.put("vertices", verticesArray);
+        jsonMap.put("paths", pathsArray);
+
+        try (FileWriter file = new FileWriter(filePath)) {
+            file.write(jsonMap.toJSONString());
+            file.flush();
+            System.out.println("Mapa exportado com sucesso para '" + filePath + "'.");
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
     }
 }
