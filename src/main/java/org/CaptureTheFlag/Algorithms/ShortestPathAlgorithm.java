@@ -1,15 +1,13 @@
 package org.CaptureTheFlag.Algorithms;
 
 import org.CaptureTheFlag.Algorithms.Interface.IMovementAlgorithm;
-//import org.CaptureTheFlag.Managements.GameManager;
-import org.CaptureTheFlag.Models.Map.Map;
 import org.CaptureTheFlag.Models.Bots.Bot;
 import org.CaptureTheFlag.Models.Location.Location;
+import org.CaptureTheFlag.Models.Map.Map;
 import org.CaptureTheFlag.Models.Player.Player;
 import org.Estruturas.Exceptions.EmptyCollectionException;
 
 import java.util.Iterator;
-import java.util.Set;
 
 /**
  * The {@code ShortestPathAlgorithmI} class represents an implementation of the movement algorithm for bots in a Capture The Flag game.
@@ -36,52 +34,23 @@ public class ShortestPathAlgorithm implements IMovementAlgorithm {
      * @throws EmptyCollectionException if the collection is empty.
      */
 
-      public Location move(Map<Location> map, Bot bot, Player opponent) throws EmptyCollectionException {
-
-        //Set<Location> visitedLocations = bot.getVisitedLocations();
+    public Location move(Map<Location> map, Bot bot, Player opponent) throws EmptyCollectionException {
         Location currentLocation = bot.getActualPosition();
         Location opponentLocation = opponent.getFlagPosition();
 
-        System.out.println("\nLocalização Atual: " + currentLocation.getName());
+        System.out.println("Localização Atual: " + currentLocation.getName());
         System.out.println("Localização da Bandeira do inimigo: " + opponentLocation.getName());
-        //System.out.println("Visitados: " + visitedLocations);
 
         Iterator<Location> iterator = map.iteratorShortestPath(currentLocation, opponentLocation);
         System.out.print("Caminho Shortest Path:");
-        while (iterator.hasNext()){
-            System.out.print(" - " + iterator.next().getName());
-        }
-        iterator = map.iteratorShortestPath(currentLocation, opponentLocation);
-        Location nextLocation = null;
-       //visitedLocations.add(currentLocation);
 
         while (iterator.hasNext()) {
-            nextLocation = iterator.next();
-            /*
-            if (!visitedLocations.contains(nextLocation)) {
-                if (GameManager.isValidMove(nextLocation, bot, opponent)) {
-                    if (nextLocation.equals(opponentLocation)) {
-                        System.out.println("\nChegou à localização do oponente: " + opponentLocation.getName());
-                        bot.setActualPosition(opponentLocation);
-                        visitedLocations.add(opponentLocation);
-                        return opponentLocation;
-                    } else {
-                        System.out.println("\nChegou à localização: " + nextLocation.getName());
-                        bot.setActualPosition(nextLocation);
-                        visitedLocations.add(nextLocation);
-                        return nextLocation;
-                    }
-                } else {
-                    System.out.println("\nMovimento para " + nextLocation.getName() + " não é possível.");
-                    return currentLocation;
-                }
-            }*/
+            Location nextLocation = iterator.next();
+            System.out.print(" - " + nextLocation.getName());
+            return nextLocation;
         }
+
         System.out.println("\nNão foi possível encontrar um caminho para o destino.");
         return currentLocation;
-
-
     }
-
-
 }

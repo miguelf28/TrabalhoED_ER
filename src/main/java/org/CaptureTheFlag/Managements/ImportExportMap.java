@@ -13,6 +13,23 @@ import java.io.FileWriter;
 import java.io.IOException;
 
 public class ImportExportMap {
+    public static class MapImportResult {
+        private Map<Location> map;
+        private boolean hasBidirectionalPaths;
+
+        public MapImportResult(Map<Location> map, boolean hasBidirectionalPaths) {
+            this.map = map;
+            this.hasBidirectionalPaths = hasBidirectionalPaths;
+        }
+
+        public Map<Location> getMap() {
+            return map;
+        }
+
+        public boolean hasBidirectionalPaths() {
+            return hasBidirectionalPaths;
+        }
+    }
 
     /**
      * Imports a map from a JSON file and generates the map accordingly.
@@ -20,8 +37,9 @@ public class ImportExportMap {
      * @param filePath The path of the JSON file containing the map data.
      * @return The imported map.
      */
-    public Map<Location> importMapAndGenerateMap(String filePath) {
+    public MapImportResult importMapAndGenerateMap(String filePath) {
         Map<Location> map = new Map<>();
+        boolean bidirectionalPaths = false;
 
         try {
             JSONParser parser = new JSONParser();
@@ -29,6 +47,7 @@ public class ImportExportMap {
 
             JSONArray locations = (JSONArray) jsonData.get("vertices");
             JSONArray paths = (JSONArray) jsonData.get("paths");
+            bidirectionalPaths = (boolean) jsonData.get("bidirectionalPaths");
 
             // Adicionar locais ao mapa
             if (locations != null) {
@@ -57,12 +76,12 @@ public class ImportExportMap {
             }
 
             System.out.println("Mapa importado com sucesso.");
+            return new MapImportResult(map, bidirectionalPaths);
 
         } catch (IOException | ParseException e) {
             System.out.println("Erro ao importar o mapa: " + e.getMessage());
+            return null;
         }
-
-        return map;
     }
 
     /**
@@ -71,7 +90,7 @@ public class ImportExportMap {
      * @param map      The map to be exported.
      * @param filePath The path of the JSON file to export the map data.
      */
-    public static void exportMapToJson(Map<Location> map, String filePath) {
+    public static void exportMapToJson(Map<Location> map, boolean bidirectionalPaths, String filePath) {
         JSONObject jsonMap = new JSONObject();
         JSONArray verticesArray = new JSONArray();
         JSONArray pathsArray = new JSONArray();
@@ -96,6 +115,7 @@ public class ImportExportMap {
         // Adicionar arrays de vértices e caminhos ao objeto JSON do mapa
         jsonMap.put("vertices", verticesArray);
         jsonMap.put("paths", pathsArray);
+        jsonMap.put("bidirectionalPaths", bidirectionalPaths);
 
         try (FileWriter file = new FileWriter(filePath)) {
             file.write(jsonMap.toJSONString());

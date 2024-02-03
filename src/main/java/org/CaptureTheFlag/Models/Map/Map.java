@@ -110,4 +110,24 @@ public class Map<T extends Location> extends Network<T> {
         return edgesList;
     }
 
+
+    /**
+     * Retrieves the adjacent vertices of a given location.
+     *
+     * @param location The location for which to retrieve the adjacent vertices.
+     * @return An array list of adjacent vertices of the given location.
+     */
+    public ArrayUnorderedList<Location> getAdjacentVertices(Location location) {
+        ArrayUnorderedList<Location> adjacentVertices = new ArrayUnorderedList<>();
+
+        int locationIndex = getIndexOfLocation(location);
+        if (locationIndex != -1) {
+            for (int i = 0; i < numVertices; i++) {
+                if (cost[locationIndex][i] != Double.MAX_VALUE && !vertices[i].equals(location)) {
+                    adjacentVertices.addToRear(vertices[i]);
+                }
+            }
+        }
+        return adjacentVertices;
+    }
 }

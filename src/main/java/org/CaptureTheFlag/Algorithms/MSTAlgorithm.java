@@ -6,6 +6,7 @@ import org.CaptureTheFlag.Models.Location.Location;
 import org.CaptureTheFlag.Models.Map.Map;
 import org.CaptureTheFlag.Models.Player.Player;
 import org.Estruturas.Exceptions.EmptyCollectionException;
+import org.Estruturas.Network.Network;
 
 import java.util.Iterator;
 
@@ -22,30 +23,26 @@ public class MSTAlgorithm implements IMovementAlgorithm {
         Location currentLocation = bot.getActualPosition();
         Location opponentLocation = opponent.getFlagPosition();
 
-        // Criação do grafo ponderado usando o algoritmo MST
-        Map<Location> mstGraph = (Map<Location>) map.mstNetwork();
-
-        // Caminho de MST da localização atual do bot até a bandeira do oponente
-        Iterator<Location> mstPathIterator = mstGraph(currentLocation);
-        mstPathIterator.next();  // Ignorando o primeiro nó (a localização atual do bot)
-
         System.out.println("\nLocalização Atual: " + currentLocation.getName());
         System.out.println("Localização da Bandeira do inimigo: " + opponentLocation.getName());
 
-        System.out.print("Caminho MST: ");
-        while (mstPathIterator.hasNext()) {
-            Location nextLocation = mstPathIterator.next();
-            System.out.print(" - " + nextLocation.getName());
+        Network<Location> network = map.mstNetwork();
 
-            // Realiza o movimento do bot para o próximo nó no caminho MST
-            //bot.move(nextLocation);
+        if (network instanceof Map) {
+            Map<Location> mst = (Map<Location>) network;
+            Iterator<Location> iterator = mst.iteratorBFS(currentLocation);
+
+            System.out.print("Caminho MST:");
+            while (iterator.hasNext()) {
+                Location nextLocation = iterator.next();
+                System.out.print(" - " + nextLocation.getName());
+                return nextLocation;
+            }
+        } else {
+            System.out.println("O método mstNetwork não retornou um objeto do tipo Map.");
         }
 
-        // Retorna a última localização no caminho MST (deve ser a localização da bandeira do oponente)
-        return mstPathIterator.hasNext() ? mstPathIterator.next() : null;
-    }
-
-    private Iterator<Location> mstGraph(Location currentLocation) {
-        return null;
+        System.out.println("\nNão foi possível encontrar um caminho preferencial.");
+        return currentLocation;
     }
 }

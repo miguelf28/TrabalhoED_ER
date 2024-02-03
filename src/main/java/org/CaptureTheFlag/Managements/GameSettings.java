@@ -1,5 +1,6 @@
 package org.CaptureTheFlag.Managements;
 
+import org.CaptureTheFlag.Algorithms.Interface.IMovementAlgorithm;
 import org.CaptureTheFlag.Console.GameMenus;
 import org.CaptureTheFlag.Models.Map.Map;
 import org.CaptureTheFlag.Models.Bots.Bot;
@@ -39,7 +40,6 @@ public class GameSettings {
      *
      * @throws EmptyCollectionException if the collection is empty.
      *
-     * TODO Validar se o adicionar dos bots está correto ou se é melhor fazer numa outra forma
      *
      */
     public static void settings() throws EmptyCollectionException, InvalidElementException {
@@ -47,7 +47,6 @@ public class GameSettings {
         Map<Location> map = new Map<>();
         ImportExportMap importExport = new ImportExportMap();
         MapManagement mapManagement = new MapManagement();
-        //GameManager gameManager = new GameManager();
         String filePath = "map.json";
 
         int numLocations = 0;
@@ -56,8 +55,14 @@ public class GameSettings {
 
         //Import Map Menu
         if (GameMenus.promptImportMap()) {
-            map = importExport.importMapAndGenerateMap(filePath);
-            mapManagement.printAdjacencyMatrix(map);
+            ImportExportMap.MapImportResult importResult = importExport.importMapAndGenerateMap(filePath);
+            if (importResult != null) {
+                map = importResult.getMap();
+                boolean hasBidirectionalPaths = importResult.hasBidirectionalPaths();
+                mapManagement.printAdjacencyMatrix(map, hasBidirectionalPaths);
+            } else {
+                System.out.println("Erro ao importar o mapa. Verifique o arquivo JSON.");
+            }
         } else {
             numLocations = GameMenus.promptNumLocations(); //Num Locations Menu
             int pathType = GameMenus.promptPathType(); //Path Type Menu
@@ -65,11 +70,11 @@ public class GameSettings {
 
             // Generate Map
             mapManagement.generateMap(map, numLocations, pathType == 1, density);
-            mapManagement.printAdjacencyMatrix(map);
+            mapManagement.printAdjacencyMatrix(map, pathType == 1);
 
             //Export Map Menu
             if (GameMenus.promptExportMap()) {
-                importExport.exportMapToJson(map, filePath);
+                importExport.exportMapToJson(map,pathType == 1, filePath);
             }
         }
 
@@ -84,12 +89,16 @@ public class GameSettings {
             Bot botForPlayer1 = new Bot(i + 1);
             botForPlayer1.setOwner(playerManagement.getPlayer1());
             botsPlayer1.addToRear(botForPlayer1);
+            IMovementAlgorithm algorithm = GameMenus.promptMovementOptions(playerManagement.getPlayer1().getId(), botForPlayer1.getId());
+            botForPlayer1.setMovementAlgorithm(algorithm);
         }
 
         for (int i = 0; i < numBotsPlayer2; i++) {
             Bot botForPlayer2 = new Bot(i + 1);
             botForPlayer2.setOwner(playerManagement.getPlayer2());
             botsPlayer2.addToRear(botForPlayer2);
+            IMovementAlgorithm algorithm = GameMenus.promptMovementOptions(playerManagement.getPlayer2().getId(), botForPlayer2.getId());
+            botForPlayer2.setMovementAlgorithm(algorithm);
         }
 
         playerManagement.getPlayer1().setBots(botsPlayer1);
@@ -97,6 +106,9 @@ public class GameSettings {
 
         playerManagement.setFlagPosition(map, playerManagement.getPlayer1(), playerManagement.getPlayer2());
 
-        //gameManager.startGame(map, player1, player2);
+        System.out.println("\nPlayer 1: \n" + playerManagement.getPlayer1().toString());
+        System.out.println("\nPlayer 2: \n" + playerManagement.getPlayer2().toString());
+
+        GameManager.startGame(map, playerManagement.getPlayer1(), playerManagement.getPlayer2());
     }
 }

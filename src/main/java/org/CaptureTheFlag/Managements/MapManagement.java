@@ -80,7 +80,7 @@ public class MapManagement {
     /**
      * Prints the adjacency matrix representation of the map.
      */
-    public void printAdjacencyMatrix(Map<Location> map) {
+    public void printAdjacencyMatrix(Map<Location> map, boolean bidirectionalPaths) {
         System.out.println("Adjacency Matrix:");
 
         int numVertices = map.getNumVertices();
@@ -94,13 +94,18 @@ public class MapManagement {
         System.out.println();
 
         // Imprime a matriz de adjacência
+        double[][] costs = map.getCost();
         for (int i = 0; i < numVertices; i++) {
             System.out.printf("%-9s", vertices[i].getName());
             for (int j = 0; j < numVertices; j++) {
-                if (map.getCost()[i][j] == Double.MAX_VALUE) {
-                    System.out.printf("%-9s", "-");
+                if (bidirectionalPaths || i < j) {
+                    if (costs[i][j] == Double.MAX_VALUE) {
+                        System.out.printf("%-9s", "-");
+                    } else {
+                        System.out.printf("%-9d", (int) costs[i][j]);
+                    }
                 } else {
-                    System.out.printf("%-9.1f", map.getCost()[i][j]);
+                    System.out.print("         ");
                 }
             }
             System.out.println();

@@ -1,5 +1,11 @@
 package org.CaptureTheFlag.Console;
 
+import org.CaptureTheFlag.Algorithms.BFSAlgorithm;
+import org.CaptureTheFlag.Algorithms.DFSAlgorithm;
+import org.CaptureTheFlag.Algorithms.Interface.IMovementAlgorithm;
+import org.CaptureTheFlag.Algorithms.MSTAlgorithm;
+import org.CaptureTheFlag.Algorithms.ShortestPathAlgorithm;
+
 import java.util.Scanner;
 
 public class GameMenus {
@@ -117,5 +123,31 @@ public class GameMenus {
         }
         String exportChoice = scanner.next();
         return exportChoice.equalsIgnoreCase("y");
+    }
+
+    public static IMovementAlgorithm promptMovementOptions(int playerId, int botId) {
+        while (true) {
+            System.out.println("Jogador " + playerId + ", escolha o algoritmo de movimentação para o bot " + botId + ":");
+            System.out.println("a) Caminho Mais Curto (Shortest Path)");
+            System.out.println("b) Travessia em Largura (BFS)");
+            System.out.println("c) Travessia em Profundidade (DFS)");
+            System.out.println("d) Arvore geradora de custo minimo (MST)");
+            System.out.print("Escolha: ");
+            char choice = scanner.next().charAt(0);
+
+            char lowerCaseChoice = Character.toLowerCase(choice);
+            switch (lowerCaseChoice) {
+                case 'a':
+                    return new ShortestPathAlgorithm();
+                case 'b':
+                    return new BFSAlgorithm();
+                case 'c':
+                    return new DFSAlgorithm();
+                case 'd':
+                    return new MSTAlgorithm();
+                default:
+                    System.out.println("Opção inválida. Por favor, escolha uma opção válida.");
+            }
+        }
     }
 }

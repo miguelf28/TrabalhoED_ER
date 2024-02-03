@@ -2,6 +2,7 @@ package org.CaptureTheFlag.Models.Bots;
 
 import org.CaptureTheFlag.Algorithms.BFSAlgorithm;
 import org.CaptureTheFlag.Algorithms.DFSAlgorithm;
+import org.CaptureTheFlag.Algorithms.MSTAlgorithm;
 import org.CaptureTheFlag.Algorithms.ShortestPathAlgorithm;
 import org.CaptureTheFlag.Algorithms.Interface.IMovementAlgorithm;
 import org.CaptureTheFlag.Models.Location.Location;
@@ -21,7 +22,8 @@ public class Bot {
     private Location actualPosition;
     private IMovementAlgorithm IMovementAlgorithm;
     private Player owner;
-
+    private boolean carryingFlag = false;
+    private boolean movedThisRound = false;
 
     /**
      * Gets the player who owns the bot.
@@ -53,7 +55,7 @@ public class Bot {
     /**
      * Constructs a new {@code Bot} object with the specified ID and actual position.
      *
-     * @param id              The unique identifier for the bot.
+     * @param id             The unique identifier for the bot.
      * @param actualPosition The initial actual position of the bot.
      */
     public Bot(int id, Location actualPosition) {
@@ -73,8 +75,8 @@ public class Bot {
     /**
      * Constructs a new {@code Bot} object with the specified ID, actual position, and movement algorithm.
      *
-     * @param id                The unique identifier for the bot.
-     * @param actualPosition   The initial actual position of the bot.
+     * @param id                 The unique identifier for the bot.
+     * @param actualPosition     The initial actual position of the bot.
      * @param IMovementAlgorithm The movement algorithm assigned to the bot.
      */
     public Bot(int id, Location actualPosition, IMovementAlgorithm IMovementAlgorithm) {
@@ -137,11 +139,30 @@ public class Bot {
         this.IMovementAlgorithm = IMovementAlgorithm;
     }
 
-    /**
-     * Gets the set of visited locations by the bot.
-     *
-     * @return The set of visited locations.
-     */
+    public boolean isCarryingFlag() {
+        return carryingFlag;
+    }
+
+    public void setCarryingFlag(boolean carryingFlag) {
+        this.carryingFlag = carryingFlag;
+    }
+
+    public boolean hasMovedThisRound() {
+        return movedThisRound;
+    }
+
+    public void setMovedThisRound(boolean moved) {
+        this.movedThisRound = moved;
+    }
+
+    public Location returnFlagToBase(Location playerBase) {
+        Location returnPosition = null;
+        if (isCarryingFlag()) { // Verifica se o bot está carregando a bandeira
+            returnPosition = playerBase; // Define a base do jogador como a posição de retorno
+            setCarryingFlag(false); // O bot não está mais carregando a bandeira
+        }
+        return returnPosition;
+    }
 
     /**
      * Gets the type of movement algorithm assigned to the bot.
@@ -155,21 +176,11 @@ public class Bot {
             return "BFS Algorithm";
         } else if (IMovementAlgorithm instanceof DFSAlgorithm) {
             return "DFS Algorithm";
+        } else if (IMovementAlgorithm instanceof MSTAlgorithm) {
+            return "MST Algorithm";
         } else {
             return "Unknown Algorithm";
         }
-    }
-
-    /**
-     * Checks if the bot has reached the opponent's field.
-     *
-     * @param opponentPlayer The opponent player.
-     * @return {@code true} if the bot has reached the opponent's field, {@code false} otherwise.
-     */
-    public boolean hasReachedOpponentField(Player opponentPlayer) {
-        Location botPosition = getActualPosition();
-        Location opponentField = opponentPlayer.getFlagPosition();
-        return botPosition.equals(opponentField);
     }
 
     /**
@@ -180,8 +191,8 @@ public class Bot {
      */
     @Override
     public String toString() {
-        return  "\nBot "+ id +
+        return "\nBot " + id +
                 " / Movement Algorithm = " + getAlgorithmType() +
-                " / Actual Bot Position = " + actualPosition ;
+                " / Actual Bot Position = " + actualPosition;
     }
 }

@@ -110,6 +110,15 @@ public class Player {
         this.playerName = playerName;
     }
 
+    public Bot getNextBotToMove() {
+        for (Bot bot : bots) {
+            if (!bot.hasMovedThisRound()) {
+                return bot;
+            }
+        }
+        return null;
+    }
+
     /**
      * Generates a string representation of the Player object.
      *
