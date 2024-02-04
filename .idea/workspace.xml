@@ -4,22 +4,13 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="2f94aad1-6861-4f54-acb1-3c181fb54499" name="Changes" comment="Import e Export completos">
-      <change afterPath="$PROJECT_DIR$/src/main/java/org/CaptureTheFlag/GUI/LaunchGame.java" afterDir="false" />
+    <list default="true" id="2f94aad1-6861-4f54-acb1-3c181fb54499" name="Changes" comment="Gerar Mapa e Print Matrix completo">
+      <change beforePath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_02_02_2024_19_12__Changes_.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_02_02_2024_19_12__Changes_.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/map.json" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/org/CaptureTheFlag/Algorithms/BFSAlgorithm.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/CaptureTheFlag/Algorithms/BFSAlgorithm.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/org/CaptureTheFlag/Algorithms/DFSAlgorithm.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/CaptureTheFlag/Algorithms/DFSAlgorithm.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/org/CaptureTheFlag/Algorithms/MSTAlgorithm.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/CaptureTheFlag/Algorithms/MSTAlgorithm.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/org/CaptureTheFlag/Algorithms/ShortestPathAlgorithm.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/CaptureTheFlag/Algorithms/ShortestPathAlgorithm.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/org/CaptureTheFlag/Console/GameMenus.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/CaptureTheFlag/Console/GameMenus.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/org/CaptureTheFlag/Managements/GameManager.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/CaptureTheFlag/Managements/GameManager.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/org/CaptureTheFlag/Managements/GameSettings.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/CaptureTheFlag/Managements/GameSettings.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/org/CaptureTheFlag/Managements/ImportExportMap.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/CaptureTheFlag/Managements/ImportExportMap.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/org/CaptureTheFlag/Managements/MapManagement.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/CaptureTheFlag/Managements/MapManagement.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/org/CaptureTheFlag/Models/Bots/Bot.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/CaptureTheFlag/Models/Bots/Bot.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/org/CaptureTheFlag/Models/Map/Map.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/CaptureTheFlag/Models/Map/Map.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/org/CaptureTheFlag/Models/Player/Player.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/CaptureTheFlag/Models/Player/Player.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/org/Estruturas/Network/Network.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/Estruturas/Network/Network.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -34,6 +25,23 @@
       <ProjectState />
     </projectState>
   </component>
+  <component name="ExternalProjectsManager">
+    <system id="GRADLE">
+      <state>
+        <projects_view>
+          <tree_state>
+            <expand>
+              <path>
+                <item name="" type="6a2764b6:ExternalProjectsStructure$RootNode" />
+                <item name="TrabalhoED_ER" type="f1a62948:ProjectNode" />
+              </path>
+            </expand>
+            <select />
+          </tree_state>
+        </projects_view>
+      </state>
+    </system>
+  </component>
   <component name="FileTemplateManagerImpl">
     <option name="RECENT_TEMPLATES">
       <list>
@@ -45,9 +53,6 @@
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
     <option name="ROOT_SYNC" value="DONT_SYNC" />
   </component>
-  <component name="ProblemsViewState">
-    <option name="selectedTabId" value="QODANA_PROBLEMS_VIEW_TAB" />
-  </component>
   <component name="ProjectColorInfo">{
   &quot;associatedIndex&quot;: 2
 }</component>
@@ -57,19 +62,18 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent"><![CDATA[{
-  "keyToString": {
-    "Gradle.TrabalhoED_ER [:LaunchGame.main()].executor": "Run",
-    "Gradle.TrabalhoED_ER [:Main.main()].executor": "Run",
-    "RunOnceActivity.OpenProjectViewOnStart": "true",
-    "RunOnceActivity.ShowReadmeOnStart": "true",
-    "SHARE_PROJECT_CONFIGURATION_FILES": "true",
-    "git-widget-placeholder": "main",
-    "kotlin-language-version-configured": "true",
-    "last_opened_file_path": "C:/Users/Utilizador/Desktop/EN_8180325_8190357",
-    "settings.editor.selected.configurable": "preferences.sourceCode"
+  <component name="PropertiesComponent">{
+  &quot;keyToString&quot;: {
+    &quot;Gradle.TrabalhoED_ER [:Main.main()].executor&quot;: &quot;Run&quot;,
+    &quot;RunOnceActivity.OpenProjectViewOnStart&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
+    &quot;SHARE_PROJECT_CONFIGURATION_FILES&quot;: &quot;true&quot;,
+    &quot;git-widget-placeholder&quot;: &quot;main&quot;,
+    &quot;kotlin-language-version-configured&quot;: &quot;true&quot;,
+    &quot;last_opened_file_path&quot;: &quot;C:/Users/migue/Desktop/TrabalhoED_ER/src/main/java/Estruturas&quot;,
+    &quot;settings.editor.selected.configurable&quot;: &quot;preferences.sourceCode&quot;
   }
-}]]></component>
+}</component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
       <recent name="C:\Users\migue\Desktop\TrabalhoED_ER\src\main\java\org\CaptureTheFlag\Algorithms" />
@@ -83,20 +87,7 @@
       <recent name="org.CaptureTheFlag.Interfaces" />
     </key>
   </component>
-  <component name="RunManager" selected="Application.Main">
-    <configuration name="LaunchGame" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
-      <option name="MAIN_CLASS_NAME" value="org.CaptureTheFlag.GUI.LaunchGame" />
-      <module name="TrabalhoED_ER.main" />
-      <extension name="coverage">
-        <pattern>
-          <option name="PATTERN" value="org.CaptureTheFlag.GUI.*" />
-          <option name="ENABLED" value="true" />
-        </pattern>
-      </extension>
-      <method v="2">
-        <option name="Make" enabled="true" />
-      </method>
-    </configuration>
+  <component name="RunManager">
     <configuration name="Main" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
       <option name="MAIN_CLASS_NAME" value="org.CaptureTheFlag.Main" />
       <module name="TrabalhoED_ER.main" />
@@ -112,7 +103,6 @@
     </configuration>
     <recent_temporary>
       <list>
-        <item itemvalue="Application.LaunchGame" />
         <item itemvalue="Application.Main" />
       </list>
     </recent_temporary>
@@ -142,21 +132,23 @@
       <option name="project" value="LOCAL" />
       <updated>1706914737926</updated>
     </task>
-    <task id="LOCAL-00003" summary="Import e Export completos">
-      <option name="closed" value="true" />
-      <created>1706923583280</created>
-      <option name="number" value="00003" />
-      <option name="presentableId" value="LOCAL-00003" />
-      <option name="project" value="LOCAL" />
-      <updated>1706923583280</updated>
-    </task>
-    <option name="localTasksCounter" value="4" />
+    <option name="localTasksCounter" value="3" />
     <servers />
+  </component>
+  <component name="Vcs.Log.History.Properties">
+    <option name="COLUMN_ID_ORDER">
+      <list>
+        <option value="Default.Root" />
+        <option value="Default.Author" />
+        <option value="Default.Date" />
+        <option value="Default.Subject" />
+        <option value="Space.CommitStatus" />
+      </list>
+    </option>
   </component>
   <component name="VcsManagerConfiguration">
     <MESSAGE value="Struct Commit" />
     <MESSAGE value="Gerar Mapa e Print Matrix completo" />
-    <MESSAGE value="Import e Export completos" />
-    <option name="LAST_COMMIT_MESSAGE" value="Import e Export completos" />
+    <option name="LAST_COMMIT_MESSAGE" value="Gerar Mapa e Print Matrix completo" />
   </component>
 </project>

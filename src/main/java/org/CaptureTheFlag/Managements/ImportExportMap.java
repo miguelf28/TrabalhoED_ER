@@ -55,6 +55,10 @@ public class ImportExportMap {
                     JSONObject locationData = (JSONObject) loc;
                     int id = ((Long) locationData.get("id")).intValue();
                     String name = (String) locationData.get("name");
+
+                    // Adiciona informações de log para verificar os dados
+                    System.out.println("ID: " + id + ", Name: " + name);
+
                     map.addVertex(new Location(id, name));
                 }
             } else {
@@ -71,6 +75,7 @@ public class ImportExportMap {
                     int distance = (int) distanceLong;
                     map.addEdge(start, end, distance);
                 }
+
             } else {
                 System.out.println("O JSON não contém dados de caminhos (paths).");
             }

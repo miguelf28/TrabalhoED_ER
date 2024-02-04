@@ -19,6 +19,8 @@ public class Player {
     private String playerName;
     private ArrayUnorderedList<Bot> bots;
     private Location flagPosition;
+    private int lastMovedBotIndex;  // Novo campo adicionado
+
 
     /**
      * Default constructor for the Player class.
@@ -118,6 +120,25 @@ public class Player {
         }
         return null;
     }
+
+    /**
+     * Retrieves the index of the last moved bot for the current player.
+     *
+     * @return The index of the last moved bot.
+     */
+    public int getLastMovedBotIndex() {
+        return lastMovedBotIndex;
+    }
+
+    /**
+     * Sets the index of the last moved bot for the current player.
+     *
+     * @param lastMovedBotIndex The index to set.
+     */
+    public void setLastMovedBotIndex(int lastMovedBotIndex) {
+        this.lastMovedBotIndex = lastMovedBotIndex;
+    }
+
 
     /**
      * Generates a string representation of the Player object.

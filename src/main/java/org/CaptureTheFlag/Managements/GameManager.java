@@ -55,69 +55,71 @@ public class GameManager {
     }
 
     private static void moveBots(Player currentPlayer, Player opponentPlayer, Map<Location> map, int round) throws EmptyCollectionException {
-        Bot botToMove = currentPlayer.getNextBotToMove(); // Obtém o próximo bot a ser movido
+        int lastMovedBotIndex = currentPlayer.getLastMovedBotIndex();
+        Bot botToMove = currentPlayer.getBots().get(lastMovedBotIndex);
 
-        // Verifica se há um bot disponível para se mover nesta rodada
         if (botToMove != null) {
-            // Marca o bot atual como movido nesta rodada
+
             botToMove.setMovedThisRound(true);
 
-            for (Bot bot : currentPlayer.getBots()) {
-                System.out.println("Bot " + bot.getId() + ":");
-                IMovementAlgorithm algorithm = bot.getMovementAlgorithm();
-                Location currentPosition = bot.getActualPosition();
-                Location newPosition = algorithm.move(map, bot, opponentPlayer);
+            System.out.println("Bot " + botToMove.getId() + ":");
 
-                if (isValidMove(newPosition, bot, opponentPlayer)) {
-                    System.out.println("\nBot " + bot.getId() + " movendo de " + currentPosition + " para " + newPosition);
-                    bot.setActualPosition(newPosition);
+            IMovementAlgorithm algorithm = botToMove.getMovementAlgorithm();
+            Location currentPosition = botToMove.getActualPosition();
+            Location newPosition = algorithm.move(map, botToMove, opponentPlayer);
+
+            if (isValidMove(newPosition, botToMove, opponentPlayer)) {
+                System.out.println("\nBot " + botToMove.getId() + " movendo de " + currentPosition + " para " + newPosition);
+                botToMove.setActualPosition(newPosition);
+
+                // Check if the bot reached the opponent's flag position
+                if (newPosition.equals(opponentPlayer.getFlagPosition())) {
+                    System.out.println("\nBot " + botToMove.getId() + " captured the flag!");
+                    botToMove.setCarryingFlag(true);
+                }
+
+                // Check if the bot returned to its base with the opponent's flag
+                if (botToMove.isCarryingFlag() && newPosition.equals(currentPlayer.getFlagPosition())) {
+                    System.out.println("\nBot " + botToMove.getId() + " returned to base with the flag!");
+                    endGame(currentPlayer);
+                    return;
+                }
+            } else {
+                boolean validMoveFound = false;
+
+                // Iterar sobre as possíveis ligações da posição atual do bot
+                for (Location neighbor : map.getAdjacentVertices(currentPosition)) {
+                    if (isValidMove(neighbor, botToMove, opponentPlayer)) {
+                        newPosition = neighbor;
+                        validMoveFound = true;
+                        break;
+                    }
+                }
+
+                if (validMoveFound && newPosition != null) {
+                    System.out.println("\nBot " + botToMove.getId() + " movendo de " + currentPosition + " para " + newPosition);
+                    botToMove.setActualPosition(newPosition);
 
                     // Check if the bot reached the opponent's flag position
                     if (newPosition.equals(opponentPlayer.getFlagPosition())) {
-                        System.out.println("\nBot " + bot.getId() + " captured the flag!");
-                        bot.setCarryingFlag(true);
+                        System.out.println("\nBot " + botToMove.getId() + " captured the flag!");
+                        botToMove.setCarryingFlag(true);
                     }
 
                     // Check if the bot returned to its base with the opponent's flag
-                    if (bot.isCarryingFlag() && newPosition.equals(currentPlayer.getFlagPosition())) {
-                        System.out.println("\nBot " + bot.getId() + " returned to base with the flag!");
+                    if (botToMove.isCarryingFlag() && newPosition.equals(currentPlayer.getFlagPosition())) {
+                        System.out.println("\nBot " + botToMove.getId() + " returned to base with the flag!");
                         endGame(currentPlayer);
                         return;
                     }
-
                 } else {
-                    boolean validMoveFound = false;
-
-                    // Iterar sobre as possíveis ligações da posição atual do bot
-                    for (Location neighbor : map.getAdjacentVertices(currentPosition)) {
-                        if (isValidMove(neighbor, bot, opponentPlayer)) {
-                            newPosition = neighbor;
-                            validMoveFound = true;
-                            break;
-                        }
-                    }
-
-                    if (validMoveFound && newPosition != null) {
-                        System.out.println("\nBot " + bot.getId() + " movendo de " + currentPosition + " para " + newPosition);
-                        bot.setActualPosition(newPosition);
-
-                        // Check if the bot reached the opponent's flag position
-                        if (newPosition.equals(opponentPlayer.getFlagPosition())) {
-                            System.out.println("\nBot " + bot.getId() + " captured the flag!");
-                            bot.setCarryingFlag(true);
-                        }
-
-                        // Check if the bot returned to its base with the opponent's flag
-                        if (bot.isCarryingFlag() && newPosition.equals(currentPlayer.getFlagPosition())) {
-                            System.out.println("\nBot " + bot.getId() + " returned to base with the flag!");
-                            endGame(currentPlayer);
-                            return;
-                        }
-                    } else {
-                        System.out.println("Movimento inválido para o Bot " + bot.getId() + ". Não foi possível encontrar uma posição válida.");
-                    }
+                    System.out.println("Movimento inválido para o Bot " + botToMove.getId() + ". Não foi possível encontrar uma posição válida.");
                 }
             }
+
+            // Atualiza o índice do último bot movido
+            lastMovedBotIndex = (lastMovedBotIndex + 1) % currentPlayer.getBots().size();
+            currentPlayer.setLastMovedBotIndex(lastMovedBotIndex);
         } else {
             System.out.println("Nenhum bot disponível para mover nesta rodada.");
         }
