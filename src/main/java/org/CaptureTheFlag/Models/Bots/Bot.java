@@ -157,9 +157,9 @@ public class Bot {
 
     public Location returnFlagToBase(Location playerBase) {
         Location returnPosition = null;
-        if (isCarryingFlag()) { // Verifica se o bot está carregando a bandeira
-            returnPosition = playerBase; // Define a base do jogador como a posição de retorno
-            setCarryingFlag(false); // O bot não está mais carregando a bandeira
+        if (isCarryingFlag()) {
+            returnPosition = playerBase;
+            setCarryingFlag(false);
         }
         return returnPosition;
     }

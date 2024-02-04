@@ -23,24 +23,34 @@ public class GameManager {
         while (!gameOver) {
             System.out.println("\n--------------------- Round " + round + " ---------------------");
 
-            // Player 1 move seu bot
-            System.out.println("\nPlayer 1 ");
-            moveBots(player1, player2, map, round);
+            if (firstToPlay == 1) {
+                System.out.println("\nPlayer 1 ");
+                moveBots(player1, player2, map, round);
+                if (checkGameStatus(player1, player2)) {
+                    gameOver = true;
+                    break;
+                }
 
-            // Verifica o status do jogo após o movimento do Player 1
-            if (checkGameStatus(player1, player2)) {
-                gameOver = true;
-                break;
-            }
+                System.out.println("\nPlayer 2 ");
+                moveBots(player2, player1, map, round);
+                if (checkGameStatus(player1, player2)) {
+                    gameOver = true;
+                    break;
+                }
+            } else {
+                System.out.println("\nPlayer 1 ");
+                moveBots(player1, player2, map, round);
+                if (checkGameStatus(player1, player2)) {
+                    gameOver = true;
+                    break;
+                }
 
-            // Player 2 move seu bot
-            System.out.println("\nPlayer 2 ");
-            moveBots(player2, player1, map, round);
-
-            // Verifica o status do jogo após o movimento do Player 2
-            if (checkGameStatus(player1, player2)) {
-                gameOver = true;
-                break;
+                System.out.println("\nPlayer 2 ");
+                moveBots(player2, player1, map, round);
+                if (checkGameStatus(player1, player2)) {
+                    gameOver = true;
+                    break;
+                }
             }
 
             // Verifica se atingiu o número máximo de rodadas

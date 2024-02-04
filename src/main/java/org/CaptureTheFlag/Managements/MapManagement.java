@@ -10,9 +10,8 @@ import org.Estruturas.Exceptions.InvalidElementException;
 import java.util.Random;
 
 public class MapManagement {
-    Map<Location> map = new Map<>();
-
     Random random = new Random();
+    Map<Location> map = new Map<>();
 
 
     /**
@@ -71,10 +70,6 @@ public class MapManagement {
                 }
             }
         }
-
-        // Exibe o número de vértices e densidade das arestas geradas
-        System.out.println("Número de vértices no mapa: " + map.getNumVertices());
-        System.out.println("Densidade das arestas: " + density);
     }
 
     /**
@@ -98,14 +93,18 @@ public class MapManagement {
         for (int i = 0; i < numVertices; i++) {
             System.out.printf("%-9s", vertices[i].getName());
             for (int j = 0; j < numVertices; j++) {
-                if (bidirectionalPaths || i < j) {
-                    if (costs[i][j] == Double.MAX_VALUE) {
-                        System.out.printf("%-9s", "-");
-                    } else {
-                        System.out.printf("%-9d", (int) costs[i][j]);
-                    }
+                if (i == j) {
+                    System.out.printf("%-9s", "0");
                 } else {
-                    System.out.print("         ");
+                    if (bidirectionalPaths || i < j) {
+                        if (costs[i][j] == Double.MAX_VALUE) {
+                            System.out.printf("%-9s", "-");
+                        } else {
+                            System.out.printf("%-9d", (int) costs[i][j]);
+                        }
+                    } else {
+                        System.out.print("         ");
+                    }
                 }
             }
             System.out.println();

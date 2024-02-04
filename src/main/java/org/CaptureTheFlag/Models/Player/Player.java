@@ -19,7 +19,7 @@ public class Player {
     private String playerName;
     private ArrayUnorderedList<Bot> bots;
     private Location flagPosition;
-    private int lastMovedBotIndex;  // Novo campo adicionado
+    private int lastMovedBotIndex;
 
 
     /**

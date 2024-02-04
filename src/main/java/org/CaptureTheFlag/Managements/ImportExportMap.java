@@ -13,6 +13,7 @@ import java.io.FileWriter;
 import java.io.IOException;
 
 public class ImportExportMap {
+
     public static class MapImportResult {
         private Map<Location> map;
         private boolean hasBidirectionalPaths;
@@ -31,12 +32,6 @@ public class ImportExportMap {
         }
     }
 
-    /**
-     * Imports a map from a JSON file and generates the map accordingly.
-     *
-     * @param filePath The path of the JSON file containing the map data.
-     * @return The imported map.
-     */
     public MapImportResult importMapAndGenerateMap(String filePath) {
         Map<Location> map = new Map<>();
         boolean bidirectionalPaths = false;
@@ -53,49 +48,42 @@ public class ImportExportMap {
             if (locations != null) {
                 for (Object loc : locations) {
                     JSONObject locationData = (JSONObject) loc;
-                    int id = ((Long) locationData.get("id")).intValue();
+                    int id = ((Long) locationData.get("id")).intValue() - 1 ;
                     String name = (String) locationData.get("name");
-
-                    // Adiciona informações de log para verificar os dados
-                    System.out.println("ID: " + id + ", Name: " + name);
-
                     map.addVertex(new Location(id, name));
                 }
             } else {
                 System.out.println("O JSON não contém dados de localizações (locations).");
             }
 
-            // Adicionar caminhos ao mapa
+            // Adicionar arestas ao mapa
             if (paths != null) {
                 for (Object path : paths) {
                     JSONObject pathData = (JSONObject) path;
-                    int start = ((Long) pathData.get("start")).intValue();
-                    int end = ((Long) pathData.get("end")).intValue();
-                    long distanceLong = (Long) pathData.get("distance");
-                    int distance = (int) distanceLong;
+                    int start = ((Long) pathData.get("start")).intValue() - 1;
+                    int end = ((Long) pathData.get("end")).intValue() - 1;
+                    int distance = ((Long) pathData.get("distance")).intValue();
                     map.addEdge(start, end, distance);
-                }
 
+                    // Se bidirectionalPaths for verdadeiro, adicionar a aresta oposta também
+                    if (bidirectionalPaths) {
+                        map.addEdge(end, start, distance);
+                    }
+                }
             } else {
                 System.out.println("O JSON não contém dados de caminhos (paths).");
             }
 
             System.out.println("Mapa importado com sucesso.");
-            return new MapImportResult(map, bidirectionalPaths);
 
         } catch (IOException | ParseException e) {
             System.out.println("Erro ao importar o mapa: " + e.getMessage());
-            return null;
         }
+
+        return new MapImportResult(map, bidirectionalPaths);
     }
 
-    /**
-     * Exports the map data to a JSON file.
-     *
-     * @param map      The map to be exported.
-     * @param filePath The path of the JSON file to export the map data.
-     */
-    public static void exportMapToJson(Map<Location> map, boolean bidirectionalPaths, String filePath) {
+    public void exportMapToJson(Map<Location> map, boolean bidirectionalPaths, String filePath) {
         JSONObject jsonMap = new JSONObject();
         JSONArray verticesArray = new JSONArray();
         JSONArray pathsArray = new JSONArray();
