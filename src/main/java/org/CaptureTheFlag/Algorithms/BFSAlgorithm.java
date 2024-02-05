@@ -37,7 +37,7 @@ public class BFSAlgorithm implements IMovementAlgorithm {
         Location opponentLocation = opponent.getFlagPosition();
 
         System.out.println("Localização Atual: " + currentLocation.getName());
-        System.out.println("Localização da Bandeira do Inimigo: " + opponentLocation.getName());
+        System.out.println("Localização Alvo: " + opponentLocation.getName());
 
         Iterator<Location> iterator = map.iteratorBFS(currentLocation);
         System.out.print("Caminho BFS:");
@@ -46,10 +46,8 @@ public class BFSAlgorithm implements IMovementAlgorithm {
         }
 
         iterator = map.iteratorBFS(currentLocation);
-        System.out.print("\nCaminho Percorrido: ");
         while (iterator.hasNext()) {
             Location nextLocation = iterator.next();
-            System.out.print(" - " + nextLocation.getName());
             return nextLocation;
         }
 

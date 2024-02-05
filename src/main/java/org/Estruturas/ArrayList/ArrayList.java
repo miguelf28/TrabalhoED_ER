@@ -39,6 +39,14 @@ public class ArrayList<T> implements ListADT<T> {
         list = (T[]) (new Object[initialCapacity]);
     }
 
+    public void clear() {
+        for (int i = 0; i < count; i++) {
+            list[i] = null;
+        }
+        count = 0;
+        modCount++;
+    }
+
     /**
      * Adds the specified element to the end of the list.
      *

@@ -64,9 +64,9 @@ public class GameSettings {
                 System.out.println("Erro ao importar o mapa. Verifique o arquivo JSON.");
             }
         } else {
-            numLocations = GameMenus.promptNumLocations(); //Num Locations Menu
-            int pathType = GameMenus.promptPathType(); //Path Type Menu
-            int density = GameMenus.promptEdgeDensity(); //Density Menu
+            numLocations = GameMenus.promptNumLocations();
+            int pathType = GameMenus.promptPathType();
+            int density = GameMenus.promptEdgeDensity();
 
             // Generate Map
             mapManagement.generateMap(map, numLocations, pathType == 1, density);
@@ -78,7 +78,6 @@ public class GameSettings {
             }
         }
 
-        //Bot number for each player menu
         numBotsPlayer1 = GameMenus.promptNumBots(playerManagement.getPlayer1().getPlayerName());
         numBotsPlayer2 = GameMenus.promptNumBots(playerManagement.getPlayer2().getPlayerName());
 
@@ -90,7 +89,6 @@ public class GameSettings {
             botForPlayer1.setOwner(playerManagement.getPlayer1());
             botsPlayer1.addToRear(botForPlayer1);
             IMovementAlgorithm algorithm = GameMenus.promptMovementOptions(playerManagement.getPlayer1().getId(), botForPlayer1.getId());
-
             botForPlayer1.setMovementAlgorithm(algorithm);
         }
 

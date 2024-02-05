@@ -23,8 +23,8 @@ public class MSTAlgorithm implements IMovementAlgorithm {
         Location currentLocation = bot.getActualPosition();
         Location opponentLocation = opponent.getFlagPosition();
 
-        System.out.println("\nLocalização Atual: " + currentLocation.getName());
-        System.out.println("Localização da Bandeira do inimigo: " + opponentLocation.getName());
+        System.out.println("Localização Atual: " + currentLocation.getName());
+        System.out.println("Localização Alvo: " + opponentLocation.getName());
 
         Network<Location> network = map.mstNetwork();
 
@@ -40,7 +40,6 @@ public class MSTAlgorithm implements IMovementAlgorithm {
             iterator = mst.iteratorBFS(currentLocation);
             while (iterator.hasNext()) {
                 Location nextLocation = iterator.next();
-                System.out.print(" - " + nextLocation.getName());
                 return nextLocation;
             }
         } else {

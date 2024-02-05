@@ -11,7 +11,7 @@ import org.Estruturas.Exceptions.EmptyCollectionException;
 import java.util.Random;
 
 public class GameManager {
-    static final int maxRounds = 15;
+    static final int maxRounds = 7;
 
     public static void startGame(Map<Location> map, Player player1, Player player2) throws EmptyCollectionException {
 
@@ -26,28 +26,29 @@ public class GameManager {
 
             if (firstToPlay == 1) {
                 System.out.println("\nPlayer 1 ");
-                moveBots(player1, player2, map, round);
+                moveBots(player1, player2, map);
                 if (checkGameStatus(player1, player2)) {
                     gameOver = true;
                     break;
                 }
 
                 System.out.println("\nPlayer 2 ");
-                moveBots(player2, player1, map, round);
+                moveBots(player2, player1, map);
                 if (checkGameStatus(player1, player2)) {
                     gameOver = true;
                     break;
                 }
+
             } else {
                 System.out.println("\nPlayer 1 ");
-                moveBots(player1, player2, map, round);
+                moveBots(player1, player2, map);
                 if (checkGameStatus(player1, player2)) {
                     gameOver = true;
                     break;
                 }
 
                 System.out.println("\nPlayer 2 ");
-                moveBots(player2, player1, map, round);
+                moveBots(player2, player1, map);
                 if (checkGameStatus(player1, player2)) {
                     gameOver = true;
                     break;
@@ -65,15 +66,15 @@ public class GameManager {
         }
     }
 
-    private static void moveBots(Player currentPlayer, Player opponentPlayer, Map<Location> map, int round) throws EmptyCollectionException {
+    private static void moveBots(Player currentPlayer, Player opponentPlayer, Map<Location> map) throws EmptyCollectionException {
         int lastMovedBotIndex = currentPlayer.getLastMovedBotIndex();
         Bot botToMove = currentPlayer.getBots().get(lastMovedBotIndex);
 
         if (botToMove != null) {
             ArrayList<Location> visitedLocations = botToMove.getVisitedLocations();
-            if (visitedLocations.isEmpty() || !visitedLocations.contains(currentPlayer.getFlagPosition())) {
-                visitedLocations.add(currentPlayer.getFlagPosition());
-            }
+//            if (visitedLocations.isEmpty() || !visitedLocations.contains(currentPlayer.getFlagPosition())) {
+//                visitedLocations.add(currentPlayer.getFlagPosition());
+//            }
             System.out.println("Visitados: " + visitedLocations);
 
             botToMove.setMovedThisRound(true);
@@ -82,9 +83,15 @@ public class GameManager {
 
             IMovementAlgorithm algorithm = botToMove.getMovementAlgorithm();
             Location currentPosition = botToMove.getActualPosition();
-            Location newPosition = algorithm.move(map, botToMove, opponentPlayer);
+            Location newPosition = currentPosition;
+            if (botToMove.isCarryingFlag()) {
+                newPosition = algorithm.move(map, botToMove, currentPlayer);
+            } else {
+                newPosition = algorithm.move(map, botToMove, opponentPlayer);
+            }
 
             if (isValidMove(newPosition, botToMove, opponentPlayer, visitedLocations)) {
+                visitedLocations.add(currentPosition);
                 visitedLocations.add(newPosition);
                 moveBotToNewPosition(botToMove, currentPosition, newPosition, currentPlayer, opponentPlayer);
             } else {
@@ -100,72 +107,63 @@ public class GameManager {
 
     private static void findAndMoveToValidPosition(Map<Location> map, Bot botToMove, Player currentPlayer, Player opponentPlayer, ArrayList<Location> visitedLocations) throws EmptyCollectionException {
         Location currentPosition = botToMove.getActualPosition();
-
+        System.out.println("Verificando ligações a localização!");
         for (Location neighbor : map.getAdjacentVertices(currentPosition)) {
             if (isValidMove(neighbor, botToMove, opponentPlayer, visitedLocations)) {
+                visitedLocations.add(currentPosition);
                 visitedLocations.add(neighbor);
                 moveBotToNewPosition(botToMove, botToMove.getActualPosition(), neighbor, currentPlayer, opponentPlayer);
                 return;
             }
         }
-
-        System.out.println("Invalid move for Bot " + botToMove.getId() + ". Couldn't find a valid position.");
+        System.out.println("Movimento inválido para o Bot " + botToMove.getId() + ". Não foi possível encontrar uma localização válida.");
     }
 
     private static void moveBotToNewPosition(Bot botToMove, Location currentPosition, Location newPosition, Player currentPlayer, Player opponentPlayer) {
-        System.out.println("\nBot " + botToMove.getId() + " movendo de " + currentPosition + " para " + newPosition);
+        System.out.println("\nBot " + botToMove.getId() + " movendo-se de " + currentPosition + " para " + newPosition);
         botToMove.setActualPosition(newPosition);
 
         if (newPosition.equals(opponentPlayer.getFlagPosition())) {
-            System.out.println("\nBot " + botToMove.getId() + " captured the flag!");
+            System.out.println("\nBot " + botToMove.getId() + " capturou a bandeira!");
             botToMove.setCarryingFlag(true);
         }
 
         if (botToMove.isCarryingFlag() && newPosition.equals(currentPlayer.getFlagPosition())) {
-            System.out.println("\nBot " + botToMove.getId() + " returned to base with the flag!");
-            endGame(currentPlayer);
+            System.out.println("\nBot " + botToMove.getId() + " retornou à base com a bandeira!");
         }
     }
 
     private static boolean checkGameStatus(Player player1, Player player2) {
         if (player1.getFlagPosition().equals(player2.getFlagPosition())) {
-            System.out.println("Game over! Player " + player1.getPlayerName() + " wins!");
+            System.out.println("Fim de jogo! O jogador " + player1.getPlayerName() + " venceu!");
             return true;
         } else if (player2.getFlagPosition().equals(player1.getFlagPosition())) {
-            System.out.println("Game over! Player " + player2.getPlayerName() + " wins!");
+            System.out.println("Fim de jogo! O jogador " + player2.getPlayerName() + " venceu!");
             return true;
         }
         return false;
     }
 
-    private static void endGame(Player winner) {
-        System.out.println("Game over! Player " + winner.getPlayerName() + " wins!");
-    }
-
 
     public static boolean isValidMove(Location newPosition, Bot currentBot, Player opponentPlayer, ArrayList<Location> visitedLocations) throws EmptyCollectionException {
         if (!visitedLocations.isEmpty() && visitedLocations.contains(newPosition)) {
+            System.out.println("\nLocalização já visitada ou lista vazia!");
             return false;
         }
 
         for (Bot bot : opponentPlayer.getBots()) {
             if (bot.getActualPosition().equals(newPosition) && bot.isCarryingFlag()) {
                 currentBot.returnFlagToBase(opponentPlayer.getFlagPosition());
-                return false;
+                System.out.println("O bot " + currentBot.getId() + " encontrou um inimigo com a bandeira! A bandeira está retornando à base.");
+                return true;
             } else if (opponentPlayer.getFlagPosition().equals(newPosition) && currentBot.getOwner().getFlagPosition().equals(newPosition)) {
                 currentBot.returnFlagToBase(currentBot.getOwner().getFlagPosition());
                 bot.returnFlagToBase(bot.getOwner().getFlagPosition());
-                return false;
+                System.out.println("As bandeiras se encontraram! Ambas estão retornando à base.");
+                return true;
             }
         }
 
-        for (Bot bot : currentBot.getOwner().getBots()) {
-            if (!bot.equals(currentBot) && bot.getActualPosition().equals(newPosition) && bot.isCarryingFlag()) {
-                currentBot.returnFlagToBase(currentBot.getOwner().getFlagPosition());
-                bot.returnFlagToBase(currentBot.getOwner().getFlagPosition());
-                return false;
-            }
-        }
         return true;
     }
 }
