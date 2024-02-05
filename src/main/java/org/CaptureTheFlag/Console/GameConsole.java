@@ -29,7 +29,6 @@ public class GameConsole {
      * @throws EmptyCollectionException if the collection is empty.
      */
     public void start() throws EmptyCollectionException, InvalidElementException {
-        Scanner scanner = new Scanner(System.in);
         int mode = 1;
         do {
             System.out.print("\n*********** Menu **********\n");
