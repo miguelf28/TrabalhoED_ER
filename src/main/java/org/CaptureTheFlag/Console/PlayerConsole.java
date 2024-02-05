@@ -13,8 +13,10 @@ public class PlayerConsole {
 
     public void displayAvailableLocations(Map<Location> map) {
         System.out.println("\nLocalizações Disponíveis:");
+        int index = 1;
         for (Location location : map.getLocations()) {
-            System.out.println(location.getId() + ": " + location.getName());
+            System.out.println(index + ": " + location.getName());
+            index++;
         }
     }
 

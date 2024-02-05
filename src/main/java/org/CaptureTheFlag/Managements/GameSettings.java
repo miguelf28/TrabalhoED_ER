@@ -106,8 +106,8 @@ public class GameSettings {
 
         playerManagement.setFlagPosition(map, playerManagement.getPlayer1(), playerManagement.getPlayer2());
 
-        System.out.println("\nPlayer 1: \n" + playerManagement.getPlayer1().toString());
-        System.out.println("\nPlayer 2: \n" + playerManagement.getPlayer2().toString());
+//        System.out.println("\nPlayer 1: \n" + playerManagement.getPlayer1().toString());
+//        System.out.println("\nPlayer 2: \n" + playerManagement.getPlayer2().toString());
 
         GameManager.startGame(map, playerManagement.getPlayer1(), playerManagement.getPlayer2());
     }

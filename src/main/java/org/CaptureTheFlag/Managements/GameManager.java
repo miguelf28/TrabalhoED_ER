@@ -5,12 +5,13 @@ import org.CaptureTheFlag.Models.Bots.Bot;
 import org.CaptureTheFlag.Models.Location.Location;
 import org.CaptureTheFlag.Models.Map.Map;
 import org.CaptureTheFlag.Models.Player.Player;
+import org.Estruturas.ArrayList.ArrayList;
 import org.Estruturas.Exceptions.EmptyCollectionException;
 
 import java.util.Random;
 
 public class GameManager {
-    static final int maxRounds = 8;
+    static final int maxRounds = 15;
 
     public static void startGame(Map<Location> map, Player player1, Player player2) throws EmptyCollectionException {
 
@@ -69,6 +70,11 @@ public class GameManager {
         Bot botToMove = currentPlayer.getBots().get(lastMovedBotIndex);
 
         if (botToMove != null) {
+            ArrayList<Location> visitedLocations = botToMove.getVisitedLocations();
+            if (visitedLocations.isEmpty() || !visitedLocations.contains(currentPlayer.getFlagPosition())) {
+                visitedLocations.add(currentPlayer.getFlagPosition());
+            }
+            System.out.println("Visitados: " + visitedLocations);
 
             botToMove.setMovedThisRound(true);
 
@@ -78,56 +84,13 @@ public class GameManager {
             Location currentPosition = botToMove.getActualPosition();
             Location newPosition = algorithm.move(map, botToMove, opponentPlayer);
 
-            if (isValidMove(newPosition, botToMove, opponentPlayer)) {
-                System.out.println("\nBot " + botToMove.getId() + " movendo de " + currentPosition + " para " + newPosition);
-                botToMove.setActualPosition(newPosition);
-
-                // Check if the bot reached the opponent's flag position
-                if (newPosition.equals(opponentPlayer.getFlagPosition())) {
-                    System.out.println("\nBot " + botToMove.getId() + " captured the flag!");
-                    botToMove.setCarryingFlag(true);
-                }
-
-                // Check if the bot returned to its base with the opponent's flag
-                if (botToMove.isCarryingFlag() && newPosition.equals(currentPlayer.getFlagPosition())) {
-                    System.out.println("\nBot " + botToMove.getId() + " returned to base with the flag!");
-                    endGame(currentPlayer);
-                    return;
-                }
+            if (isValidMove(newPosition, botToMove, opponentPlayer, visitedLocations)) {
+                visitedLocations.add(newPosition);
+                moveBotToNewPosition(botToMove, currentPosition, newPosition, currentPlayer, opponentPlayer);
             } else {
-                boolean validMoveFound = false;
-
-                // Iterar sobre as possíveis ligações da posição atual do bot
-                for (Location neighbor : map.getAdjacentVertices(currentPosition)) {
-                    if (isValidMove(neighbor, botToMove, opponentPlayer)) {
-                        newPosition = neighbor;
-                        validMoveFound = true;
-                        break;
-                    }
-                }
-
-                if (validMoveFound && newPosition != null) {
-                    System.out.println("\nBot " + botToMove.getId() + " movendo de " + currentPosition + " para " + newPosition);
-                    botToMove.setActualPosition(newPosition);
-
-                    // Check if the bot reached the opponent's flag position
-                    if (newPosition.equals(opponentPlayer.getFlagPosition())) {
-                        System.out.println("\nBot " + botToMove.getId() + " captured the flag!");
-                        botToMove.setCarryingFlag(true);
-                    }
-
-                    // Check if the bot returned to its base with the opponent's flag
-                    if (botToMove.isCarryingFlag() && newPosition.equals(currentPlayer.getFlagPosition())) {
-                        System.out.println("\nBot " + botToMove.getId() + " returned to base with the flag!");
-                        endGame(currentPlayer);
-                        return;
-                    }
-                } else {
-                    System.out.println("Movimento inválido para o Bot " + botToMove.getId() + ". Não foi possível encontrar uma posição válida.");
-                }
+                findAndMoveToValidPosition(map, botToMove, currentPlayer, opponentPlayer, visitedLocations);
             }
 
-            // Atualiza o índice do último bot movido
             lastMovedBotIndex = (lastMovedBotIndex + 1) % currentPlayer.getBots().size();
             currentPlayer.setLastMovedBotIndex(lastMovedBotIndex);
         } else {
@@ -135,6 +98,34 @@ public class GameManager {
         }
     }
 
+    private static void findAndMoveToValidPosition(Map<Location> map, Bot botToMove, Player currentPlayer, Player opponentPlayer, ArrayList<Location> visitedLocations) throws EmptyCollectionException {
+        Location currentPosition = botToMove.getActualPosition();
+
+        for (Location neighbor : map.getAdjacentVertices(currentPosition)) {
+            if (isValidMove(neighbor, botToMove, opponentPlayer, visitedLocations)) {
+                visitedLocations.add(neighbor);
+                moveBotToNewPosition(botToMove, botToMove.getActualPosition(), neighbor, currentPlayer, opponentPlayer);
+                return;
+            }
+        }
+
+        System.out.println("Invalid move for Bot " + botToMove.getId() + ". Couldn't find a valid position.");
+    }
+
+    private static void moveBotToNewPosition(Bot botToMove, Location currentPosition, Location newPosition, Player currentPlayer, Player opponentPlayer) {
+        System.out.println("\nBot " + botToMove.getId() + " movendo de " + currentPosition + " para " + newPosition);
+        botToMove.setActualPosition(newPosition);
+
+        if (newPosition.equals(opponentPlayer.getFlagPosition())) {
+            System.out.println("\nBot " + botToMove.getId() + " captured the flag!");
+            botToMove.setCarryingFlag(true);
+        }
+
+        if (botToMove.isCarryingFlag() && newPosition.equals(currentPlayer.getFlagPosition())) {
+            System.out.println("\nBot " + botToMove.getId() + " returned to base with the flag!");
+            endGame(currentPlayer);
+        }
+    }
 
     private static boolean checkGameStatus(Player player1, Player player2) {
         if (player1.getFlagPosition().equals(player2.getFlagPosition())) {
@@ -152,21 +143,24 @@ public class GameManager {
     }
 
 
-    public static boolean isValidMove(Location newPosition, Bot currentBot, Player opponentPlayer) {
-        // Verificar se a nova posição está ocupada por bots adversários
+    public static boolean isValidMove(Location newPosition, Bot currentBot, Player opponentPlayer, ArrayList<Location> visitedLocations) throws EmptyCollectionException {
+        if (!visitedLocations.isEmpty() && visitedLocations.contains(newPosition)) {
+            return false;
+        }
+
         for (Bot bot : opponentPlayer.getBots()) {
             if (bot.getActualPosition().equals(newPosition) && bot.isCarryingFlag()) {
-                // Se houver um bot adversário carregando a bandeira na nova posição
                 currentBot.returnFlagToBase(opponentPlayer.getFlagPosition());
+                return false;
+            } else if (opponentPlayer.getFlagPosition().equals(newPosition) && currentBot.getOwner().getFlagPosition().equals(newPosition)) {
+                currentBot.returnFlagToBase(currentBot.getOwner().getFlagPosition());
+                bot.returnFlagToBase(bot.getOwner().getFlagPosition());
                 return false;
             }
         }
 
-        // Verificar se a nova posição está ocupada pelos bots do jogador atual
         for (Bot bot : currentBot.getOwner().getBots()) {
             if (!bot.equals(currentBot) && bot.getActualPosition().equals(newPosition) && bot.isCarryingFlag()) {
-                // Se houver um bot da mesma equipe carregando a bandeira na nova posição
-                // Ambas as bandeiras devem voltar para suas bases
                 currentBot.returnFlagToBase(currentBot.getOwner().getFlagPosition());
                 bot.returnFlagToBase(currentBot.getOwner().getFlagPosition());
                 return false;

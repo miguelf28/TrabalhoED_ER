@@ -7,6 +7,7 @@ import org.CaptureTheFlag.Algorithms.ShortestPathAlgorithm;
 import org.CaptureTheFlag.Algorithms.Interface.IMovementAlgorithm;
 import org.CaptureTheFlag.Models.Location.Location;
 import org.CaptureTheFlag.Models.Player.Player;
+import org.Estruturas.ArrayList.ArrayList;
 
 /**
  * The {@code Bot} class represents a bot in a Capture The Flag game. Bots have an ID, an actual position on the map,
@@ -24,6 +25,7 @@ public class Bot {
     private Player owner;
     private boolean carryingFlag = false;
     private boolean movedThisRound = false;
+    ArrayList<Location> visitedLocations = new ArrayList<>();
 
     /**
      * Gets the player who owns the bot.
@@ -162,6 +164,10 @@ public class Bot {
             setCarryingFlag(false);
         }
         return returnPosition;
+    }
+
+    public ArrayList<Location> getVisitedLocations() {
+        return visitedLocations;
     }
 
     /**

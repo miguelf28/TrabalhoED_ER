@@ -43,10 +43,13 @@ public class ShortestPathAlgorithm implements IMovementAlgorithm {
 
         Iterator<Location> iterator = map.iteratorShortestPath(currentLocation, opponentLocation);
         System.out.print("Caminho Shortest Path:");
+        while (iterator.hasNext()){
+            System.out.print(" - " + iterator.next().getName());
+        }
 
+        iterator = map.iteratorShortestPath(currentLocation, opponentLocation);
         while (iterator.hasNext()) {
             Location nextLocation = iterator.next();
-            System.out.print(" - " + nextLocation.getName());
             return nextLocation;
         }
 

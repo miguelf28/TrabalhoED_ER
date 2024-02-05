@@ -33,6 +33,11 @@ public class MSTAlgorithm implements IMovementAlgorithm {
             Iterator<Location> iterator = mst.iteratorBFS(currentLocation);
 
             System.out.print("Caminho MST:");
+            while (iterator.hasNext()){
+                System.out.print(" - " + iterator.next().getName());
+            }
+
+            iterator = mst.iteratorBFS(currentLocation);
             while (iterator.hasNext()) {
                 Location nextLocation = iterator.next();
                 System.out.print(" - " + nextLocation.getName());

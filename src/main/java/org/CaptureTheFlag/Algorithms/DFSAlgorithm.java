@@ -40,8 +40,13 @@ public class DFSAlgorithm implements IMovementAlgorithm {
         System.out.println("Localização da Bandeira do Inimigo: " + opponentLocation.getName());
 
         Iterator<Location> iterator = map.iteratorDFS(currentLocation);
-        System.out.print("Caminho BFS:");
+        System.out.print("Caminho DFS:");
+        while (iterator.hasNext()) {
+            System.out.print(" - "+iterator.next().getName());
+        }
 
+        iterator = map.iteratorBFS(currentLocation);
+        System.out.print("\nCaminho Percorrido: ");
         while (iterator.hasNext()) {
             Location nextLocation = iterator.next();
             System.out.print(" - " + nextLocation.getName());

@@ -41,7 +41,12 @@ public class BFSAlgorithm implements IMovementAlgorithm {
 
         Iterator<Location> iterator = map.iteratorBFS(currentLocation);
         System.out.print("Caminho BFS:");
+        while (iterator.hasNext()) {
+            System.out.print(" - "+iterator.next().getName());
+        }
 
+        iterator = map.iteratorBFS(currentLocation);
+        System.out.print("\nCaminho Percorrido: ");
         while (iterator.hasNext()) {
             Location nextLocation = iterator.next();
             System.out.print(" - " + nextLocation.getName());
