@@ -11,7 +11,7 @@ import org.Estruturas.Exceptions.EmptyCollectionException;
 import java.util.Random;
 
 public class GameManager {
-    static final int maxRounds = 7;
+    static final int maxRounds = 15;
 
     public static void startGame(Map<Location> map, Player player1, Player player2) throws EmptyCollectionException {
 
@@ -70,39 +70,35 @@ public class GameManager {
         int lastMovedBotIndex = currentPlayer.getLastMovedBotIndex();
         Bot botToMove = currentPlayer.getBots().get(lastMovedBotIndex);
 
-        if (botToMove != null) {
-            ArrayList<Location> visitedLocations = botToMove.getVisitedLocations();
-//            if (visitedLocations.isEmpty() || !visitedLocations.contains(currentPlayer.getFlagPosition())) {
-//                visitedLocations.add(currentPlayer.getFlagPosition());
-//            }
-            System.out.println("Visitados: " + visitedLocations);
-
-            botToMove.setMovedThisRound(true);
-
-            System.out.println("Bot " + botToMove.getId() + ":");
-
-            IMovementAlgorithm algorithm = botToMove.getMovementAlgorithm();
-            Location currentPosition = botToMove.getActualPosition();
-            Location newPosition = currentPosition;
-            if (botToMove.isCarryingFlag()) {
-                newPosition = algorithm.move(map, botToMove, currentPlayer);
-            } else {
-                newPosition = algorithm.move(map, botToMove, opponentPlayer);
-            }
-
-            if (isValidMove(newPosition, botToMove, opponentPlayer, visitedLocations)) {
-                visitedLocations.add(currentPosition);
-                visitedLocations.add(newPosition);
-                moveBotToNewPosition(botToMove, currentPosition, newPosition, currentPlayer, opponentPlayer);
-            } else {
-                findAndMoveToValidPosition(map, botToMove, currentPlayer, opponentPlayer, visitedLocations);
-            }
-
-            lastMovedBotIndex = (lastMovedBotIndex + 1) % currentPlayer.getBots().size();
-            currentPlayer.setLastMovedBotIndex(lastMovedBotIndex);
-        } else {
-            System.out.println("Nenhum bot disponível para mover nesta rodada.");
+        ArrayList<Location> visitedLocations = botToMove.getVisitedLocations();
+        if (visitedLocations.isEmpty() || !visitedLocations.contains(currentPlayer.getFlagPosition())) {
+            visitedLocations.add(currentPlayer.getFlagPosition());
         }
+
+        System.out.println("Visitados: " + visitedLocations);
+
+        botToMove.setMovedThisRound(true);
+
+        System.out.println("Bot " + botToMove.getId() + ":");
+
+        IMovementAlgorithm algorithm = botToMove.getMovementAlgorithm();
+        Location currentPosition = botToMove.getActualPosition();
+        Location newPosition = currentPosition;
+        if (botToMove.isCarryingFlag()) {
+            newPosition = algorithm.move(map, botToMove, currentPlayer);
+        } else {
+            newPosition = algorithm.move(map, botToMove, opponentPlayer);
+        }
+
+        if (isValidMove(newPosition, botToMove, opponentPlayer, visitedLocations)) {
+            visitedLocations.add(newPosition);
+            moveBotToNewPosition(botToMove, currentPosition, newPosition, currentPlayer, opponentPlayer, visitedLocations);
+        } else {
+            findAndMoveToValidPosition(map, botToMove, currentPlayer, opponentPlayer, visitedLocations);
+        }
+
+        lastMovedBotIndex = (lastMovedBotIndex + 1) % currentPlayer.getBots().size();
+        currentPlayer.setLastMovedBotIndex(lastMovedBotIndex);
     }
 
     private static void findAndMoveToValidPosition(Map<Location> map, Bot botToMove, Player currentPlayer, Player opponentPlayer, ArrayList<Location> visitedLocations) throws EmptyCollectionException {
@@ -110,16 +106,15 @@ public class GameManager {
         System.out.println("Verificando ligações a localização!");
         for (Location neighbor : map.getAdjacentVertices(currentPosition)) {
             if (isValidMove(neighbor, botToMove, opponentPlayer, visitedLocations)) {
-                visitedLocations.add(currentPosition);
                 visitedLocations.add(neighbor);
-                moveBotToNewPosition(botToMove, botToMove.getActualPosition(), neighbor, currentPlayer, opponentPlayer);
+                moveBotToNewPosition(botToMove, botToMove.getActualPosition(), neighbor, currentPlayer, opponentPlayer, visitedLocations);
                 return;
             }
         }
         System.out.println("Movimento inválido para o Bot " + botToMove.getId() + ". Não foi possível encontrar uma localização válida.");
     }
 
-    private static void moveBotToNewPosition(Bot botToMove, Location currentPosition, Location newPosition, Player currentPlayer, Player opponentPlayer) {
+    private static void moveBotToNewPosition(Bot botToMove, Location currentPosition, Location newPosition, Player currentPlayer, Player opponentPlayer, ArrayList<Location> visitedLocations) {
         System.out.println("\nBot " + botToMove.getId() + " movendo-se de " + currentPosition + " para " + newPosition);
         botToMove.setActualPosition(newPosition);
 
@@ -147,8 +142,10 @@ public class GameManager {
 
     public static boolean isValidMove(Location newPosition, Bot currentBot, Player opponentPlayer, ArrayList<Location> visitedLocations) throws EmptyCollectionException {
         if (!visitedLocations.isEmpty() && visitedLocations.contains(newPosition)) {
-            System.out.println("\nLocalização já visitada ou lista vazia!");
+            System.out.println("\nLocalização já visitada!");
             return false;
+        } else if (newPosition.equals(opponentPlayer.getFlagPosition())) {
+            return true;
         }
 
         for (Bot bot : opponentPlayer.getBots()) {
@@ -163,7 +160,6 @@ public class GameManager {
                 return true;
             }
         }
-
         return true;
     }
 }
