@@ -90,6 +90,7 @@ public class GameSettings {
             botForPlayer1.setOwner(playerManagement.getPlayer1());
             botsPlayer1.addToRear(botForPlayer1);
             IMovementAlgorithm algorithm = GameMenus.promptMovementOptions(playerManagement.getPlayer1().getId(), botForPlayer1.getId());
+
             botForPlayer1.setMovementAlgorithm(algorithm);
         }
 

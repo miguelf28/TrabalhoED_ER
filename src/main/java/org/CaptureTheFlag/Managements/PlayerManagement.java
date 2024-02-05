@@ -17,8 +17,8 @@ import org.CaptureTheFlag.Console.PlayerConsole;
  */
 public class PlayerManagement {
     PlayerConsole playerConsole = new PlayerConsole();
-    Player player1 = new Player(1, "Player 1");
-    Player player2 = new Player(2, "Player 2");
+    Player player1 = new Player(1, "JOGADOR 1");
+    Player player2 = new Player(2, "JOGADOR 2");
 
     /**
      * Gets the first player object.
