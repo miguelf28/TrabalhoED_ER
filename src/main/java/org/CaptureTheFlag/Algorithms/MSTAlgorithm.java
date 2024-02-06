@@ -18,6 +18,7 @@ public class MSTAlgorithm implements IMovementAlgorithm {
         return "Minimum Spanning Tree ";
     }
 
+
     @Override
     public Location move(Map<Location> map, Bot bot, Player opponent) throws EmptyCollectionException {
         Location currentLocation = bot.getActualPosition();
@@ -50,3 +51,5 @@ public class MSTAlgorithm implements IMovementAlgorithm {
         return currentLocation;
     }
 }
+
+

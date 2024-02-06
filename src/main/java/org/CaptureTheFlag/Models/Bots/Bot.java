@@ -21,6 +21,7 @@ import org.Estruturas.ArrayList.ArrayList;
 public class Bot {
     private int id;
     private Location actualPosition;
+    private Location targetPosition;
     private IMovementAlgorithm IMovementAlgorithm;
     private Player owner;
     private boolean carryingFlag = false;
@@ -139,6 +140,14 @@ public class Bot {
      */
     public void setMovementAlgorithm(IMovementAlgorithm IMovementAlgorithm) {
         this.IMovementAlgorithm = IMovementAlgorithm;
+    }
+
+    public Location getTargetPosition() {
+        return targetPosition;
+    }
+
+    public void setTargetPosition(Location targetPosition) {
+        this.targetPosition = targetPosition;
     }
 
     public boolean isCarryingFlag() {

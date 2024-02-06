@@ -76,7 +76,7 @@ public class MapManagement {
      * Prints the adjacency matrix representation of the map.
      */
     public void printAdjacencyMatrix(Map<Location> map, boolean bidirectionalPaths) {
-        System.out.println("Adjacency Matrix:");
+        System.out.println("MAPA: :");
 
         int numVertices = map.getNumVertices();
         Location[] vertices = map.getVertices();

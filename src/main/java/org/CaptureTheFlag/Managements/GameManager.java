@@ -10,6 +10,8 @@ import org.Estruturas.Exceptions.EmptyCollectionException;
 
 import java.util.Random;
 
+import static org.CaptureTheFlag.GUI.Miscellaneous.*;
+
 public class GameManager {
     static final int maxRounds = 15;
 
@@ -71,7 +73,7 @@ public class GameManager {
         Bot botToMove = currentPlayer.getBots().get(lastMovedBotIndex);
 
         ArrayList<Location> visitedLocations = botToMove.getVisitedLocations();
-        if (visitedLocations.isEmpty() || !visitedLocations.contains(currentPlayer.getFlagPosition())) {
+        if (visitedLocations.isEmpty() || (!botToMove.isCarryingFlag() && !visitedLocations.contains(currentPlayer.getFlagPosition()))) {
             visitedLocations.add(currentPlayer.getFlagPosition());
         }
 
@@ -119,12 +121,14 @@ public class GameManager {
         botToMove.setActualPosition(newPosition);
 
         if (newPosition.equals(opponentPlayer.getFlagPosition())) {
-            System.out.println("\nBot " + botToMove.getId() + " capturou a bandeira!");
+            System.out.println(greenColor + "\nBot " + botToMove.getId() + " do " + currentPlayer.getPlayerName() +" capturou a bandeira inimiga!" + resetColor);
             botToMove.setCarryingFlag(true);
+            visitedLocations.clear();
         }
 
+
         if (botToMove.isCarryingFlag() && newPosition.equals(currentPlayer.getFlagPosition())) {
-            System.out.println("\nBot " + botToMove.getId() + " retornou à base com a bandeira!");
+            System.out.println(redColor + "\nBot " + botToMove.getId() + " retornou à base com a bandeira!" + resetColor);
         }
     }
 

@@ -5,6 +5,7 @@ import org.CaptureTheFlag.Models.Bots.Bot;
 import org.CaptureTheFlag.Models.Location.Location;
 import org.CaptureTheFlag.Models.Map.Map;
 import org.CaptureTheFlag.Models.Player.Player;
+import org.Estruturas.ArrayUnorderedList.ArrayUnorderedList;
 import org.Estruturas.Exceptions.EmptyCollectionException;
 
 import java.util.Iterator;
@@ -42,18 +43,25 @@ public class ShortestPathAlgorithm implements IMovementAlgorithm {
         System.out.println("Localização Alvo: " + opponentLocation.getName());
 
         Iterator<Location> iterator = map.iteratorShortestPath(currentLocation, opponentLocation);
-        System.out.print("Caminho Shortest Path:");
-        while (iterator.hasNext()){
-            System.out.print(" - " + iterator.next().getName());
-        }
+        ArrayUnorderedList<Location> pathDjikstra = new ArrayUnorderedList<>();
 
-        iterator = map.iteratorShortestPath(currentLocation, opponentLocation);
+        System.out.print("Caminho Shortest Path:");
+
         while (iterator.hasNext()) {
             Location nextLocation = iterator.next();
-            return nextLocation;
+            pathDjikstra.add(nextLocation);
+            System.out.print(" - " + nextLocation.getName());
         }
 
-        System.out.println("\nNão foi possível encontrar um caminho para o destino.");
-        return currentLocation;
+        System.out.println(); // Nova linha após imprimir o caminho completo
+
+        if (pathDjikstra.size() > 1) {
+            // Retorna a segunda localização, que é a próxima no caminho
+            return pathDjikstra.get(1);
+        } else {
+            System.out.println("\nNão foi possível encontrar um caminho para o destino.");
+            return currentLocation;
+        }
     }
+
 }
