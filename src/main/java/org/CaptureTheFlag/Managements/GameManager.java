@@ -14,6 +14,7 @@ import static org.CaptureTheFlag.GUI.Miscellaneous.*;
 
 
 public class GameManager {
+    private static boolean flagCaptured = false;
     static final int maxRounds = 75;
     static String endgame = null;
 
@@ -90,11 +91,16 @@ public class GameManager {
         botToMove.setMovedThisRound(true);
         IMovementAlgorithm algorithm = botToMove.getMovementAlgorithm();
         Location currentPosition = botToMove.getActualPosition();
-        Location newPosition = currentPosition;
-        if (botToMove.isCarryingFlag()) {
-            newPosition = algorithm.move(map, botToMove, currentPlayer);
+        Location newPosition = null;
+
+        if (!flagCaptured) {
+            if (botToMove.isCarryingFlag()) {
+                newPosition = algorithm.move(map, botToMove, currentPlayer);
+            } else {
+                newPosition = algorithm.move(map, botToMove, opponentPlayer);
+            }
         } else {
-            newPosition = algorithm.move(map, botToMove, opponentPlayer);
+            newPosition = algorithm.move(map, botToMove, currentPlayer);
         }
 
         if (isValidMove(newPosition, botToMove, opponentPlayer, visitedLocations)) {
@@ -119,6 +125,7 @@ public class GameManager {
                 return;
             }
         }
+        visitedLocations.clear();
         System.out.println(redColor + "Movimento inválido para o Bot " + botToMove.getId() + ". Não foi possível encontrar uma localização válida." + resetColor);
     }
 
@@ -129,6 +136,7 @@ public class GameManager {
         if (newPosition.equals(opponentPlayer.getFlagPosition())) {
             System.out.println(greenColor + "\nBOT " + botToMove.getId() + " do " + currentPlayer.getPlayerName() + " capturou a bandeira inimiga!" + resetColor);
             botToMove.setCarryingFlag(true);
+            flagCaptured = true;
             visitedLocations.clear();
         }
 
@@ -152,26 +160,32 @@ public class GameManager {
 
     public static boolean isValidMove(Location newPosition, Bot currentBot, Player opponentPlayer, ArrayList<Location> visitedLocations) throws EmptyCollectionException {
         if (!visitedLocations.isEmpty() && visitedLocations.contains(newPosition)) {
-//          System.out.println(redColor + "\nLocalização já visitada!" + resetColor);
             return false;
-//        } else if (newPosition.equals(opponentPlayer.getFlagPosition())) {
-//            return true;
         }
 
         for (Bot bot : opponentPlayer.getBots()) {
             if (bot.getActualPosition().equals(newPosition) && bot.isCarryingFlag()) {
                 currentBot.returnFlagToBase(opponentPlayer.getFlagPosition());
                 visitedLocations.clear();
+                flagCaptured = false;
                 System.out.println(redColor + "\nO bot " + currentBot.getId() + " encontrou um inimigo com a bandeira! A bandeira está retornando à base." + resetColor);
                 return true;
             } else if (opponentPlayer.getFlagPosition().equals(newPosition) && currentBot.getOwner().getFlagPosition().equals(newPosition)) {
                 currentBot.returnFlagToBase(currentBot.getOwner().getFlagPosition());
                 bot.returnFlagToBase(bot.getOwner().getFlagPosition());
                 visitedLocations.clear();
+                flagCaptured = false;
                 System.out.println(redColor + "\nAs bandeiras se encontraram! Ambas estão retornando à base." + resetColor);
                 return true;
             }
         }
+
+        if (flagCaptured && newPosition.equals(opponentPlayer.getFlagPosition())) {
+            System.out.println(redColor + "\nA bandeira já foi capturada. Não é possível capturá-la novamente." + resetColor);
+            visitedLocations.clear();
+            return false;
+        }
+
         return true;
     }
 }
