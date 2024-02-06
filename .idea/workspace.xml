@@ -4,14 +4,9 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="2f94aad1-6861-4f54-acb1-3c181fb54499" name="Changes" comment="corrigidas validações de inputs no código todo&#10;adicionada a opção de apenas se puder escolher um algorimo unico por bot, exceto se já todos tiverem sido escolhidos">
+    <list default="true" id="2f94aad1-6861-4f54-acb1-3c181fb54499" name="Changes" comment="adicionada a correção ao ShortestPathAlgorithm que não permitia ao bot começar pelo caminho que era suposto, pois adicionava a primeira localização ao visitedLocations antes de ser movido.&#10;&#10;tentativa de refazer o caminho de volta para a base com a flag, o visitedLocations.clear() está ativo para testes no moveBotToNewPosition">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/map.json" beforeDir="false" afterPath="$PROJECT_DIR$/map.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/org/CaptureTheFlag/Algorithms/MSTAlgorithm.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/CaptureTheFlag/Algorithms/MSTAlgorithm.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/org/CaptureTheFlag/Algorithms/ShortestPathAlgorithm.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/CaptureTheFlag/Algorithms/ShortestPathAlgorithm.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/org/CaptureTheFlag/Managements/GameManager.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/CaptureTheFlag/Managements/GameManager.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/org/CaptureTheFlag/Managements/MapManagement.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/CaptureTheFlag/Managements/MapManagement.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/org/CaptureTheFlag/Models/Bots/Bot.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/CaptureTheFlag/Models/Bots/Bot.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -159,7 +154,15 @@
       <option name="project" value="LOCAL" />
       <updated>1707080477462</updated>
     </task>
-    <option name="localTasksCounter" value="4" />
+    <task id="LOCAL-00004" summary="adicionada a correção ao ShortestPathAlgorithm que não permitia ao bot começar pelo caminho que era suposto, pois adicionava a primeira localização ao visitedLocations antes de ser movido.&#10;&#10;tentativa de refazer o caminho de volta para a base com a flag, o visitedLocations.clear() está ativo para testes no moveBotToNewPosition">
+      <option name="closed" value="true" />
+      <created>1707237710930</created>
+      <option name="number" value="00004" />
+      <option name="presentableId" value="LOCAL-00004" />
+      <option name="project" value="LOCAL" />
+      <updated>1707237710930</updated>
+    </task>
+    <option name="localTasksCounter" value="5" />
     <servers />
   </component>
   <component name="Vcs.Log.History.Properties">
@@ -177,7 +180,8 @@
     <MESSAGE value="Struct Commit" />
     <MESSAGE value="Gerar Mapa e Print Matrix completo" />
     <MESSAGE value="changes gameStart" />
-    <option name="LAST_COMMIT_MESSAGE" value="changes gameStart" />
+    <MESSAGE value="adicionada a correção ao ShortestPathAlgorithm que não permitia ao bot começar pelo caminho que era suposto, pois adicionava a primeira localização ao visitedLocations antes de ser movido.&#10;&#10;tentativa de refazer o caminho de volta para a base com a flag, o visitedLocations.clear() está ativo para testes no moveBotToNewPosition" />
+    <option name="LAST_COMMIT_MESSAGE" value="adicionada a correção ao ShortestPathAlgorithm que não permitia ao bot começar pelo caminho que era suposto, pois adicionava a primeira localização ao visitedLocations antes de ser movido.&#10;&#10;tentativa de refazer o caminho de volta para a base com a flag, o visitedLocations.clear() está ativo para testes no moveBotToNewPosition" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
