@@ -75,6 +75,7 @@ public class GameManager {
         ArrayList<Location> visitedLocations = botToMove.getVisitedLocations();
         if (visitedLocations.isEmpty() || !visitedLocations.contains(currentPlayer.getFlagPosition())) {
             visitedLocations.add(botToMove.getActualPosition());
+            //TODO se calhar criar uma lista à parte para o caminho percorrido e o visitados, em que o visitados é para as validações  e o caminho percorrido, para mostrar no fim todo o caminho
         }
 
         System.out.println("Visitados: " + visitedLocations);
