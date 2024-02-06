@@ -53,10 +53,9 @@ public class ShortestPathAlgorithm implements IMovementAlgorithm {
             System.out.print(" - " + nextLocation.getName());
         }
 
-        System.out.println(); // Nova linha após imprimir o caminho completo
+        //System.out.println();
 
         if (pathDjikstra.size() > 1) {
-            // Retorna a segunda localização, que é a próxima no caminho
             return pathDjikstra.get(1);
         } else {
             System.out.println("\nNão foi possível encontrar um caminho para o destino.");

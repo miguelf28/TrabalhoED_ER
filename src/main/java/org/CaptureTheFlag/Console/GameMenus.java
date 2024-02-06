@@ -154,8 +154,6 @@ public class GameMenus {
             for (char option : playerList) {
                 System.out.println(option + ") " + getAlgorithmName(option));
             }
-            System.out.println();
-
             System.out.print("Escolha: ");
             char choice = scanner.next().charAt(0);
 

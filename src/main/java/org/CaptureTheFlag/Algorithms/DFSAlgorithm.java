@@ -46,6 +46,7 @@ public class DFSAlgorithm implements IMovementAlgorithm {
         }
 
         iterator = map.iteratorBFS(currentLocation);
+        iterator.next();
         while (iterator.hasNext()) {
             Location nextLocation = iterator.next();
             return nextLocation;

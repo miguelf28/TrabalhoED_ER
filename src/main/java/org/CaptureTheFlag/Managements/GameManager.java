@@ -14,6 +14,7 @@ import static org.CaptureTheFlag.GUI.Miscellaneous.*;
 
 public class GameManager {
     static final int maxRounds = 15;
+    static String endgame = null;
 
     public static void startGame(Map<Location> map, Player player1, Player player2) throws EmptyCollectionException {
 
@@ -75,15 +76,12 @@ public class GameManager {
         ArrayList<Location> visitedLocations = botToMove.getVisitedLocations();
         if (visitedLocations.isEmpty() || !visitedLocations.contains(currentPlayer.getFlagPosition())) {
             visitedLocations.add(botToMove.getActualPosition());
-            //TODO se calhar criar uma lista à parte para o caminho percorrido e o visitados, em que o visitados é para as validações  e o caminho percorrido, para mostrar no fim todo o caminho
         }
 
         System.out.println("Visitados: " + visitedLocations);
-
-        botToMove.setMovedThisRound(true);
-
         System.out.println("Bot " + botToMove.getId() + ":");
 
+        botToMove.setMovedThisRound(true);
         IMovementAlgorithm algorithm = botToMove.getMovementAlgorithm();
         Location currentPosition = botToMove.getActualPosition();
         Location newPosition = currentPosition;
@@ -96,6 +94,7 @@ public class GameManager {
         if (isValidMove(newPosition, botToMove, opponentPlayer, visitedLocations)) {
             visitedLocations.add(newPosition);
             moveBotToNewPosition(botToMove, currentPosition, newPosition, currentPlayer, opponentPlayer, visitedLocations);
+
         } else {
             findAndMoveToValidPosition(map, botToMove, currentPlayer, opponentPlayer, visitedLocations);
         }
@@ -106,7 +105,7 @@ public class GameManager {
 
     private static void findAndMoveToValidPosition(Map<Location> map, Bot botToMove, Player currentPlayer, Player opponentPlayer, ArrayList<Location> visitedLocations) throws EmptyCollectionException {
         Location currentPosition = botToMove.getActualPosition();
-        System.out.println("Verificando ligações a localização!");
+        System.out.println("\nVerificando nova localização!");
         for (Location neighbor : map.getAdjacentVertices(currentPosition)) {
             if (isValidMove(neighbor, botToMove, opponentPlayer, visitedLocations)) {
                 visitedLocations.add(neighbor);
@@ -114,7 +113,7 @@ public class GameManager {
                 return;
             }
         }
-        System.out.println("Movimento inválido para o Bot " + botToMove.getId() + ". Não foi possível encontrar uma localização válida.");
+        System.out.println(redColor + "Movimento inválido para o Bot " + botToMove.getId() + ". Não foi possível encontrar uma localização válida." + resetColor);
     }
 
     private static void moveBotToNewPosition(Bot botToMove, Location currentPosition, Location newPosition, Player currentPlayer, Player opponentPlayer, ArrayList<Location> visitedLocations) {
@@ -127,41 +126,43 @@ public class GameManager {
             visitedLocations.clear();
         }
 
-
         if (botToMove.isCarryingFlag() && newPosition.equals(currentPlayer.getFlagPosition())) {
-            System.out.println(redColor + "\nBot " + botToMove.getId() + " retornou à base com a bandeira!" + resetColor);
+            System.out.println(greenColor + "\nBot " + botToMove.getId() + " retornou à base com a bandeira!" + resetColor);
+            endgame = currentPlayer.getPlayerName();
+            visitedLocations.clear();
         }
     }
 
     private static boolean checkGameStatus(Player player1, Player player2) {
-        if (player1.getFlagPosition().equals(player2.getFlagPosition())) {
-            System.out.println("Fim de jogo! O jogador " + player1.getPlayerName() + " venceu!");
+        if (endgame != null && endgame.equals(player1.getPlayerName())) {
+            System.out.println(greenColor + "\nFim de jogo! O jogador " + player1.getPlayerName() + " venceu!" + resetColor);
             return true;
-        } else if (player2.getFlagPosition().equals(player1.getFlagPosition())) {
-            System.out.println("Fim de jogo! O jogador " + player2.getPlayerName() + " venceu!");
+        } else if (endgame != null && endgame.equals(player2.getPlayerName())) {
+            System.out.println(greenColor + "\nFim de jogo! O jogador " + player2.getPlayerName() + " venceu!" + resetColor);
             return true;
         }
         return false;
     }
 
-
     public static boolean isValidMove(Location newPosition, Bot currentBot, Player opponentPlayer, ArrayList<Location> visitedLocations) throws EmptyCollectionException {
         if (!visitedLocations.isEmpty() && visitedLocations.contains(newPosition)) {
-            System.out.println("\nLocalização já visitada!");
+//          System.out.println(redColor + "\nLocalização já visitada!" + resetColor);
             return false;
-        } else if (newPosition.equals(opponentPlayer.getFlagPosition())) {
-            return true;
+//        } else if (newPosition.equals(opponentPlayer.getFlagPosition())) {
+//            return true;
         }
 
         for (Bot bot : opponentPlayer.getBots()) {
             if (bot.getActualPosition().equals(newPosition) && bot.isCarryingFlag()) {
                 currentBot.returnFlagToBase(opponentPlayer.getFlagPosition());
-                System.out.println("O bot " + currentBot.getId() + " encontrou um inimigo com a bandeira! A bandeira está retornando à base.");
+                visitedLocations.clear();
+                System.out.println(redColor + "\nO bot " + currentBot.getId() + " encontrou um inimigo com a bandeira! A bandeira está retornando à base." + resetColor);
                 return true;
             } else if (opponentPlayer.getFlagPosition().equals(newPosition) && currentBot.getOwner().getFlagPosition().equals(newPosition)) {
                 currentBot.returnFlagToBase(currentBot.getOwner().getFlagPosition());
                 bot.returnFlagToBase(bot.getOwner().getFlagPosition());
-                System.out.println("As bandeiras se encontraram! Ambas estão retornando à base.");
+                visitedLocations.clear();
+                System.out.println(redColor + "\nAs bandeiras se encontraram! Ambas estão retornando à base." + resetColor);
                 return true;
             }
         }
