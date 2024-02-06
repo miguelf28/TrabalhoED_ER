@@ -73,8 +73,8 @@ public class GameManager {
         Bot botToMove = currentPlayer.getBots().get(lastMovedBotIndex);
 
         ArrayList<Location> visitedLocations = botToMove.getVisitedLocations();
-        if (visitedLocations.isEmpty() || (!botToMove.isCarryingFlag() && !visitedLocations.contains(currentPlayer.getFlagPosition()))) {
-            visitedLocations.add(currentPlayer.getFlagPosition());
+        if (visitedLocations.isEmpty() || !visitedLocations.contains(currentPlayer.getFlagPosition())) {
+            visitedLocations.add(botToMove.getActualPosition());
         }
 
         System.out.println("Visitados: " + visitedLocations);
