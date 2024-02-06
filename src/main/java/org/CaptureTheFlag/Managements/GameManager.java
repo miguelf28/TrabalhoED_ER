@@ -12,30 +12,31 @@ import java.util.Random;
 
 import static org.CaptureTheFlag.GUI.Miscellaneous.*;
 
+
 public class GameManager {
-    static final int maxRounds = 15;
+    static final int maxRounds = 75;
     static String endgame = null;
 
     public static void startGame(Map<Location> map, Player player1, Player player2) throws EmptyCollectionException {
-
         Random random = new Random();
         int round = 1;
         boolean gameOver = false;
         int firstToPlay = random.nextInt(2) + 1;
-
+        System.out.println(firstToPlay);
         System.out.println("\n############### START ############### ");
         while (!gameOver) {
+
             System.out.println("\n--------------------- Round " + round + " ---------------------");
 
             if (firstToPlay == 1) {
-                System.out.println("\nPlayer 1 ");
+                System.out.println(blueColor + "JOGADOR 1 " + resetColor + "[BASE: " + player1.getFlagPosition().getName() + "]");
                 moveBots(player1, player2, map);
                 if (checkGameStatus(player1, player2)) {
                     gameOver = true;
                     break;
                 }
-
-                System.out.println("\nPlayer 2 ");
+                System.out.println("\n..  ..  ..  ..  ..  ..  ..  ..  ..  ..  ..  ..  ..  ");
+                System.out.println(purpleColor + "JOGADOR 2 " + resetColor + "[BASE: " + player2.getFlagPosition().getName() + "]");
                 moveBots(player2, player1, map);
                 if (checkGameStatus(player1, player2)) {
                     gameOver = true;
@@ -43,15 +44,15 @@ public class GameManager {
                 }
 
             } else {
-                System.out.println("\nPlayer 1 ");
-                moveBots(player1, player2, map);
+                System.out.println(purpleColor + "JOGADOR 2 " + resetColor + "[BASE: " + player2.getFlagPosition().getName() + "]");
+                moveBots(player2, player1, map);
                 if (checkGameStatus(player1, player2)) {
                     gameOver = true;
                     break;
                 }
-
-                System.out.println("\nPlayer 2 ");
-                moveBots(player2, player1, map);
+                System.out.println("\n..  ..  ..  ..  ..  ..  ..  ..  ..  ..  ..  ..  ..  ");
+                System.out.println(blueColor + "JOGADOR 1 " + resetColor + "[BASE: " + player1.getFlagPosition().getName() + "]");
+                moveBots(player1, player2, map);
                 if (checkGameStatus(player1, player2)) {
                     gameOver = true;
                     break;
@@ -60,7 +61,7 @@ public class GameManager {
 
             // Verifica se atingiu o número máximo de rodadas
             if (round >= maxRounds) {
-                System.out.println("\n############ Game tied after " + maxRounds + " rounds ############ ");
+                System.out.println("\n##### Após " + maxRounds + " rondas, o jogo empatou ##### ");
                 gameOver = true;
             }
 
@@ -78,8 +79,13 @@ public class GameManager {
             visitedLocations.add(botToMove.getActualPosition());
         }
 
-        System.out.println("Visitados: " + visitedLocations);
-        System.out.println("Bot " + botToMove.getId() + ":");
+        System.out.println("Visitados: \n" + visitedLocations);
+        if (botToMove.isCarryingFlag()) {
+            System.out.println("BOT " + botToMove.getId() + yellowColor + " [Tem a bandeira inimiga] " + resetColor);
+        } else {
+            System.out.println("BOT " + botToMove.getId());
+        }
+
 
         botToMove.setMovedThisRound(true);
         IMovementAlgorithm algorithm = botToMove.getMovementAlgorithm();
@@ -117,17 +123,17 @@ public class GameManager {
     }
 
     private static void moveBotToNewPosition(Bot botToMove, Location currentPosition, Location newPosition, Player currentPlayer, Player opponentPlayer, ArrayList<Location> visitedLocations) {
-        System.out.println("\nBot " + botToMove.getId() + " movendo-se de " + currentPosition + " para " + newPosition);
+        System.out.println("\nBOT " + botToMove.getId() + " movendo-se de " + currentPosition + " para " + newPosition);
         botToMove.setActualPosition(newPosition);
 
         if (newPosition.equals(opponentPlayer.getFlagPosition())) {
-            System.out.println(greenColor + "\nBot " + botToMove.getId() + " do " + currentPlayer.getPlayerName() +" capturou a bandeira inimiga!" + resetColor);
+            System.out.println(greenColor + "\nBOT " + botToMove.getId() + " do " + currentPlayer.getPlayerName() + " capturou a bandeira inimiga!" + resetColor);
             botToMove.setCarryingFlag(true);
             visitedLocations.clear();
         }
 
         if (botToMove.isCarryingFlag() && newPosition.equals(currentPlayer.getFlagPosition())) {
-            System.out.println(greenColor + "\nBot " + botToMove.getId() + " retornou à base com a bandeira!" + resetColor);
+            System.out.println(greenColor + "\nBOT " + botToMove.getId() + " retornou à base com a bandeira!" + resetColor);
             endgame = currentPlayer.getPlayerName();
             visitedLocations.clear();
         }
@@ -135,10 +141,10 @@ public class GameManager {
 
     private static boolean checkGameStatus(Player player1, Player player2) {
         if (endgame != null && endgame.equals(player1.getPlayerName())) {
-            System.out.println(greenColor + "\nFim de jogo! O jogador " + player1.getPlayerName() + " venceu!" + resetColor);
+            System.out.println(greenColor + "\nFim de jogo! O " + player1.getPlayerName() + " venceu!" + resetColor);
             return true;
         } else if (endgame != null && endgame.equals(player2.getPlayerName())) {
-            System.out.println(greenColor + "\nFim de jogo! O jogador " + player2.getPlayerName() + " venceu!" + resetColor);
+            System.out.println(greenColor + "\nFim de jogo! O " + player2.getPlayerName() + " venceu!" + resetColor);
             return true;
         }
         return false;
