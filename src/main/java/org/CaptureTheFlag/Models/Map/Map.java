@@ -41,22 +41,6 @@ public class Map<T extends Location> extends Network<T> {
     }
 
     /**
-     * Retrieves the location with the specified name.
-     *
-     * @param name The name of the location to retrieve.
-     * @return The location with the specified name, or null if not found.
-     */
-    public Location getLocationByName(String name) {
-        for (Location vertex : vertices) {
-            Location location = (Location) vertex;
-            if (location.getName().equals(name)) {
-                return location;
-            }
-        }
-        return null;
-    }
-
-    /**
      * Retrieves the index of a location in the map.
      *
      * @param location The location to find the index of.
@@ -98,7 +82,6 @@ public class Map<T extends Location> extends Network<T> {
     public ArrayUnorderedList<Path> getEdges() {
         ArrayUnorderedList<Path> edgesList = new ArrayUnorderedList<>();
 
-        // Percorra a matriz de adjacência para encontrar os caminhos
         for (int i = 0; i < numVertices; i++) {
             for (int j = 0; j < numVertices; j++) {
                 if (cost[i][j] != Double.MAX_VALUE) {

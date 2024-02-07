@@ -134,7 +134,14 @@ public class GameMenus {
         return exportChoice.equalsIgnoreCase("y");
     }
 
-
+    /**
+     * Prompts the user to select a movement algorithm for a specific bot of a player.
+     *
+     * @param playerId The ID of the player.
+     * @param botId    The ID of the bot.
+     * @return The selected movement algorithm.
+     * @throws EmptyCollectionException If an empty collection is encountered.
+     */
     public static IMovementAlgorithm promptMovementOptions(int playerId, int botId) throws EmptyCollectionException {
         ArrayOrderedList<Character> playerList = (playerId == 1) ? availableAlgorithmsPlayer1 : availableAlgorithmsPlayer2;
 

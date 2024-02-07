@@ -112,15 +112,6 @@ public class Player {
         this.playerName = playerName;
     }
 
-    public Bot getNextBotToMove() {
-        for (Bot bot : bots) {
-            if (!bot.hasMovedThisRound()) {
-                return bot;
-            }
-        }
-        return null;
-    }
-
     /**
      * Retrieves the index of the last moved bot for the current player.
      *

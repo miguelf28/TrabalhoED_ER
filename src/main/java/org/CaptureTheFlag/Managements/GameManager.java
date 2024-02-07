@@ -12,12 +12,22 @@ import java.util.Random;
 
 import static org.CaptureTheFlag.GUI.Miscellaneous.*;
 
-
+/**
+ * The GameManager class manages the game flow and bot movements in the Capture the Flag game.
+ */
 public class GameManager {
     private static boolean flagCaptured = false;
     static final int maxRounds = 75;
     static String endgame = null;
 
+    /**
+     * Starts the game with the provided map and players.
+     *
+     * @param map     The map of the game.
+     * @param player1 The first player.
+     * @param player2 The second player.
+     * @throws EmptyCollectionException If an empty collection is encountered.
+     */
     public static void startGame(Map<Location> map, Player player1, Player player2) throws EmptyCollectionException {
         Random random = new Random();
         int round = 1;
@@ -71,24 +81,23 @@ public class GameManager {
         }
     }
 
+    /**
+     * Moves the bots of the current player according to the game rules.
+     *
+     * @param currentPlayer  The player whose bots are being moved.
+     * @param opponentPlayer  The opponent player.
+     * @param map             The map of the game.
+     * @throws EmptyCollectionException If an empty collection is encountered.
+     */
     private static void moveBots(Player currentPlayer, Player opponentPlayer, Map<Location> map) throws EmptyCollectionException {
         int lastMovedBotIndex = currentPlayer.getLastMovedBotIndex();
         Bot botToMove = currentPlayer.getBots().get(lastMovedBotIndex);
 
-        //Versão bugada:ArrayList<Location> visitedLocations = new ArrayList<>();
-         ArrayList<Location> visitedLocations = botToMove.getVisitedLocations();
+        ArrayList<Location> visitedLocations = botToMove.getVisitedLocations();
         if (visitedLocations.isEmpty() || !visitedLocations.contains(currentPlayer.getFlagPosition())) {
             visitedLocations.add(botToMove.getActualPosition());
         }
-
         System.out.println("Visitados: \n" + visitedLocations);
-
-        /*
-        System.out.println("Visitados: ");
-        for (Location visitedLocation : visitedLocations) {
-            System.out.println(visitedLocation);
-        }
-         */
 
 
         if (botToMove.isCarryingFlag()) {
@@ -96,7 +105,6 @@ public class GameManager {
         } else {
             System.out.println("BOT " + botToMove.getId());
         }
-
 
         botToMove.setMovedThisRound(true);
         IMovementAlgorithm algorithm = botToMove.getMovementAlgorithm();
@@ -125,6 +133,16 @@ public class GameManager {
         currentPlayer.setLastMovedBotIndex(lastMovedBotIndex);
     }
 
+    /**
+     * Finds a valid position for the bot to move to and moves it accordingly.
+     *
+     * @param map               The map of the game.
+     * @param botToMove         The bot to move.
+     * @param currentPlayer     The current player.
+     * @param opponentPlayer    The opponent player.
+     * @param visitedLocations  The list of visited locations.
+     * @throws EmptyCollectionException If an empty collection is encountered.
+     */
     private static void findAndMoveToValidPosition(Map<Location> map, Bot botToMove, Player currentPlayer, Player opponentPlayer, ArrayList<Location> visitedLocations) throws EmptyCollectionException {
         Location currentPosition = botToMove.getActualPosition();
         System.out.println("\nVerificando nova localização!");
@@ -139,6 +157,16 @@ public class GameManager {
         System.out.println(redColor + "Movimento inválido para o Bot " + botToMove.getId() + ". Não foi possível encontrar uma localização válida." + resetColor);
     }
 
+    /**
+     * Moves the bot to the new position and handles flag capturing and game end conditions.
+     *
+     * @param botToMove         The bot being moved.
+     * @param currentPosition   The current position of the bot.
+     * @param newPosition       The new position to move the bot to.
+     * @param currentPlayer     The current player.
+     * @param opponentPlayer    The opponent player.
+     * @param visitedLocations  The list of visited locations.
+     */
     private static void moveBotToNewPosition(Bot botToMove, Location currentPosition, Location newPosition, Player currentPlayer, Player opponentPlayer, ArrayList<Location> visitedLocations) {
         System.out.println("\nBOT " + botToMove.getId() + " movendo-se de " + currentPosition + " para " + newPosition);
         botToMove.setActualPosition(newPosition);
@@ -157,6 +185,13 @@ public class GameManager {
         }
     }
 
+    /**
+     * Checks the game status and prints the winner if the game has ended.
+     *
+     * @param player1 The first player.
+     * @param player2 The second player.
+     * @return True if the game has ended, false otherwise.
+     */
     private static boolean checkGameStatus(Player player1, Player player2) {
         if (endgame != null && endgame.equals(player1.getPlayerName())) {
             System.out.println(greenColor + "\nFim de jogo! O " + player1.getPlayerName() + " venceu!" + resetColor);
@@ -168,6 +203,16 @@ public class GameManager {
         return false;
     }
 
+    /**
+     * Checks if the move to the new position is valid.
+     *
+     * @param newPosition      The new position to move the bot to.
+     * @param currentBot       The bot attempting to move.
+     * @param opponentPlayer   The opponent player.
+     * @param visitedLocations The list of visited locations.
+     * @return True if the move is valid, false otherwise.
+     * @throws EmptyCollectionException If an empty collection is encountered.
+     */
     public static boolean isValidMove(Location newPosition, Bot currentBot, Player opponentPlayer, ArrayList<Location> visitedLocations) throws EmptyCollectionException {
         if (!visitedLocations.isEmpty() && visitedLocations.contains(newPosition)) {
             return false;
@@ -195,7 +240,6 @@ public class GameManager {
             visitedLocations.clear();
             return false;
         }
-
         return true;
     }
 }

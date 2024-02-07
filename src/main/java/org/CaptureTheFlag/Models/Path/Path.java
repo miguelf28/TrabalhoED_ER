@@ -11,7 +11,7 @@ import org.CaptureTheFlag.Models.Location.Location;
  * @author 8190357 - Marcelo Barbosa
  * @author 8180325 - Miguel Fonseca
  */
-public class Path {
+public class Path implements Comparable<Path>{
     private Location origin;
     private Location destination;
     private int distance;
@@ -84,6 +84,17 @@ public class Path {
     }
 
     /**
+     * Compares this edge with another edge based on their weights.
+     *
+     * @param other The other edge to compare with.
+     * @return A negative integer, zero, or a positive integer as this edge is less than, equal to, or greater than the other edge in terms of weight.
+     */
+    @Override
+    public int compareTo(Path other) {
+        return Double.compare(this.distance, other.distance);
+    }
+
+    /**
      * Generates a string representation of the Path object.
      *
      * @return A string representation of the Path object.
@@ -92,4 +103,5 @@ public class Path {
     public String toString() {
         return "Path{ origin=" + origin + ", destination=" + destination + ", distance=" + distance + '}';
     }
+
 }

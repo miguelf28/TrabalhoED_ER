@@ -1,5 +1,6 @@
 package org.Estruturas.Network;
 
+import org.Estruturas.ArrayStack.ArrayStack;
 import org.Estruturas.Exceptions.EmptyCollectionException;
 import org.Estruturas.Graph.Graph;
 import org.Estruturas.LinkedHeap.LinkedHeap;
@@ -92,29 +93,19 @@ public class Network<T> extends Graph<T> implements NetworkADT<T> {
      */
     protected double shortestPathWeight(int startIndex, int targetIndex) {
 
-        double path_array[] = new double[this.size()]; // The output array. dist[i] will hold
-        // the shortest distance from src to i
-
-        // spt (shortest path set) contains vertices that have shortest path
+        double path_array[] = new double[this.size()];
         boolean sptSet[] = new boolean[this.size()];
 
-        // Initially all the distances are INFINITE and stpSet[] is set to false
         for (int i = 0; i < this.size(); i++) {
             path_array[i] = Double.MAX_VALUE;
             sptSet[i] = false;
         }
 
-        // Path between vertex and itself is always 0
         path_array[startIndex] = 0;
-        // now find the shortest path for all vertices
         for (int count = 0; count < this.size() - 1; count++) {
-            // call minDistance method to find the vertex with min distance
             int u = minDistance(path_array, sptSet);
-            // the current vertex u is processed
             sptSet[u] = true;
-            // process adjacent nodes of the current vertex
-            for (int v = 0; v < this.size(); v++) // if vertex v not in sptset then update it
-            {
+            for (int v = 0; v < this.size(); v++) {
                 if (!sptSet[v] && this.adjMatrix[u][v] != false && path_array[u]
                         != Integer.MAX_VALUE && path_array[u]
                         + this.cost[u][v] < path_array[v]) {
@@ -188,12 +179,15 @@ public class Network<T> extends Graph<T> implements NetworkADT<T> {
         int index;
         double weight = 0;
         int[] edge = new int[2];
+
         LinkedHeap<Double> minHeap = new LinkedHeap<>();
         Network<T> resultGraph = new Network<>();
+
         if (this.isEmpty() || !this.isConnected()) {
             return resultGraph;
         }
         resultGraph.cost = new double[numVertices][numVertices];
+
         for (int i = 0; i < this.numVertices; i++) {
             for (int j = 0; j < this.numVertices; j++) {
                 resultGraph.cost[i][j] = Double.MAX_VALUE;
@@ -295,7 +289,7 @@ public class Network<T> extends Graph<T> implements NetworkADT<T> {
      * from the set of vertices not yet included in the shortest path tree.
      *
      * @param path_array the array of distance values
-     * @param sptSet    the set of vertices included in the shortest path tree
+     * @param sptSet     the set of vertices included in the shortest path tree
      * @return the index of the vertex with the minimum distance value
      */
     private int minDistance(double path_array[], boolean sptSet[]) {
@@ -337,5 +331,36 @@ public class Network<T> extends Graph<T> implements NetworkADT<T> {
 
         }
         return null;
+    }
+
+    public T nextVertexInMST(T startVertex) {
+        int startIndex = getIndex(startVertex);
+        T nextVertex = null;
+        ArrayStack<T> stack = new ArrayStack<>();
+        boolean[] visited = new boolean[numVertices];
+        visited[startIndex] = true;
+
+        stack.push(startVertex);
+
+        while (!stack.isEmpty()) {
+            try {
+                T currentVertex = stack.pop();
+                int currentIndex = getIndex(currentVertex);
+                for (int i = 0; i < numVertices; i++) {
+                    if (!visited[i] && cost[currentIndex][i] != Double.MAX_VALUE) {
+                        visited[i] = true;
+                        stack.push(vertices[i]);
+
+                        if (nextVertex == null) {
+                            nextVertex = vertices[i];
+                        }
+                    }
+                }
+            } catch (EmptyCollectionException e) {
+                System.out.println("A pilha está vazia.");
+            }
+        }
+
+        return nextVertex;
     }
 }

@@ -26,7 +26,7 @@ public class Graph<T> implements GraphADT<T> {
     public Graph() {
         numVertices = 0;
         this.adjMatrix = new boolean[DEFAULT_CAPACITY][DEFAULT_CAPACITY];
-        this.vertices = (T[]) (new Object[DEFAULT_CAPACITY]);
+        this.vertices = (T[]) new Object[DEFAULT_CAPACITY];
     }
 
     /**
@@ -431,5 +431,20 @@ public class Graph<T> implements GraphADT<T> {
      */
     protected boolean indexIsValid(int index) {
         return (index >= 0 && index < this.numVertices);
+    }
+
+    /**
+     * Returns an iterator over the vertices in the graph.
+     *
+     * @return an iterator over the vertices in the graph
+     */
+    public Iterator<T> vertices() {
+        ArrayUnorderedList<T> list = new ArrayUnorderedList<>();
+
+        for (int i = 0; i < this.numVertices; i++) {
+            list.addToRear(this.vertices[i]);
+        }
+
+        return list.iterator();
     }
 }

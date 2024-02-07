@@ -21,7 +21,6 @@ import org.Estruturas.ArrayList.ArrayList;
 public class Bot {
     private int id;
     private Location actualPosition;
-    private Location targetPosition;
     private IMovementAlgorithm IMovementAlgorithm;
     private Player owner;
     private boolean carryingFlag = false;
@@ -151,30 +150,48 @@ public class Bot {
         this.IMovementAlgorithm = IMovementAlgorithm;
     }
 
-    public Location getTargetPosition() {
-        return targetPosition;
-    }
-
-    public void setTargetPosition(Location targetPosition) {
-        this.targetPosition = targetPosition;
-    }
-
+    /**
+     * Checks if the player is currently carrying the flag.
+     *
+     * @return true if the player is carrying the flag, false otherwise.
+     */
     public boolean isCarryingFlag() {
         return carryingFlag;
     }
 
+    /**
+     * Sets the flag carrying status for the player.
+     *
+     * @param carryingFlag true if the player is carrying the flag, false otherwise.
+     */
     public void setCarryingFlag(boolean carryingFlag) {
         this.carryingFlag = carryingFlag;
     }
 
+    /**
+     * Checks if the player has moved during this round.
+     *
+     * @return true if the player has moved this round, false otherwise.
+     */
     public boolean hasMovedThisRound() {
         return movedThisRound;
     }
 
+    /**
+     * Sets the movement status for the player during this round.
+     *
+     * @param moved true if the player has moved this round, false otherwise.
+     */
     public void setMovedThisRound(boolean moved) {
         this.movedThisRound = moved;
     }
 
+    /**
+     * Returns the flag to the player's base location if the player is carrying it.
+     *
+     * @param playerBase The base location of the player.
+     * @return The location where the flag was returned, or null if the player wasn't carrying the flag.
+     */
     public Location returnFlagToBase(Location playerBase) {
         Location returnPosition = null;
         if (isCarryingFlag()) {
@@ -184,13 +201,15 @@ public class Bot {
         return returnPosition;
     }
 
+    /**
+     * Retrieves the list of visited locations by the player.
+     *
+     * @return An ArrayList of visited locations.
+     */
     public ArrayList<Location> getVisitedLocations() {
         return visitedLocations;
     }
 
-    public void setVisitedLocations(ArrayList<Location> visitedLocations) {
-        this.visitedLocations = visitedLocations;
-    }
 
     /**
      * Gets the type of movement algorithm assigned to the bot.

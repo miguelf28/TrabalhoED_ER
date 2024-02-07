@@ -12,26 +12,54 @@ import java.io.FileReader;
 import java.io.FileWriter;
 import java.io.IOException;
 
+/**
+ * The ImportExportMap class provides functionality to import and export maps from/to JSON files.
+ */
 public class ImportExportMap {
 
+    /**
+     * MapImportResult is a nested class representing the result of importing a map.
+     */
     public static class MapImportResult {
         private Map<Location> map;
         private boolean hasBidirectionalPaths;
 
+        /**
+         * Constructs a MapImportResult object.
+         *
+         * @param map                 The imported map.
+         * @param hasBidirectionalPaths Indicates if the map has bidirectional paths.
+         */
         public MapImportResult(Map<Location> map, boolean hasBidirectionalPaths) {
             this.map = map;
             this.hasBidirectionalPaths = hasBidirectionalPaths;
         }
 
+        /**
+         * Retrieves the imported map.
+         *
+         * @return The imported map.
+         */
         public Map<Location> getMap() {
             return map;
         }
 
+        /**
+         * Checks if the imported map has bidirectional paths.
+         *
+         * @return true if the map has bidirectional paths, false otherwise.
+         */
         public boolean hasBidirectionalPaths() {
             return hasBidirectionalPaths;
         }
     }
 
+    /**
+     * Imports a map from a JSON file and generates the map.
+     *
+     * @param filePath The path to the JSON file containing the map data.
+     * @return The result of the map import, including the map and bidirectional paths status.
+     */
     public MapImportResult importMapAndGenerateMap(String filePath) {
         Map<Location> map = new Map<>();
         boolean bidirectionalPaths = false;
@@ -83,6 +111,13 @@ public class ImportExportMap {
         return new MapImportResult(map, bidirectionalPaths);
     }
 
+    /**
+     * Exports the map to a JSON file.
+     *
+     * @param map                The map to export.
+     * @param bidirectionalPaths Indicates if the map has bidirectional paths.
+     * @param filePath           The path to export the map JSON file.
+     */
     public void exportMapToJson(Map<Location> map, boolean bidirectionalPaths, String filePath) {
         JSONObject jsonMap = new JSONObject();
         JSONArray verticesArray = new JSONArray();
