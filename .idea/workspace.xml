@@ -6,19 +6,12 @@
   <component name="ChangeListManager">
     <list default="true" id="2f94aad1-6861-4f54-acb1-3c181fb54499" name="Changes" comment="CORREÇÃO: adicionada a correção ao ShortestPathAlgorithm que não permitia ao bot começar pelo caminho que era suposto, pois adicionava a primeira localização ao visitedLocations antes de ser movido.&#10;&#10;tentativa de refazer o caminho de volta para a base com a flag, o visitedLocations.clear() está ativo para testes no moveBotToNewPosition e mudei o visitedLocations.add(currentPlayer.getFlagPosition()) para visitedLocations.add(botToMove.getActualPosition()), porque ele ao chegar à flag inimiga, mesmo que limpasse a lista, ia adicionar novamente a sua flag nela e depois não retornava à base">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/map.json" beforeDir="false" afterPath="$PROJECT_DIR$/map.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/README.md" beforeDir="false" afterPath="$PROJECT_DIR$/README.md" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/org/CaptureTheFlag/Algorithms/Interface/MSTIterator.java" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/org/CaptureTheFlag/Algorithms/MSTAlgorithm.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/CaptureTheFlag/Algorithms/MSTAlgorithm.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/org/CaptureTheFlag/Console/GameMenus.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/CaptureTheFlag/Console/GameMenus.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/org/CaptureTheFlag/Console/PlayerConsole.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/CaptureTheFlag/Console/PlayerConsole.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/org/CaptureTheFlag/GUI/LaunchGame.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/org/CaptureTheFlag/GUI/Miscellaneous.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/CaptureTheFlag/Others/Miscellaneous.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/org/CaptureTheFlag/Managements/GameManager.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/CaptureTheFlag/Managements/GameManager.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/org/CaptureTheFlag/Managements/GameSettings.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/CaptureTheFlag/Managements/GameSettings.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/org/CaptureTheFlag/Managements/ImportExportMap.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/CaptureTheFlag/Managements/ImportExportMap.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/org/CaptureTheFlag/Models/Bots/Bot.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/CaptureTheFlag/Models/Bots/Bot.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/org/CaptureTheFlag/Models/Map/Map.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/CaptureTheFlag/Models/Map/Map.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/org/CaptureTheFlag/Models/Path/Path.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/CaptureTheFlag/Models/Path/Path.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/org/CaptureTheFlag/Models/Player/Player.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/CaptureTheFlag/Models/Player/Player.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/org/Estruturas/Graph/Graph.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/Estruturas/Graph/Graph.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/org/Estruturas/Network/Network.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/Estruturas/Network/Network.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -76,6 +69,7 @@
   <component name="PropertiesComponent"><![CDATA[{
   "keyToString": {
     "Application.Main.executor": "Run",
+    "Gradle.TrabalhoED_ER [:LaunchGame.main()].executor": "Run",
     "Gradle.TrabalhoED_ER [:Main.main()].executor": "Run",
     "RunOnceActivity.OpenProjectViewOnStart": "true",
     "RunOnceActivity.ShowReadmeOnStart": "true",
@@ -96,11 +90,36 @@
       <recent name="" />
     </key>
     <key name="CopyClassDialog.RECENTS_KEY">
-      <recent name="org.CaptureTheFlag.Algorithms.Interface" />
       <recent name="org.CaptureTheFlag.Interfaces" />
     </key>
   </component>
-  <component name="RunManager">
+  <component name="RunManager" selected="Application.Main (1)">
+    <configuration name="LaunchGame" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+      <option name="MAIN_CLASS_NAME" value="org.CaptureTheFlag.Others.LaunchGame" />
+      <module name="org.example.TrabalhoED_ER.main" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="org.CaptureTheFlag.Others.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="Main (1)" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+      <option name="MAIN_CLASS_NAME" value="org.CaptureTheFlag.Main" />
+      <module name="org.example.TrabalhoED_ER.main" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="org.CaptureTheFlag.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
     <configuration name="Main" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
       <option name="MAIN_CLASS_NAME" value="org.CaptureTheFlag.Main" />
       <module name="TrabalhoED_ER.main" />
@@ -117,6 +136,8 @@
     <recent_temporary>
       <list>
         <item itemvalue="Application.Main" />
+        <item itemvalue="Application.LaunchGame" />
+        <item itemvalue="Application.Main (1)" />
       </list>
     </recent_temporary>
   </component>
@@ -194,10 +215,43 @@
     <option name="LAST_COMMIT_MESSAGE" value="adicionada a correção ao ShortestPathAlgorithm que não permitia ao bot começar pelo caminho que era suposto, pois adicionava a primeira localização ao visitedLocations antes de ser movido.&#10;&#10;tentativa de refazer o caminho de volta para a base com a flag, o visitedLocations.clear() está ativo para testes no moveBotToNewPosition" />
   </component>
   <component name="XDebuggerManager">
+    <breakpoint-manager>
+      <breakpoints>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/src/main/java/org/CaptureTheFlag/Managements/GameManager.java</url>
+          <line>153</line>
+          <option name="timeStamp" value="4" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/src/main/java/org/CaptureTheFlag/Managements/GameManager.java</url>
+          <line>161</line>
+          <option name="timeStamp" value="5" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/src/main/java/org/CaptureTheFlag/Algorithms/ShortestPathAlgorithm.java</url>
+          <line>50</line>
+          <option name="timeStamp" value="22" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/src/main/java/org/CaptureTheFlag/Algorithms/ShortestPathAlgorithm.java</url>
+          <line>51</line>
+          <option name="timeStamp" value="23" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/src/main/java/org/CaptureTheFlag/Algorithms/ShortestPathAlgorithm.java</url>
+          <line>62</line>
+          <option name="timeStamp" value="24" />
+        </line-breakpoint>
+      </breakpoints>
+    </breakpoint-manager>
+    <pin-to-top-manager>
+      <pinned-members>
+        <PinnedItemInfo parentTag="org.Estruturas.Network.Network" memberName="cost" />
+      </pinned-members>
+    </pin-to-top-manager>
     <watches-manager>
       <configuration name="GradleRunConfiguration">
-        <watch expression="visitedLocations" language="JAVA" />
-        <watch expression="mst" />
+        <watch expression="visitedLocations" />
       </configuration>
     </watches-manager>
   </component>

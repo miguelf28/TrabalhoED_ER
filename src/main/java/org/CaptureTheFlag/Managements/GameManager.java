@@ -10,7 +10,7 @@ import org.Estruturas.Exceptions.EmptyCollectionException;
 
 import java.util.Random;
 
-import static org.CaptureTheFlag.GUI.Miscellaneous.*;
+import static org.CaptureTheFlag.Others.Miscellaneous.*;
 
 /**
  * The GameManager class manages the game flow and bot movements in the Capture the Flag game.

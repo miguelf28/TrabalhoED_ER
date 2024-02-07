@@ -1,4 +1,4 @@
-package org.CaptureTheFlag.GUI;
+package org.CaptureTheFlag.Others;
 
 public class Miscellaneous {
     public static final String resetColor = "\u001B[0m";

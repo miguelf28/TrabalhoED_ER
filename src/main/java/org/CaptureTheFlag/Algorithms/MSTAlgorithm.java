@@ -41,7 +41,7 @@ public class MSTAlgorithm implements IMovementAlgorithm {
         System.out.println("Target Location: " + opponentLocation.getName());
 
         Network<Location> mst = map.mstNetwork();
-
+        //System.out.println(mst);
         if (mst == null) {
             System.out.println("The MST was not properly created.");
             return null;
