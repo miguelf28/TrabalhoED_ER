@@ -53,8 +53,6 @@ public class ShortestPathAlgorithm implements IMovementAlgorithm {
             System.out.print(" - " + nextLocation.getName());
         }
 
-        //System.out.println();
-
         if (pathDjikstra.size() > 1) {
             return pathDjikstra.get(1);
         } else {

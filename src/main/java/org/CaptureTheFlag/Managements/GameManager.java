@@ -75,12 +75,22 @@ public class GameManager {
         int lastMovedBotIndex = currentPlayer.getLastMovedBotIndex();
         Bot botToMove = currentPlayer.getBots().get(lastMovedBotIndex);
 
-        ArrayList<Location> visitedLocations = botToMove.getVisitedLocations();
+        //Versão bugada:ArrayList<Location> visitedLocations = new ArrayList<>();
+         ArrayList<Location> visitedLocations = botToMove.getVisitedLocations();
         if (visitedLocations.isEmpty() || !visitedLocations.contains(currentPlayer.getFlagPosition())) {
             visitedLocations.add(botToMove.getActualPosition());
         }
 
         System.out.println("Visitados: \n" + visitedLocations);
+
+        /*
+        System.out.println("Visitados: ");
+        for (Location visitedLocation : visitedLocations) {
+            System.out.println(visitedLocation);
+        }
+         */
+
+
         if (botToMove.isCarryingFlag()) {
             System.out.println("BOT " + botToMove.getId() + yellowColor + " [Tem a bandeira inimiga] " + resetColor);
         } else {

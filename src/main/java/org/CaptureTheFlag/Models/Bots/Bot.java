@@ -28,23 +28,6 @@ public class Bot {
     private boolean movedThisRound = false;
     ArrayList<Location> visitedLocations = new ArrayList<>();
 
-    /**
-     * Gets the player who owns the bot.
-     *
-     * @return The owner player of the bot.
-     */
-    public Player getOwner() {
-        return owner;
-    }
-
-    /**
-     * Sets the player who owns the bot.
-     *
-     * @param owner The new owner player for the bot.
-     */
-    public void setOwner(Player owner) {
-        this.owner = owner;
-    }
 
     /**
      * Constructs a new {@code Bot} object with the specified ID.
@@ -53,6 +36,7 @@ public class Bot {
      */
     public Bot(int id) {
         this.id = id;
+        visitedLocations = new ArrayList<>();
     }
 
     /**
@@ -64,6 +48,10 @@ public class Bot {
     public Bot(int id, Location actualPosition) {
         this.id = id;
         this.actualPosition = actualPosition;
+    }
+
+    public Bot() {
+        visitedLocations = new ArrayList<>();
     }
 
     /**
@@ -86,6 +74,7 @@ public class Bot {
         this.id = id;
         this.actualPosition = actualPosition;
         this.IMovementAlgorithm = IMovementAlgorithm;
+        this.visitedLocations = new ArrayList<>();
     }
 
     /**
@@ -115,6 +104,7 @@ public class Bot {
         return actualPosition;
     }
 
+
     /**
      * Sets the actual position of the bot on the map.
      *
@@ -123,6 +113,25 @@ public class Bot {
     public void setActualPosition(Location actualPosition) {
         this.actualPosition = actualPosition;
     }
+
+    /**
+     * Gets the player who owns the bot.
+     *
+     * @return The owner player of the bot.
+     */
+    public Player getOwner() {
+        return owner;
+    }
+
+    /**
+     * Sets the player who owns the bot.
+     *
+     * @param owner The new owner player for the bot.
+     */
+    public void setOwner(Player owner) {
+        this.owner = owner;
+    }
+
 
     /**
      * Gets the movement algorithm assigned to the bot.
@@ -177,6 +186,10 @@ public class Bot {
 
     public ArrayList<Location> getVisitedLocations() {
         return visitedLocations;
+    }
+
+    public void setVisitedLocations(ArrayList<Location> visitedLocations) {
+        this.visitedLocations = visitedLocations;
     }
 
     /**
